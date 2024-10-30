@@ -1,0 +1,35 @@
+---
+componentName:   aptosid
+welcomeStyleCalamares: true
+welcomeExpandingLogo: true
+windowExpanding: normal
+windowSize: 800px,580px
+windowPlacement: center
+
+strings:
+    productName:         aptosid
+    shortProductName:    aptosid
+    version:             nemesis
+    shortVersion:        nemesis
+    versionedName:       aptosid nemesis
+    shortVersionedName:  aptosid nemesis
+    bootloaderEntryName: aptosid
+    productUrl:          https://github.com/fullstory
+
+sidebar: widget
+navigation: widget
+
+images:
+    productLogo:         "aptosid-logo.png"
+    productIcon:         "aptosid-logo.png"
+    productWelcome:      "aptosid.png"
+
+slideshow:               "show.qml"
+
+style:
+   SidebarBackground:    "#010027"
+   SidebarText:          "#FFFFFF"
+   SidebarTextCurrent:   "#fbfbfb"
+   SidebarBackgroundCurrent: "#017877"
+
+slideshowAPI: 2

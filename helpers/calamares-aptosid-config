@@ -1,0 +1,66 @@
+#!/bin/sh
+
+CHROOT=$(mount | grep proc | grep calamares | awk '{print $3}' | sed -e "s#/proc##g")
+
+. /etc/default/distro
+
+# fix sudo config
+rm "${CHROOT}/etc/sudoers.d/15_${FLL_DISTRO_NAME}"
+cat "${CHROOT}/usr/share/base-files/profile" > "${CHROOT}/etc/profile"
+
+# regenerate default snakeoil with new hostname
+if which make-ssl-cert >/dev/null; then
+    chroot $CHROOT make-ssl-cert generate-default-snakeoil --force-overwrite
+fi
+
+# "normalize" gettys
+rm -f	"${CHROOT}/etc/systemd/system/getty@.service" \
+    "${CHROOT}/etc/systemd/system/autovt@.service"
+ln -fs	/lib/systemd/system/autovt@.service \
+    "${CHROOT}/etc/systemd/system/getty.target.wants/getty@tty1.service"
+
+# normalize /etc/pam.d/login
+sed -i '/^#.*pam_lastlog\.so/s/^#[ \t]\+//' "${CHROOT}/etc/pam.d/login"
+
+# remove confusing live traces from blkid.tab
+rm -f "${CHROOT}/etc/blkid.tab*"
+
+# revert GDM3 autologin
+if [ -f "${CHROOT}/etc/gdm3/daemon.conf" ]; then
+    # we want the gdm-theme (set by desktop-defaults in live mode) on hd-install,
+    # only remove autologin for gdm
+    sed -i	-e "/^AutomaticLogin\=.*/d" \
+        -e "/^AutomaticLoginEnable\=.*/d" \
+        -e "/^TimedLogin\=.*/d" \
+        -e "/^TimedLoginDelay\=.*/d" \
+        -e "/^TimedLoginEnable\=.*/d" \
+            "${CHROOT}/etc/gdm3/daemon.conf"
+fi
+
+# revert lightdm autologin
+if [ -f "${CHROOT}/etc/lightdm/lightdm.conf.d/80_fll-live-initscripts.conf" ]; then
+    rm -f "${CHROOT}/etc/lightdm/lightdm.conf.d/80_fll-live-initscripts.conf"
+    rmdir --ignore-fail-on-non-empty \
+        "${CHROOT}/etc/lightdm/lightdm.conf.d" || :
+fi
+
+# revert lxdm autologin
+if [ -f "${CHROOT}/etc/lxdm/live.conf" ] && \
+    [ -f "${CHROOT}/etc/lxdm/lxdm.conf" ]; then
+    rm -f "${CHROOT}/etc/lxdm/live.conf"
+    ln -fs lxdm.conf "${CHROOT}/etc/lxdm/default.conf"
+fi
+
+# revert SDDM autologin
+rm -f	"${CHROOT}/etc/sddm.conf" \
+    "${CHROOT}/var/lib/sddm/state.conf"
+
+# revert slim autologin
+if [ -f "${CHROOT}/etc/slim.conf" ]; then
+    sed -i  -e "/^default_user.*/d" \
+        -e "/^auto_login.*/d" \
+        -e "s/^\#FLL\#//" \
+            "${CHROOT}/etc/slim.conf"
+fi
+
+exit 0
