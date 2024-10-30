@@ -1,3 +1,11 @@
+calamares-settings-aptosid (20241030-4) unstable; urgency=medium
+
+  * Drop pkla, use sudo.
+  * Drop packages from apt purcgase that aren't guranteed to be
+    installed.
+
+ -- Kel Modderman <kelvmod@gmail.com>  Wed, 30 Oct 2024 19:13:42 +1000
+
 calamares-settings-aptosid (20241030-3) unstable; urgency=medium
 
   * Add pkla local authority file permitting authority to execute
