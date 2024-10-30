@@ -2,6 +2,7 @@ Source: calamares-settings-aptosid
 Section: utils
 Priority: optional
 Maintainer: Kel Modderman <kelvmod@gmail.com>
+Uploaders: Stefan Lippers-Hollmann <s.l-h@gmx.de>
 Build-Depends: debhelper-compat (= 13)
 Standards-Version: 4.6.2
 Rules-Requires-Root: no

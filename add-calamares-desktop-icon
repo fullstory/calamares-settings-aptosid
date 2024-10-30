@@ -39,6 +39,6 @@ fi
 # Preload calamares binaries and libraries using idle disk cycles
 # so that it launches faster
 ionice -C Idle cat /usr/bin/calamares > /dev/null
-for file in $(ldd /usr/bin/calamares | awk '{print $3}'): do
+for file in $(ldd /usr/bin/calamares | awk '{print $3}'); do
     ionice -C Idle cat $file > /dev/null
 done
