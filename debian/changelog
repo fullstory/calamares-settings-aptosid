@@ -6,6 +6,7 @@ calamares-settings-aptosid (20241030.7) UNRELEASED; urgency=medium
     - add Vcs-Git/ Vcs-Browser
     - unused-license-paragraph-in-dep5-copyright cc-by-sa-3.0
     - missing-license-paragraph-in-dep5-copyright gpl-2.0+
+    - comma-separated-files-in-dep5-copyright
   * bump standards version to 4.7.0, no changes necessary.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 30 Oct 2024 13:55:56 +0100
