@@ -9,7 +9,8 @@ Rules-Requires-Root: no
 Package: calamares-settings-aptosid
 Architecture: all
 Depends: calamares,
-	libcrack2,
+	cracklib-runtime,
+	wamerican,
 	${misc:Depends}
 Provides: calamares-settings
 Description: aptosid theme and settings for the Calamares Installer
