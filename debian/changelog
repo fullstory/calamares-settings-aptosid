@@ -7,6 +7,7 @@ calamares-settings-aptosid (20241030.7) UNRELEASED; urgency=medium
     - unused-license-paragraph-in-dep5-copyright cc-by-sa-3.0
     - missing-license-paragraph-in-dep5-copyright gpl-2.0+
     - comma-separated-files-in-dep5-copyright
+    - trailing-whitespace [debian/changelog:49]
   * bump standards version to 4.7.0, no changes necessary.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 30 Oct 2024 13:55:56 +0100
@@ -47,7 +48,7 @@ calamares-settings-aptosid (20241030.2) unstable; urgency=medium
 
 calamares-settings-aptosid (20241030.1) unstable; urgency=medium
 
-  * Switch to native source format. 
+  * Switch to native source format.
 
  -- Kel Modderman <kelvmod@gmail.com>  Wed, 30 Oct 2024 20:39:05 +1000
 
