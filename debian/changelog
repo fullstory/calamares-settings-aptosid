@@ -1,3 +1,9 @@
+calamares-settings-aptosid (20241030.4) unstable; urgency=medium
+
+  * Depend on libcrack2
+
+ -- Kel Modderman <kelvmod@gmail.com>  Wed, 30 Oct 2024 21:50:52 +1000
+
 calamares-settings-aptosid (20241030.3) unstable; urgency=medium
 
   * Re-enable services we may have disabled at build time.
