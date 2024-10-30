@@ -1,10 +1,10 @@
-calamares-settings-aptosid (20241030-3) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20241030-3) unstable; urgency=medium
 
   * Add pkla local authority file permitting authority to execute
     calamares.
   * Use shell glob hack to create persistent symlink to squashfs.
 
- -- Kel Modderman <kelvmod@gmail.com>  Wed, 30 Oct 2024 19:00:08 +1000
+ -- Kel Modderman <kelvmod@gmail.com>  Wed, 30 Oct 2024 19:02:35 +1000
 
 calamares-settings-aptosid (20241030-2) unstable; urgency=medium
 
