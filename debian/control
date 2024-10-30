@@ -3,9 +3,9 @@ Section: utils
 Priority: optional
 Maintainer: Kel Modderman <kelvmod@gmail.com>
 Uploaders: Stefan Lippers-Hollmann <s.l-h@gmx.de>
-Build-Depends: debhelper-compat (= 13)
-Standards-Version: 4.6.2
 Rules-Requires-Root: no
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.7.0
 Vcs-Git: https://github.com/fullstory/calamares-settings-aptosid.git
 Vcs-Browser: https://github.com/fullstory/calamares-settings-aptosid
 
