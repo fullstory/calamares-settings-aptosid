@@ -17,7 +17,7 @@ Copyright: 2016-2023 Jonathan Carter <jcc@debian.org>
            2024 Kel Modderman <kelvmod@gmail.com>
 License: ISC
 
-Files: calamares/branding/debian/show.qml
+Files: calamares/branding/aptosid/show.qml
 Copyright: 2015 Teo Mrnjavac <teo@kde.org>
            2018 Jonathan Carter <jcc@debian.org>
            2024 Kel Modderman <kelvmod@gmail.com>
