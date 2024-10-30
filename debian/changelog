@@ -1,6 +1,5 @@
-calamares-settings-aptosid (20241030.7) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20241030.7) unstable; urgency=medium
 
-  * NOT RELEASED YET
   * drop gbp.conf again.
   * make lintian happier:
     - add Vcs-Git/ Vcs-Browser
@@ -10,7 +9,7 @@ calamares-settings-aptosid (20241030.7) UNRELEASED; urgency=medium
     - trailing-whitespace [debian/changelog:49]
   * bump standards version to 4.7.0, no changes necessary.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 30 Oct 2024 13:55:56 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 30 Oct 2024 20:40:51 +0100
 
 calamares-settings-aptosid (20241030.6) unstable; urgency=medium
 
