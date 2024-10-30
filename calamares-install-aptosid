@@ -4,7 +4,7 @@
 ###
 
 . /etc/default/distro
-sudo ln -sf "/fll/${FLL_IMAGE_LOCATION}" /fll/squashfs
+sudo ln -sf /fll/*/${FLL_IMAGE_LOCATION} /fll/squashfs
 
 # Stale file left behind by live-build that messes with partitioning
 sudo mv /etc/fstab /etc/fstab.orig.calamares

@@ -1,0 +1,6 @@
+[aptosid live user]
+Identity=unix-user:*
+Action=com.github.calamares.*
+ResultAny=yes
+ResultInactive=yes
+ResultActive=yes

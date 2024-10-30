@@ -1,3 +1,4 @@
+10-calamares-aptosid.pkla etc/polkit-1/localauthority/10-vendor.d
 calamares etc
 calamares-modules/* usr/lib/calamares/modules
 helpers/* usr/share/calamares/helpers
