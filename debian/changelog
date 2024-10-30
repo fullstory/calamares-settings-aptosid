@@ -1,8 +1,11 @@
-calamares-settings-aptosid (20241030.9) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20241030.9) unstable; urgency=medium
 
-  * NOT RELEASED YET
+  * remove additional live-only packages:
+    - calamares
+    - setpassword
+    - sshstart
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 30 Oct 2024 20:46:28 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 30 Oct 2024 21:14:16 +0100
 
 calamares-settings-aptosid (20241030.8) unstable; urgency=medium
 
