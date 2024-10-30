@@ -1,6 +1,6 @@
 ---
 type:       "job"
-name:       "sources-final"
+name:       "aptosid-config"
 interface:  "process"
 command:    "/usr/share/calamares/helpers/calamares-aptosid-config"
 timeout:    600
