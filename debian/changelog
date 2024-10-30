@@ -1,8 +1,15 @@
-calamares-settings-aptosid (20241030.1) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20241030.2) unstable; urgency=medium
 
-  * 
+  * Use liveapt in bootloader-config.
+  * Run bootloader config *after* generating initramfs.
 
- -- Kel Modderman <kelvmod@gmail.com>  Wed, 30 Oct 2024 20:06:14 +1000
+ -- Kel Modderman <kelvmod@gmail.com>  Wed, 30 Oct 2024 20:40:06 +1000
+
+calamares-settings-aptosid (20241030.1) unstable; urgency=medium
+
+  * Switch to native source format. 
+
+ -- Kel Modderman <kelvmod@gmail.com>  Wed, 30 Oct 2024 20:39:05 +1000
 
 calamares-settings-aptosid (20241030-5) unstable; urgency=medium
 
