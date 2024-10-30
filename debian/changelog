@@ -1,3 +1,10 @@
+calamares-settings-aptosid (20241030-5) unstable; urgency=medium
+
+  * Strip uneccessary depends.
+  * Explicitly create initramfs in bootloader-config
+
+ -- Kel Modderman <kelvmod@gmail.com>  Wed, 30 Oct 2024 20:04:28 +1000
+
 calamares-settings-aptosid (20241030-4) unstable; urgency=medium
 
   * Drop pkla, use sudo.

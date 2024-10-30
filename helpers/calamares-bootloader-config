@@ -22,6 +22,5 @@ else
     DEBIAN_FRONTEND=noninteractive chroot $CHROOT apt-get -y install grub-pc
 fi
 
-# Re-enable os-prober:
-sed -i "s/#GRUB_DISABLE_OS_PROBER=false/# OS_PROBER re-enabled by aptosid Calamares installation:\nGRUB_DISABLE_OS_PROBER=false/g" $CHROOT/etc/default/grub
+chroot $CHROOT /usr/sbin/update-initramfs -c -k all
 chroot $CHROOT /usr/sbin/update-grub
