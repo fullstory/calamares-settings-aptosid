@@ -2,6 +2,8 @@ calamares-settings-aptosid (20241030.7) UNRELEASED; urgency=medium
 
   * NOT RELEASED YET
   * drop gbp.conf again.
+  * make lintian happier:
+    - add Vcs-Git/ Vcs-Browser
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 30 Oct 2024 13:55:56 +0100
 

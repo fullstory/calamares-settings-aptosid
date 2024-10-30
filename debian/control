@@ -6,6 +6,8 @@ Uploaders: Stefan Lippers-Hollmann <s.l-h@gmx.de>
 Build-Depends: debhelper-compat (= 13)
 Standards-Version: 4.6.2
 Rules-Requires-Root: no
+Vcs-Git: https://github.com/fullstory/calamares-settings-aptosid.git
+Vcs-Browser: https://github.com/fullstory/calamares-settings-aptosid
 
 Package: calamares-settings-aptosid
 Architecture: all
