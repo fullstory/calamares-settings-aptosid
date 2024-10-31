@@ -1,3 +1,9 @@
+calamares-settings-aptosid (20241031.2) unstable; urgency=medium
+
+  * Move cryptsetup purge into its own helper and module.
+
+ -- Kel Modderman <kelvmod@gmail.com>  Thu, 31 Oct 2024 20:26:11 +1000
+
 calamares-settings-aptosid (20241031.1) unstable; urgency=medium
 
   * Depend on cryptsetup-initramfs cryptsetup keyutils and purge

@@ -18,16 +18,6 @@ if [ -n "${FLL_GFXBOOT_THEME}" ] && \
     fi
 fi
 
-# Install luks utilities if needed. Set secure permissions for the initramfs
-# if we're configuring full-disk-encryption.
-if [ "$(mount | grep $CHROOT" " | cut -c -16)" = "/dev/mapper/luks" ]; then
-    echo "UMASK=0077" > $CHROOT/etc/initramfs-tools/conf.d/initramfs-permissions
-    chroot $CHROOT update-initramfs -c -k all
-else
-    DEBIAN_FRONTEND=noninteractive chroot $CHROOT dpkg --purge \
-        cryptsetup-initramfs cryptsetup keyutils
-fi
-
 if [ -d /sys/firmware/efi/efivars ]; then
     # Install grub-efi in the chroot
     APTGRUB="grub-efi"
