@@ -63,5 +63,5 @@ elif grep -qv '^GRUB_DISABLE_OS_PROBER' $CHROOT/etc/default/grub; then
 fi
 
 # Ensure distributor is Debian
-sed -i 's/GRUB_DISTRIBUTOR=/GRUB_DISTRIBUTOR="Debian"/g' \
+sed -i 's/GRUB_DISTRIBUTOR=.*/GRUB_DISTRIBUTOR=Debian/g' \
         $CHROOT/etc/default/grub
