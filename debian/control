@@ -15,10 +15,10 @@ Depends: calamares,
 	cracklib-runtime,
 	wamerican,
 	xdg-user-dirs,
-	cryptsetup-initramfs,
-	cryptsetup,
-	keyutils,
 	${misc:Depends}
+Recommends: cryptsetup-initramfs,
+	cryptsetup,
+	keyutils
 Provides: calamares-settings
 Description: aptosid theme and settings for the Calamares Installer
  Calamares is a generic installer framework for Linux distributions.

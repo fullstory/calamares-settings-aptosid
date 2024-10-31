@@ -1,3 +1,9 @@
+calamares-settings-aptosid (20241031.4) unstable; urgency=medium
+
+  * Move cryptsetup and friends to recomends so they can be purged.
+
+ -- Kel Modderman <kelvmod@gmail.com>  Thu, 31 Oct 2024 20:50:14 +1000
+
 calamares-settings-aptosid (20241031.3) unstable; urgency=medium
 
   * Setup root account.
