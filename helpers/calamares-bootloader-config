@@ -18,34 +18,14 @@ if [ -n "${FLL_GFXBOOT_THEME}" ] && \
     fi
 fi
 
-# Install luks utilities if needed.
-# Also, set secure permissions for the initramfs if we're configuring
-# full-disk-encryption. The initramfs is re-generated later in the
-# installation process so we only set the permissions snippet without
-# regenerating the initramfs right now:
+# Install luks utilities if needed. Set secure permissions for the initramfs
+# if we're configuring full-disk-encryption.
 if [ "$(mount | grep $CHROOT" " | cut -c -16)" = "/dev/mapper/luks" ]; then
-    # Install cryptsetup-initramfs cryptsetup keyutils
-    APTSOURCES=$(mktemp -d --tmpdir=${CHROOT}/tmp/ liveapt.XXXXXX)
-    APTGETBASE="apt-get -o Dir::Etc=${APTSOURCES##${CHROOT}}"
-    . /lib/init/fll
-    APTMOUNT="/fll"
-    [ -e "${APTMOUNT}/extras" ] || APTMOUNT="$(fll_get_mnt)"
-    mount -o bind ${APTMOUNT} ${CHROOT}/mnt
-    echo 'deb [trusted=yes] file:///mnt/extras sid main' > \
-        ${APTSOURCES}/sources.list
-    mkdir ${APTSOURCES}/preferences.d
-    chroot $CHROOT ${APTGETBASE} update > /dev/null
-    DEBIAN_FRONTEND=noninteractive chroot $CHROOT ${APTGETBASE} \
-        --allow-unauthenticated --assume-yes install \
-        cryptsetup-initramfs cryptsetup keyutils
-    umount ${CHROOT}/mnt
-    echo '' > ${APTSOURCES}/sources.list
-    chroot $CHROOT ${APTGETBASE} update > /dev/null
-    chroot $CHROOT ${APTGETBASE} clean > /dev/null
-    rm -rf ${APTSOURCES}
-
     echo "UMASK=0077" > $CHROOT/etc/initramfs-tools/conf.d/initramfs-permissions
     chroot $CHROOT update-initramfs -c -k all
+else
+    DEBIAN_FRONTEND=noninteractive chroot $CHROOT dpkg --purge \
+        cryptsetup-initramfs cryptsetup keyutils
 fi
 
 if [ -d /sys/firmware/efi/efivars ]; then

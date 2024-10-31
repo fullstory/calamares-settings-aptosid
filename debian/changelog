@@ -1,3 +1,10 @@
+calamares-settings-aptosid (20241031.1) unstable; urgency=medium
+
+  * Depend on cryptsetup-initramfs cryptsetup keyutils and purge
+    if not used.
+
+ -- Kel Modderman <kelvmod@gmail.com>  Thu, 31 Oct 2024 15:08:39 +1000
+
 calamares-settings-aptosid (20241030.10) unstable; urgency=medium
 
   [ Kel Modderman ]

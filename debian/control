@@ -15,6 +15,9 @@ Depends: calamares,
 	cracklib-runtime,
 	wamerican,
 	xdg-user-dirs,
+	cryptsetup-initramfs,
+	cryptsetup,
+	keyutils,
 	${misc:Depends}
 Provides: calamares-settings
 Description: aptosid theme and settings for the Calamares Installer
