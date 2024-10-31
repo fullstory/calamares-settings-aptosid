@@ -1,4 +1,4 @@
-calamares-settings-aptosid (20241031.5) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20241031.5) unstable; urgency=medium
 
   * Ensure GRUB_DITRIBUTOR is set to Debian.
 
