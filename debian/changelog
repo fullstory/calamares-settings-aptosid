@@ -1,7 +1,4 @@
-calamares-settings-aptosid (20241031.7) UNRELEASED; urgency=medium
-
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
+calamares-settings-aptosid (20241031.7) unstable; urgency=medium
 
   [ Kel Modderman ]
   * Disable sudo group.
