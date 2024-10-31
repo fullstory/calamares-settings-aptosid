@@ -13,7 +13,7 @@ strings:
     shortVersion:        nemesis
     versionedName:       aptosid nemesis
     shortVersionedName:  aptosid nemesis
-    bootloaderEntryName: aptosid
+    bootloaderEntryName: Debian
     productUrl:          https://github.com/fullstory
 
 sidebar: widget

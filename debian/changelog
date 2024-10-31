@@ -5,6 +5,7 @@ calamares-settings-aptosid (20241031.7) UNRELEASED; urgency=medium
 
   [ Kel Modderman ]
   * Disable sudo group.
+  * Set bootloaderEntryName and allow grub distributor subsititution.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 31 Oct 2024 22:40:38 +0100
 
