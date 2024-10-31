@@ -70,4 +70,9 @@ if [ -f "${CHROOT}/etc/slim.conf" ]; then
             "${CHROOT}/etc/slim.conf"
 fi
 
+# remove /fll/
+if [ -d "${CHROOT}/fll" ]; then
+	rm -rf "${CHROOT}/fll"
+fi
+
 exit 0

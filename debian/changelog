@@ -1,8 +1,8 @@
-calamares-settings-aptosid (20241031.6) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20241031.6) unstable; urgency=medium
 
-  * NOT RELEASED YET
+  * remove /fll/.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 31 Oct 2024 21:22:32 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 31 Oct 2024 22:40:20 +0100
 
 calamares-settings-aptosid (20241031.5) unstable; urgency=medium
 
