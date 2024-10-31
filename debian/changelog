@@ -1,3 +1,9 @@
+calamares-settings-aptosid (20241031.5) UNRELEASED; urgency=medium
+
+  * Ensure GRUB_DITRIBUTOR is set to Debian.
+
+ -- Kel Modderman <kelvmod@gmail.com>  Thu, 31 Oct 2024 21:17:08 +1000
+
 calamares-settings-aptosid (20241031.4) unstable; urgency=medium
 
   * Move cryptsetup and friends to recomends so they can be purged.
