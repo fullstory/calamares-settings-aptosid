@@ -3,6 +3,7 @@ calamares-settings-aptosid (20241101.1) unstable; urgency=medium
   * Add calamares/modules/services-systemd.conf and configure services
     which should be enabled on installation.
   * Disable kscreenlock during live session.
+  * Fix desktop icon for lxsession.
 
  -- Kel Modderman <kelvmod@gmail.com>  Fri, 01 Nov 2024 18:09:18 +1000
 
