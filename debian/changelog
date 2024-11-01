@@ -1,3 +1,10 @@
+calamares-settings-aptosid (20241101.3) unstable; urgency=medium
+
+  * Have another go at setting up the /fll/squashfs symlink: try the
+    shell glob first and then fallback to /dev/fll.
+
+ -- Kel Modderman <kelvmod@gmail.com>  Fri, 01 Nov 2024 21:12:43 +1000
+
 calamares-settings-aptosid (20241101.2) unstable; urgency=medium
 
   * Do not provide /etc/xdg/kscreenlockerrc.
