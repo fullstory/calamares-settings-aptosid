@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
-Name=Add Calamares Desktop Icon
-Exec=add-calamares-desktop-icon
+Name=Add Aptosid Desktop Icons
+Exec=add-aptosid-desktop-icons
 StartupNotify=false
 NoDisplay=true
 

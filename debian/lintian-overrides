@@ -1,5 +1,5 @@
 # Only meant to be run by calamares, so its scripts wouldn't have manpages
-calamares-settings-aptosid: binary-without-manpage
-
+calamares-install-aptosid: binary-without-manpage
+add-aptosid-desktop-icons: binary-without-manpage
 # We don't provide this file on purpose
-calamares-settings-aptosid: diversion-for-unknown-file
+calamares-install-aptosid: diversion-for-unknown-file

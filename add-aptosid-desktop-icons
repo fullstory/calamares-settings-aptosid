@@ -42,3 +42,55 @@ ionice -C Idle cat /usr/bin/calamares > /dev/null
 for file in $(ldd /usr/bin/calamares | awk '{print $3}'); do
     ionice -C Idle cat $file > /dev/null
 done
+
+# create aptosid icons
+if [ -s /etc/default/distro ]; then
+    . /etc/default/distro
+
+    if [ ! -f "$DESKTOP/aptosid-manual.desktop" ] && \
+    [ -f /usr/share/applications/aptosid/aptosid-manual.desktop ]; then
+        install -o ${FLL_LIVE_USER} -g ${FLL_LIVE_USER} -m 0755 \
+            /usr/share/applications/aptosid/aptosid-manual.desktop
+            "$DESKTOP/"
+    fi
+
+    if [ ! -f "$DESKTOP/aptosid-irc.desktop" ] && \
+    [ -f /usr/share/applications/aptosid/aptosid-irc.desktop ]; then
+        install -o ${FLL_LIVE_USER} -g ${FLL_LIVE_USER} -m 0755 \
+            /usr/share/applications/aptosid/aptosid-irc.desktop \
+            "$DESKTOP/"
+    fi
+
+    # scan for index.html in fll specific live mountpoint directories
+    for mntpnt in /fll/*; do
+        if [ -d "${mntpnt}" ] && [ -f "${mntpnt}/index.html" ]; then
+            INDEXFILE="${mntpnt}/index.html"
+            for ext in svg png gif ico; do
+                if [ -f "${mntpnt}/${FLL_CDROM_INDEX_ICON}.${ext}" ]; then
+                    INDEXICON="${mntpnt}/${FLL_CDROM_INDEX_ICON}.${ext}"
+                    break
+                fi
+            done
+            break
+        fi
+    done
+
+    ###
+    # create desktop shortcut to index.html
+    ###
+    if [ -f "${INDEXFILE}" ] && [ ! -f "$DESKTOP/${FLL_DISTRO_NAME}.desktop" ]; then
+        cat > "$DESKTOP/${FLL_DISTRO_NAME}.desktop" \
+    <<EOF
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Exec=x-www-browser file://${INDEXFILE}
+Icon=${INDEXICON}
+Terminal=false
+
+Name=${FLL_CDROM_INDEX}
+GenericName=${FLL_CDROM_INDEX}
+EOF
+    chmod u+x "$DESKTOP/${FLL_DISTRO_NAME}.desktop"
+fi
