@@ -50,7 +50,7 @@ if [ -s /etc/default/distro ]; then
     if [ ! -f "$DESKTOP/aptosid-manual.desktop" ] && \
     [ -f /usr/share/applications/aptosid/aptosid-manual.desktop ]; then
         install -o ${FLL_LIVE_USER} -g ${FLL_LIVE_USER} -m 0755 \
-            /usr/share/applications/aptosid/aptosid-manual.desktop
+            /usr/share/applications/aptosid/aptosid-manual.desktop \
             "$DESKTOP/"
     fi
 
