@@ -1,8 +1,8 @@
-calamares-settings-aptosid (20241101.4) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20241101.4) unstable; urgency=medium
 
-  * NOT RELEASED YET
+  * Use system timezone per default.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 01 Nov 2024 20:43:49 +0100
+ -- Kel Modderman <kelvmod@gmail.com>  Sat, 02 Nov 2024 00:30:59 +0100
 
 calamares-settings-aptosid (20241101.3) unstable; urgency=medium
 
