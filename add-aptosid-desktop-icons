@@ -92,5 +92,6 @@ Terminal=false
 Name=${FLL_CDROM_INDEX}
 GenericName=${FLL_CDROM_INDEX}
 EOF
-    chmod u+x "$DESKTOP/${FLL_DISTRO_NAME}.desktop"
+        chmod u+x "$DESKTOP/${FLL_DISTRO_NAME}.desktop"
+    fi
 fi
