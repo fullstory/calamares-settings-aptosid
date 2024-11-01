@@ -1,8 +1,9 @@
-calamares-settings-aptosid (20241031.9) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20241101.1) unstable; urgency=medium
 
-  * NOT RELEASED YET
+  * Add calamares/modules/services-systemd.conf and configure services
+    which should be enabled on installation.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 01 Nov 2024 02:40:34 +0100
+ -- Kel Modderman <kelvmod@gmail.com>  Fri, 01 Nov 2024 18:09:18 +1000
 
 calamares-settings-aptosid (20241031.8) unstable; urgency=medium
 

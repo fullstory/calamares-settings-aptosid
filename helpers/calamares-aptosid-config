@@ -4,13 +4,6 @@ CHROOT=$(mount | grep proc | grep calamares | awk '{print $3}' | sed -e "s#/proc
 
 . /etc/default/distro
 
-DISABLED_SERVICES="anacron cron bootlogd bootlogs stop-bootlogd stop-bootlogd-single"
-for service in ${DISABLED_SERVICES} ${SERVICE_BLACKLIST}; do
-    if [ -x "/etc/init.d/${service}" ]; then
-        update-rc.d "${service}" enable
-    fi
-done
-
 # fix sudo config
 rm "${CHROOT}/etc/sudoers.d/15_${FLL_DISTRO_NAME}"
 cat "${CHROOT}/usr/share/base-files/profile" > "${CHROOT}/etc/profile"
