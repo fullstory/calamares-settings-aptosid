@@ -1,3 +1,9 @@
+calamares-settings-aptosid (20241101.4) UNRELEASED; urgency=medium
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 01 Nov 2024 20:43:49 +0100
+
 calamares-settings-aptosid (20241101.3) unstable; urgency=medium
 
   * Have another go at setting up the /fll/squashfs symlink: try the
