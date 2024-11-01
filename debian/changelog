@@ -1,8 +1,8 @@
-calamares-settings-aptosid (20241031.8) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20241031.8) unstable; urgency=medium
 
-  * NOT RELEASED YET
+  * Create symlink to /dev/fll if it exists.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 01 Nov 2024 00:04:37 +0100
+ -- Kel Modderman <kelvmod@gmail.com>  Fri, 01 Nov 2024 02:39:52 +0100
 
 calamares-settings-aptosid (20241031.7) unstable; urgency=medium
 
@@ -20,7 +20,7 @@ calamares-settings-aptosid (20241031.6) unstable; urgency=medium
 
 calamares-settings-aptosid (20241031.5) unstable; urgency=medium
 
-  * Ensure GRUB_DITRIBUTOR is set to Debian.
+  * Ensure GRUB_DISTRIBUTOR is set to Debian.
 
  -- Kel Modderman <kelvmod@gmail.com>  Thu, 31 Oct 2024 21:17:08 +1000
 
