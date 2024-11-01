@@ -1,3 +1,9 @@
+calamares-settings-aptosid (20241031.9) UNRELEASED; urgency=medium
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 01 Nov 2024 02:40:34 +0100
+
 calamares-settings-aptosid (20241031.8) unstable; urgency=medium
 
   * Create symlink to /dev/fll if it exists.
