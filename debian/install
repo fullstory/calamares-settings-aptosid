@@ -6,5 +6,4 @@ calamares-install-aptosid usr/bin
 artwork/install-aptosid.png usr/share/pixmaps
 conf/96_calamares-settings-aptosid.gschema.override usr/share/glib-2.0/schemas
 conf/calamares-desktop-icon.desktop etc/xdg/autostart
-conf/xdg/* /etc/xdg
 add-aptosid-desktop-icons usr/bin

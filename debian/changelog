@@ -1,3 +1,10 @@
+calamares-settings-aptosid (20241101.2) unstable; urgency=medium
+
+  * Do not provide /etc/xdg/kscreenlockerrc.
+  * Undo disabling of kscreenlocker post-install.
+
+ -- Kel Modderman <kelvmod@gmail.com>  Fri, 01 Nov 2024 20:31:52 +1000
+
 calamares-settings-aptosid (20241101.1) unstable; urgency=medium
 
   * Add calamares/modules/services-systemd.conf and configure services
