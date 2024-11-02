@@ -1,6 +1,10 @@
 calamares-settings-aptosid (20241101.5) UNRELEASED; urgency=medium
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
+
+  [ Kel Modderman ]
+  * Use try_remove for non-essential live only packages.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 02 Nov 2024 00:31:39 +0100
 
