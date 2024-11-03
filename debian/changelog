@@ -1,6 +1,10 @@
 calamares-settings-aptosid (20241101.6) UNRELEASED; urgency=medium
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
+
+  [ Kel Modderman ]
+  * Tweak calamares-settings-aptosid /fll/squashfs creation/test logic.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 02 Nov 2024 18:59:55 +0100
 

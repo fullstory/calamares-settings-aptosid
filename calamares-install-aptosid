@@ -7,7 +7,9 @@
 sudo ln -sf /fll/*/${FLL_IMAGE_LOCATION} /fll/squashfs
 if [ ! -f /fll/squashfs ] && [ -L /dev/fll ]; then
     sudo ln -sf /dev/fll /fll/squashfs
-else
+fi
+
+if [ ! -f /fll/squashfs ]; then
     echo "$0: failed to create /fll/squashfs symlink"
 fi
 
