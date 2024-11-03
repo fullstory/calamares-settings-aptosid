@@ -4,7 +4,10 @@ calamares-settings-aptosid (20241101.6) unstable; urgency=medium
   * Tweak calamares-settings-aptosid /fll/squashfs creation/test logic.
   * Add user to dialout group per default.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 03 Nov 2024 19:24:02 +0100
+  [ Stefan Lippers-Hollmann ]
+  * fix lintian overrides.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 03 Nov 2024 19:34:40 +0100
 
 calamares-settings-aptosid (20241101.5) unstable; urgency=medium
 
