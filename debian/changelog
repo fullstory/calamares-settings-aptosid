@@ -1,3 +1,9 @@
+calamares-settings-aptosid (20241104.5) unstable; urgency=medium
+
+  * Simplify logic around installation of grub2-fll-portable-efi.
+
+ -- Kel Modderman <kelvmod@gmail.com>  Mon, 04 Nov 2024 21:55:40 +1000
+
 calamares-settings-aptosid (20241104.4) unstable; urgency=medium
 
   * Enhance helpers/calamares-bootloader-config-root-on-usb.py so
