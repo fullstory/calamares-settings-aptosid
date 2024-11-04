@@ -3,6 +3,8 @@ calamares-settings-aptosid (20241104.7) UNRELEASED; urgency=medium
   * Rename chroot-on-usb-.py bootloader config helper.
   * Add some basic comments to /etc/default/grub when manipulating
     settings.
+  * Remove grub theme setting code and leave it to the live media
+    builder to preconfigure.
 
  -- Kel Modderman <kelvmod@gmail.com>  Mon, 04 Nov 2024 23:07:33 +1000
 
