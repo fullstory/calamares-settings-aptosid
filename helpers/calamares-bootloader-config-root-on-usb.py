@@ -6,6 +6,7 @@ __copyright__   = '(C) 2024 Kel Modderman <kelvmod@gmail.com>'
 __license__     = 'GPLv2 or any later version'
 __description__ = 'Return 0 if / and /boot/efi on a USB bus device'
 
+import os
 import pyudev
 import sys
 
@@ -40,13 +41,12 @@ def run(child_device_node=None):
 
 if __name__ == '__main__':
     try:
-        root = sys.argv[1]
+        chroot = sys.argv[1]
     except IndexError:
-        root = get_device_mounted_on('/')
+        chroot = "/"
+
+    root = get_device_mounted_on(chroot)
     run(root)
 
-    try:
-        boot = sys.argv[1]
-    except IndexError:
-        boot = get_device_mounted_on('/boot/efi')
+    boot = get_device_mounted_on(os.path.join(chroot, '/boot/efi'))
     run(boot)

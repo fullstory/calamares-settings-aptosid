@@ -1,3 +1,11 @@
+calamares-settings-aptosid (20241104.4) unstable; urgency=medium
+
+  * Enhance helpers/calamares-bootloader-config-root-on-usb.py so
+    it can take a chroot as an argument, so it can be executed from
+    live environment rather than inside chroot itself.
+
+ -- Kel Modderman <kelvmod@gmail.com>  Mon, 04 Nov 2024 21:24:39 +1000
+
 calamares-settings-aptosid (20241104.3) unstable; urgency=medium
 
   * Sequence bootloader configuration before packages are purged.

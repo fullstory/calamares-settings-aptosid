@@ -19,11 +19,8 @@ if [ -d /sys/firmware/efi/efivars ]; then
             APTGRUB="grub-efi-ia32"
         fi
     fi
-    if [ -f $CHROOT/$IS_USB  ]; then
-        if chroot $CHROOT python3 $IS_USB; then
-            APTGRUB="${APTGRUB} grub2-fll-portable-efi"
-            chroot $CHROOT dpkg --purge os-prober
-        fi
+    if [ -f $IS_USB  ] && python3 $IS_USB $CHROOT; then
+        APTGRUB="${APTGRUB} grub2-fll-portable-efi os-prober-"
     fi
     APTSOURCES=$(mktemp -d --tmpdir=${CHROOT}/tmp/ liveapt.XXXXXX)
     APTGETBASE="apt-get -o Dir::Etc=${APTSOURCES##${CHROOT}}"
