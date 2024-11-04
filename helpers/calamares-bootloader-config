@@ -1,11 +1,11 @@
 #!/bin/bash
 
 CHROOT=$(mount | grep proc | grep calamares | awk '{print $3}' | sed -e "s#/proc##g")
-IS_USB=/usr/share/calamares/helpers/calamares-bootloader-config-root-on-usb.py
+ON_USB=/usr/share/calamares/helpers/calamares-bootloader-config-chroot-on-usb.py
 
 echo "Running bootloader-config..."
 
-if python3 $IS_USB $CHROOT; then
+if python3 $ON_USB $CHROOT; then
     # Install grub2-fll-portable-efi in the chroot
     APTSOURCES=$(mktemp -d --tmpdir=${CHROOT}/tmp/ liveapt.XXXXXX)
     APTGETBASE="apt-get -o Dir::Etc=${APTSOURCES##${CHROOT}}"
@@ -30,15 +30,17 @@ if python3 $IS_USB $CHROOT; then
         sed -i "s/#GRUB_DISABLE_OS_PROBER=false/\nGRUB_DISABLE_OS_PROBER=true/g" \
             $CHROOT/etc/default/grub
     elif grep -qv '^GRUB_DISABLE_OS_PROBER' $CHROOT/etc/default/grub; then
-        printf "\nGRUB_DISABLE_OS_PROBER=true\n" >>$CHROOT/etc/default/grub
+        printf "\n# Disable other OS discovery\n" >>$CHROOT/etc/default/grub
+        printf "GRUB_DISABLE_OS_PROBER=true\n" >>$CHROOT/etc/default/grub
     fi
 else
     # enable os-prober
     if grep -q '^#GRUB_DISABLE_OS_PROBER' $CHROOT/etc/default/grub; then
-        sed -i "s/#GRUB_DISABLE_OS_PROBER=false/\nGRUB_DISABLE_OS_PROBER=false/g" \
+        sed -i "s/#GRUB_DISABLE_OS_PROBER=false/GRUB_DISABLE_OS_PROBER=false/g" \
             $CHROOT/etc/default/grub
     elif grep -qv '^GRUB_DISABLE_OS_PROBER' $CHROOT/etc/default/grub; then
-        printf "\nGRUB_DISABLE_OS_PROBER=false\n" >>$CHROOT/etc/default/grub
+        printf "\n# Enable other OS discovery\n" >>$CHROOT/etc/default/grub
+        printf "GRUB_DISABLE_OS_PROBER=false\n" >>$CHROOT/etc/default/grub
     fi
 fi
 
@@ -50,7 +52,9 @@ if [ -n "${FLL_GFXBOOT_THEME}" ] && \
             sed -i "s|\(GRUB_THEME=\).*|\1/usr/share/grub/themes/${FLL_GFXBOOT_THEME}/theme.txt|" \
                 "${CHROOT}/etc/default/grub"
     else
-        printf "\nGRUB_THEME=\"/usr/share/grub/themes/${FLL_GFXBOOT_THEME}/theme.txt\"\n" \
-            >>"${CHROOT}/etc/default/grub"
+        printf "\n# Set theme defined by FLL_GFXBOOT_THEME in /etc/default/distro\n" \
+            >>${CHROOT}/etc/default/grub
+        printf "GRUB_THEME=\"/usr/share/grub/themes/${FLL_GFXBOOT_THEME}/theme.txt\"\n" \
+            >>${CHROOT}/etc/default/grub
     fi
 fi
