@@ -5,8 +5,6 @@ IS_USB=/usr/share/calamares/helpers/calamares-bootloader-config-root-on-usb.py
 
 echo "Running bootloader-config..."
 
-. /etc/default/distro
-
 if python3 $IS_USB $CHROOT; then
     # Install grub2-fll-portable-efi in the chroot
     APTSOURCES=$(mktemp -d --tmpdir=${CHROOT}/tmp/ liveapt.XXXXXX)
@@ -27,15 +25,15 @@ if python3 $IS_USB $CHROOT; then
     chroot $CHROOT ${APTGETBASE} update > /dev/null
     chroot $CHROOT ${APTGETBASE} clean > /dev/null
     rm -rf ${APTSOURCES}
-fi
-
-# disable grub2 submenus and use plain menu structures instead
-if grep -qv ^GRUB_DISABLE_SUBMENU /etc/default/grub; then
-    printf "\nGRUB_DISABLE_SUBMENU=true\n" >> /etc/default/grub
-fi
-
-# enable os-prober
-if [ -x $CHROOT/usr/bin/os-prober ]; then
+    # disable os-prober to be sure
+    if grep -q '^#GRUB_DISABLE_OS_PROBER' $CHROOT/etc/default/grub; then
+        sed -i "s/#GRUB_DISABLE_OS_PROBER=false/\nGRUB_DISABLE_OS_PROBER=true/g" \
+            $CHROOT/etc/default/grub
+    elif grep -qv '^GRUB_DISABLE_OS_PROBER' $CHROOT/etc/default/grub; then
+        printf "\nGRUB_DISABLE_OS_PROBER=true\n" >>$CHROOT/etc/default/grub
+    fi
+else
+    # enable os-prober
     if grep -q '^#GRUB_DISABLE_OS_PROBER' $CHROOT/etc/default/grub; then
         sed -i "s/#GRUB_DISABLE_OS_PROBER=false/\nGRUB_DISABLE_OS_PROBER=false/g" \
             $CHROOT/etc/default/grub
@@ -45,6 +43,7 @@ if [ -x $CHROOT/usr/bin/os-prober ]; then
 fi
 
 # enable a grub theme, if it exists
+. /etc/default/distro
 if [ -n "${FLL_GFXBOOT_THEME}" ] && \
    [ -r "/usr/share/grub/themes/${FLL_GFXBOOT_THEME}/theme.txt" ]; then
     if grep -q ^GRUB_THEME\= "${CHROOT}/etc/default/grub" >/dev/null 2>&1; then
