@@ -1,6 +1,7 @@
 #!/bin/bash
 
 CHROOT=$(mount | grep proc | grep calamares | awk '{print $3}' | sed -e "s#/proc##g")
+IS_USB=/usr/share/calamares/helpers/calamares-bootloader-config-root-on-usb.py
 
 echo "Running bootloader-config..."
 
@@ -28,6 +29,11 @@ if [ -d /sys/firmware/efi/efivars ]; then
             APTGRUB="grub-efi-amd64"
         elif [ "${APTARCH}" = "amd64" ] && [ "${efisize}" = "32" ]; then
             APTGRUB="grub-efi-ia32"
+        fi
+    fi
+    if [ -f $CHROOT/$IS_USB  ]; then
+        if chroot $CHROOT python3 $IS_USB; then
+            APTGRUB="${APTGRUB} grub2-fll-portable-efi"
         fi
     fi
     APTSOURCES=$(mktemp -d --tmpdir=${CHROOT}/tmp/ liveapt.XXXXXX)
