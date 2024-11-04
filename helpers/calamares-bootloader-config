@@ -34,6 +34,7 @@ if [ -d /sys/firmware/efi/efivars ]; then
     if [ -f $CHROOT/$IS_USB  ]; then
         if chroot $CHROOT python3 $IS_USB; then
             APTGRUB="${APTGRUB} grub2-fll-portable-efi"
+            chroot $CHROOT dpkg --purge os-prober
         fi
     fi
     APTSOURCES=$(mktemp -d --tmpdir=${CHROOT}/tmp/ liveapt.XXXXXX)
@@ -61,9 +62,11 @@ if grep -qv ^GRUB_DISABLE_SUBMENU /etc/default/grub; then
 fi
 
 # enable os-prober
-if grep -q '^#GRUB_DISABLE_OS_PROBER' $CHROOT/etc/default/grub; then
-    sed -i "s/#GRUB_DISABLE_OS_PROBER=false/\nGRUB_DISABLE_OS_PROBER=false/g" \
-        $CHROOT/etc/default/grub
-elif grep -qv '^GRUB_DISABLE_OS_PROBER' $CHROOT/etc/default/grub; then
-    printf "\nGRUB_DISABLE_OS_PROBER=false\n" >>$CHROOT/etc/default/grub
+if [ -x $CHROOT/usr/bin/os-prober ]; then
+    if grep -q '^#GRUB_DISABLE_OS_PROBER' $CHROOT/etc/default/grub; then
+        sed -i "s/#GRUB_DISABLE_OS_PROBER=false/\nGRUB_DISABLE_OS_PROBER=false/g" \
+            $CHROOT/etc/default/grub
+    elif grep -qv '^GRUB_DISABLE_OS_PROBER' $CHROOT/etc/default/grub; then
+        printf "\nGRUB_DISABLE_OS_PROBER=false\n" >>$CHROOT/etc/default/grub
+    fi
 fi

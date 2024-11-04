@@ -1,3 +1,10 @@
+calamares-settings-aptosid (20241104.2) unstable; urgency=medium
+
+  * Check that /boot/efi is also from device on USB bus.
+  * Purge os-prober if installing / and /boot/efi on USB device.
+
+ -- Kel Modderman <kelvmod@gmail.com>  Mon, 04 Nov 2024 20:30:19 +1000
+
 calamares-settings-aptosid (20241104.1) unstable; urgency=medium
 
   [ Kel Modderman ]
