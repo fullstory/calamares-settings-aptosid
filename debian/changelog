@@ -1,3 +1,9 @@
+calamares-settings-aptosid (20241104.3) unstable; urgency=medium
+
+  * Sequence bootloader configuration before packages are purged.
+
+ -- Kel Modderman <kelvmod@gmail.com>  Mon, 04 Nov 2024 21:01:29 +1000
+
 calamares-settings-aptosid (20241104.2) unstable; urgency=medium
 
   * Check that /boot/efi is also from device on USB bus.
