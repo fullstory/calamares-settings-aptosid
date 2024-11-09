@@ -1,8 +1,10 @@
-calamares-settings-aptosid (20241104.9) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20241110.1) unstable; urgency=medium
 
-  * NOT RELEASED YET
+  [ Stefan Lippers-Hollmann ]
+  * Drop ionice from add-aptosid-desktop-icons, it is not functional or
+    neccessary.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 09 Nov 2024 23:34:37 +0100
+ -- Kel Modderman <kelvmod@gmail.com>  Sun, 10 Nov 2024 09:56:59 +1000
 
 calamares-settings-aptosid (20241104.8) unstable; urgency=medium
 
