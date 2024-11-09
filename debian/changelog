@@ -1,3 +1,9 @@
+calamares-settings-aptosid (20241104.9) UNRELEASED; urgency=medium
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 09 Nov 2024 23:34:37 +0100
+
 calamares-settings-aptosid (20241104.8) unstable; urgency=medium
 
   * Sync helpers/calamares-aptosid-config with fll_xdm to revert live
