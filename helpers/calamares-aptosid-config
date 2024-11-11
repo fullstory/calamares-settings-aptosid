@@ -72,6 +72,7 @@ if [ -f "${CHROOT}/etc/xdg/kscreenlockerrc" ]; then
             "${CHROOT}/etc/xdg/kscreenlockerrc"
 fi
 
+# install the same package set as if liveapt ran at boot
 mkdir -p "${CHROOT}/fll"
 mount --bind /fll "${CHROOT}/fll"
 chroot $CHROOT /usr/share/fll-live-initscripts/fll_locales localize
