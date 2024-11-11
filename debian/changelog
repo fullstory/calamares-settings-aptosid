@@ -1,10 +1,8 @@
-calamares-settings-aptosid (20241110.2) UNRELEASED; urgency=medium
-
-  [ Stefan Lippers-Hollmann ]
-  * Use fll_get_mnt instead of shell glob to locate mount point where
-    the squashfs filesystem lives.
+calamares-settings-aptosid (20241110.2) unstable; urgency=medium
 
   [ Kel Modderman ]
+  * Use fll_get_mnt instead of shell glob to locate mount point where
+    the squashfs filesystem lives.
   * Attempt to localize installed chroot with same magic that happened
     at boot time. Closes #4
   * Do not purge cryptsetup if not used - there is no need and it may be
