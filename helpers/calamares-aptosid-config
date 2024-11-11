@@ -74,7 +74,7 @@ fi
 
 mkdir -p "${CHROOT}/fll"
 mount --bind /fll "${CHROOT}/fll"
-"${CHROOT}/usr/share/fll-live-initscripts/fll_locales" localize
+chroot $CHROOT /usr/share/fll-live-initscripts/fll_locales localize
 umount "${CHROOT}/fll"
 
 # remove /fll
