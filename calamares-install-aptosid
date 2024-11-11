@@ -4,7 +4,8 @@
 ###
 
 . /etc/default/distro
-sudo ln -sf /fll/*/${FLL_IMAGE_LOCATION} /fll/squashfs
+. /usr/lib/init/fll
+sudo ln -sf "$(fll_get_mnt)/${FLL_IMAGE_LOCATION}" /fll/squashfs
 if [ ! -f /fll/squashfs ] && [ -L /dev/fll ]; then
     sudo ln -sf /dev/fll /fll/squashfs
 fi
