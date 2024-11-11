@@ -7,6 +7,8 @@ calamares-settings-aptosid (20241110.2) UNRELEASED; urgency=medium
   [ Kel Modderman ]
   * Attempt to localize installed chroot with same magic that happened
     at boot time. Closes #4
+  * Do not purge cryptsetup if not used - there is no need and it may be
+    wanted by systemd-homed in the future.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 10 Nov 2024 05:04:35 +0100
 
