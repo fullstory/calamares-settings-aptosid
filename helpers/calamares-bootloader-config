@@ -9,7 +9,7 @@ if python3 $ON_USB $CHROOT; then
     # Install grub2-fll-portable-efi in the chroot
     mount -o bind /fll ${CHROOT}/fll
     APTGETBASE=$(find /fll/apt -type f -name '*.deb' | \
-        awk 'BEGIN{ print "apt-get -y \\"} { print "\t--with-source", $1, " \\"} END { print "\tinstall"}')
+        awk 'BEGIN{ print "apt-get -y"} { print " --with-source", $1} END { print " install "}')
     DEBIAN_FRONTEND=noninteractive chroot $CHROOT ${APTGETBASE} grub2-fll-portable-efi os-prober-
     umount ${CHROOT}/fll
     # disable os-prober to be sure

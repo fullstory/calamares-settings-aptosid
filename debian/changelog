@@ -1,3 +1,9 @@
+calamares-settings-aptosid (20241114.2) unstable; urgency=medium
+
+  * helpers/calamares-bootloader-config: fix apt cmdline.
+
+ -- Kel Modderman <kelvmod@gmail.com>  Thu, 14 Nov 2024 20:40:08 +1000
+
 calamares-settings-aptosid (20241114.1) unstable; urgency=medium
 
   * helpers/calamares-bootloader-config: use apt's --with-source feature
