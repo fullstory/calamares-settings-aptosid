@@ -1,3 +1,9 @@
+calamares-settings-aptosid (20241114.3) UNRELEASED; urgency=medium
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 14 Nov 2024 21:17:36 +0100
+
 calamares-settings-aptosid (20241114.2) unstable; urgency=medium
 
   * helpers/calamares-bootloader-config: fix apt cmdline.
