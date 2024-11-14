@@ -1,6 +1,11 @@
 calamares-settings-aptosid (20241110.3) UNRELEASED; urgency=medium
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
+
+  [ Kel Modderman ]
+  * helpers/calamares-bootloader-config: use apt's --with-source feature
+    to install grub2-fll-portable-efi.'
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 11 Nov 2024 23:57:48 +0100
 
