@@ -1,6 +1,11 @@
 calamares-settings-aptosid (20241114.3) UNRELEASED; urgency=medium
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
+
+  [ Kel Modderman ]
+  * calamares-install-aptosid: test for existence of fstab file before
+    moving to and fro.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 14 Nov 2024 21:17:36 +0100
 
