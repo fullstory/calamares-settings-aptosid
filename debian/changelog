@@ -1,3 +1,11 @@
+calamares-settings-aptosid (20241114.5) unstable; urgency=medium
+
+  * helpers/calamares-aptosid-config: remove unneccessary code to undo
+    sudoers configuration which does not exist in unpacked squashfs.
+  * helpers/calamares-aptosid-config: fix path to /etc/default/distro.
+
+ -- Kel Modderman <kelvmod@gmail.com>  Thu, 21 Nov 2024 19:54:49 +1000
+
 calamares-settings-aptosid (20241114.4) unstable; urgency=medium
 
   * helpers/calamares-aptosid-config: remove unneccessary code to undo
