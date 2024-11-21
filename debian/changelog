@@ -1,8 +1,11 @@
-calamares-settings-aptosid (20241114.4) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20241114.4) unstable; urgency=medium
 
-  * NOT RELEASED YET
+  * helpers/calamares-aptosid-config: remove unneccessary code to undo
+    autologin because there is nothing to undo in the unpacked squashfs
+    (these hacks exist in the live overlay only).
+  * helpers/calamares-aptosid-config: remove /etc/default/distro.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 19 Nov 2024 00:07:42 +0100
+ -- Kel Modderman <kelvmod@gmail.com>  Thu, 21 Nov 2024 19:26:40 +1000
 
 calamares-settings-aptosid (20241114.3) unstable; urgency=medium
 

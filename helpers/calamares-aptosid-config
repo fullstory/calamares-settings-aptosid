@@ -26,52 +26,6 @@ sed -i '/^#.*pam_lastlog\.so/s/^#[ \t]\+//' "${CHROOT}/etc/pam.d/login"
 # remove confusing live traces from blkid.tab
 rm -f "${CHROOT}/etc/blkid.tab*"
 
-# revert GDM3 autologin
-if [ -f "${CHROOT}/etc/gdm3/daemon.conf" ]; then
-    # we want the gdm-theme (set by desktop-defaults in live mode) on hd-install,
-    # only remove autologin for gdm
-    sed -i	-e "/^AutomaticLogin\=.*/d" \
-        -e "/^AutomaticLoginEnable\=.*/d" \
-        -e "/^TimedLogin\=.*/d" \
-        -e "/^TimedLoginDelay\=.*/d" \
-        -e "/^TimedLoginEnable\=.*/d" \
-            "${CHROOT}/etc/gdm3/daemon.conf"
-fi
-
-# revert lightdm autologin
-if [ -f "${CHROOT}/etc/lightdm/lightdm.conf.d/80_${FLL_LIVE_USER}.conf" ]; then
-    rm -f "${CHROOT}/etc/lightdm/lightdm.conf.d/80_${FLL_LIVE_USER}.conf"
-    rmdir --ignore-fail-on-non-empty \
-        "${CHROOT}/etc/lightdm/lightdm.conf.d" || :
-fi
-
-# revert lxdm autologin
-if [ -f "${CHROOT}/etc/lxdm/${FLL_LIVE_USER}.conf" ] && \
-    [ -f "${CHROOT}/etc/lxdm/lxdm.conf" ]; then
-    rm -f "${CHROOT}/etc/lxdm/${FLL_LIVE_USER}.conf"
-    ln -fs lxdm.conf "${CHROOT}/etc/lxdm/default.conf"
-fi
-
-# revert SDDM autologin
-rm -f	"${CHROOT}/etc/sddm.conf.d/${FLL_LIVE_USER}.conf" \
-    "${CHROOT}/var/lib/sddm/state.conf"
-
-# revert slim autologin
-if [ -f "${CHROOT}/etc/slim.conf" ]; then
-    sed -i  -e "/^default_user.*/d" \
-        -e "/^auto_login.*/d" \
-        -e "s/^\#FLL\#//" \
-            "${CHROOT}/etc/slim.conf"
-fi
-
-# revert hack prohibiting sckeenlock in plasma/KDE
-if [ -f "${CHROOT}/etc/xdg/kscreenlockerrc" ]; then
-    sed -i -e "/[Daemon]/d" \
-        -e "/Autolock=false/d" \
-        -e "/LockOnResume=false/d" \
-            "${CHROOT}/etc/xdg/kscreenlockerrc"
-fi
-
 # install the same package set as if liveapt ran at boot
 mkdir -p "${CHROOT}/fll"
 mount --bind /fll "${CHROOT}/fll"
@@ -80,5 +34,8 @@ umount "${CHROOT}/fll"
 
 # remove /fll
 rm -rf "${CHROOT}/fll"
+
+# remove /etc/default/distro
+rm -f /etc/default/distro
 
 exit 0
