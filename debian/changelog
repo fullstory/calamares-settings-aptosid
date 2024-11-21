@@ -1,3 +1,9 @@
+calamares-settings-aptosid (20241114.6) UNRELEASED; urgency=medium
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 21 Nov 2024 21:27:07 +0100
+
 calamares-settings-aptosid (20241114.5) unstable; urgency=medium
 
   * helpers/calamares-aptosid-config: remove unneccessary code to undo
