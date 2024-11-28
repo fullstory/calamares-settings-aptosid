@@ -15,19 +15,11 @@ rm -f	"${CHROOT}/etc/systemd/system/getty@.service" \
 ln -fs	/lib/systemd/system/autovt@.service \
     "${CHROOT}/etc/systemd/system/getty.target.wants/getty@tty1.service"
 
-# normalize /etc/pam.d/login
-sed -i '/^#.*pam_lastlog\.so/s/^#[ \t]\+//' "${CHROOT}/etc/pam.d/login"
-
-# remove confusing live traces from blkid.tab
-rm -f "${CHROOT}/etc/blkid.tab*"
-
 # install the same package set as if liveapt ran at boot
 mkdir -p "${CHROOT}/fll"
 mount --bind /fll "${CHROOT}/fll"
 chroot $CHROOT /usr/share/fll-live-initscripts/fll_locales localize
 umount "${CHROOT}/fll"
-
-# remove /fll
 rm -rf "${CHROOT}/fll"
 
 # remove /etc/default/distro

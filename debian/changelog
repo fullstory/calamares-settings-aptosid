@@ -1,6 +1,10 @@
 calamares-settings-aptosid (20241114.6) UNRELEASED; urgency=medium
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
+
+  [ Kel Modderman ]
+  * helpers/calamares-aptosid-config: remove unrequired legacy code.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 21 Nov 2024 21:27:07 +0100
 
