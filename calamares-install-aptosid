@@ -10,10 +10,6 @@ if [ ! -f /fll/squashfs ] && [ -L /dev/fll ]; then
     pkexec ln -sf /dev/fll /fll/squashfs
 fi
 
-if [ ! -f /fll/squashfs ]; then
-    echo "$0: failed to create /fll/squashfs symlink"
-fi
-
 # Stale file left behind by live-build that messes with partitioning
 if [ -e /etc/fstab ]; then
     pkexec mv /etc/fstab /etc/fstab.orig.calamares
