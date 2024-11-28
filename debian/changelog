@@ -1,13 +1,10 @@
-calamares-settings-aptosid (20241114.6) UNRELEASED; urgency=medium
-
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
+calamares-settings-aptosid (20241114.6) unstable; urgency=medium
 
   [ Kel Modderman ]
   * helpers/calamares-aptosid-config: remove unrequired legacy code.
   * calamares-install-aptosid: use pkexec instead of sudo.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 21 Nov 2024 21:27:07 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 29 Nov 2024 00:08:40 +0100
 
 calamares-settings-aptosid (20241114.5) unstable; urgency=medium
 
