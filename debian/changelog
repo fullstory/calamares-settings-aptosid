@@ -5,6 +5,7 @@ calamares-settings-aptosid (20241114.6) UNRELEASED; urgency=medium
 
   [ Kel Modderman ]
   * helpers/calamares-aptosid-config: remove unrequired legacy code.
+  * calamares-install-aptosid: use pkexec instead of sudo.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 21 Nov 2024 21:27:07 +0100
 

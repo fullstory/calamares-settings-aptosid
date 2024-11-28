@@ -5,9 +5,9 @@
 
 . /etc/default/distro
 . /usr/lib/init/fll
-sudo ln -sf "$(fll_get_mnt)/${FLL_IMAGE_LOCATION}" /fll/squashfs
+pkexec ln -sf "$(fll_get_mnt)/${FLL_IMAGE_LOCATION}" /fll/squashfs
 if [ ! -f /fll/squashfs ] && [ -L /dev/fll ]; then
-    sudo ln -sf /dev/fll /fll/squashfs
+    pkexec ln -sf /dev/fll /fll/squashfs
 fi
 
 if [ ! -f /fll/squashfs ]; then
@@ -16,15 +16,15 @@ fi
 
 # Stale file left behind by live-build that messes with partitioning
 if [ -e /etc/fstab ]; then
-    sudo mv /etc/fstab /etc/fstab.orig.calamares
+    pkexec mv /etc/fstab /etc/fstab.orig.calamares
 fi
 
 # Access control to run calamares as root for xwayland
 xhost +si:localuser:root
-sudo calamares
+pkexec calamares
 xhost -si:localuser:root
 
 # Restore stale fstab, for what it's worth
 if [ -e /etc/fstab.orig.calamares ]; then
-    sudo mv /etc/fstab.orig.calamares /etc/fstab
+    pkexec mv /etc/fstab.orig.calamares /etc/fstab
 fi
