@@ -9,12 +9,6 @@ if which make-ssl-cert >/dev/null; then
     chroot $CHROOT make-ssl-cert generate-default-snakeoil --force-overwrite
 fi
 
-# "normalize" gettys
-rm -f	"${CHROOT}/etc/systemd/system/getty@.service" \
-    "${CHROOT}/etc/systemd/system/autovt@.service"
-ln -fs	/lib/systemd/system/autovt@.service \
-    "${CHROOT}/etc/systemd/system/getty.target.wants/getty@tty1.service"
-
 # install the same package set as if liveapt ran at boot
 mkdir -p "${CHROOT}/fll"
 mount --bind /fll "${CHROOT}/fll"
