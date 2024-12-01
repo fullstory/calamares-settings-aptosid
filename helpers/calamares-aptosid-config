@@ -4,6 +4,15 @@ CHROOT=$(mount | grep proc | grep calamares | awk '{print $3}' | sed -e "s#/proc
 
 . /etc/default/distro
 
+if [ -r "/var/lib//systemd/home/${FLL_LIVE_USER}.identity" ]; then
+    cp --archive "/var/lib//systemd/home/${FLL_LIVE_USER}.identity" \
+        "${CHROOT}/var/lib//systemd/home/${FLL_LIVE_USER}.identity"
+    if [ -d "/var/cache/systemd/home/${FLL_LIVE_USER}" ]; then
+        cp --archive --recursive "/var/cache/systemd/home/${FLL_LIVE_USER}" \
+            "${CHROOT}/var/cache/systemd/home/${FLL_LIVE_USER}"
+    fi
+fi
+
 # regenerate default snakeoil with new hostname
 if which make-ssl-cert >/dev/null; then
     chroot $CHROOT make-ssl-cert generate-default-snakeoil --force-overwrite
