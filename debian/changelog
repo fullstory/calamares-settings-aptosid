@@ -1,3 +1,9 @@
+calamares-settings-aptosid (20241201.2) UNRELEASED; urgency=medium
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 01 Dec 2024 02:20:40 +0100
+
 calamares-settings-aptosid (20241201.1) unstable; urgency=medium
 
   * helpers/calamares-aptosid-config: migrate live user (systemd-homed)
