@@ -1,3 +1,10 @@
+calamares-settings-aptosid (20241201.3) UNRELEASED; urgency=medium
+
+  * Treat the icon artwork with respect and generate proper hicolor
+    iconset rather than stuffing a lazy png into the old pixmaps path.
+
+ -- Kel Modderman <kelvmod@gmail.com>  Tue, 03 Dec 2024 22:20:20 +1000
+
 calamares-settings-aptosid (20241201.2) unstable; urgency=medium
 
   * Nuke fugly calamares-install-aptosid script.

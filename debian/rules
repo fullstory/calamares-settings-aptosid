@@ -2,3 +2,20 @@
 
 %:
 	dh $@
+
+create-icons:
+	# requires inkscape to be installed
+	@if [ ! -x /usr/bin/inkscape ]; then \
+		echo "ERROR: inkscape not installed!" ; \
+		false ; \
+	fi
+
+	# create XDG compatible icons from SVG
+	for i in 16 22 32 48 64 128; do \
+		mkdir -p "icons/hicolor/$${i}x$${i}/apps" ; \
+		inkscape --export-width=$${i} \
+			 --export-height=$${i} \
+			 --export-type="png" \
+			 --export-filename="$(CURDIR)/icons/hicolor/$${i}x$${i}/apps/install-aptosid.png" \
+				$(CURDIR)/icons/install-aptosid.svg ; \
+	done
