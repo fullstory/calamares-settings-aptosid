@@ -2,3 +2,5 @@
 calamares-settings-aptosid: no-manual-page [usr/bin/add-aptosid-desktop-icons]
 # We don't provide this file on purpose
 calamares-settings-aptosid: diversion-for-unknown-file usr/share/applications/calamares.desktop [preinst:9]
+# We need to use a privileged execution helper
+calamares-settings-aptosid: desktop-command-not-in-package pkexec [usr/share/applications/calamares-install-aptosid.desktop]

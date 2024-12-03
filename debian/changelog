@@ -4,9 +4,10 @@ calamares-settings-aptosid (20241203.1) unstable; urgency=medium
     iconset rather than stuffing a lazy png into the old pixmaps path.
   * Remove no longer required calamares-install-aptosid lintian
     override.
+  * Add linitian override for use of pkexec in desktop file.
   * Nuke fugly calamares-install-aptosid script.
 
- -- Kel Modderman <kelvmod@gmail.com>  Tue, 03 Dec 2024 22:24:00 +1000
+ -- Kel Modderman <kelvmod@gmail.com>  Tue, 03 Dec 2024 22:26:48 +1000
 
 calamares-settings-aptosid (20241201.1) unstable; urgency=medium
 
