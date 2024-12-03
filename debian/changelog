@@ -1,3 +1,9 @@
+calamares-settings-aptosid (20241203.2) unstable; urgency=medium
+
+  * Import original install-gui.svg icon.
+
+ -- Kel Modderman <kelvmod@gmail.com>  Tue, 03 Dec 2024 22:49:23 +1000
+
 calamares-settings-aptosid (20241203.1) unstable; urgency=medium
 
   * Treat the icon artwork with respect and generate proper hicolor
