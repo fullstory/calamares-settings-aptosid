@@ -1,5 +1,4 @@
 # Only meant to be run by calamares, so its scripts wouldn't have manpages
 calamares-settings-aptosid: no-manual-page [usr/bin/add-aptosid-desktop-icons]
-calamares-settings-aptosid: no-manual-page [usr/bin/calamares-install-aptosid]
 # We don't provide this file on purpose
 calamares-settings-aptosid: diversion-for-unknown-file usr/share/applications/calamares.desktop [preinst:9]
