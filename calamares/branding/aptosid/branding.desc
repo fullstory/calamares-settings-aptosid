@@ -21,7 +21,7 @@ navigation: widget
 
 images:
     productLogo:         "aptosid-logo.png"
-    productIcon:         "aptosid-logo.png"
+    productIcon:         "aptosid-icon.png"
     productWelcome:      "aptosid.png"
 
 slideshow:               "show.qml"
