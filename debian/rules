@@ -10,7 +10,7 @@ create-branding-images:
 		false ; \
 	fi
 
-	for f in aptosid-icon aptosid-logo aptosid aptosid2; do \
+	for f in aptosid-icon aptosid aptosid2; do \
 		[ -r  $(CURDIR)/calamares/branding/aptosid/$${f}.svg ] || false ; \
 		inkscape --export-type="png" \
 			 --export-filename="$(CURDIR)/calamares/branding/aptosid/$${f}.png" \
