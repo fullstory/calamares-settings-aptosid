@@ -20,7 +20,7 @@ sidebar: widget
 navigation: widget
 
 images:
-    productLogo:         "aptosid-logo.png"
+    productLogo:         "aptosid-icon.png"
     productIcon:         "aptosid-icon.png"
     productWelcome:      "aptosid.png"
 

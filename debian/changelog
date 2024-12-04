@@ -1,9 +1,8 @@
 calamares-settings-aptosid (20241204.2) unstable; urgency=medium
 
-  * Build branding images from source svg and use a different logo to
-    icon.
+  * Build branding images from source svg.
 
- -- Kel Modderman <kelvmod@gmail.com>  Wed, 04 Dec 2024 21:44:26 +1000
+ -- Kel Modderman <kelvmod@gmail.com>  Wed, 04 Dec 2024 21:55:58 +1000
 
 calamares-settings-aptosid (20241204.1) unstable; urgency=medium
 
