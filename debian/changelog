@@ -1,13 +1,9 @@
-calamares-settings-aptosid (20241203.3) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20241204.1) unstable; urgency=medium
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Kel Modderman ]
   * Stop diverting calamares desktop file, remove desktop icon and
     reword add-desktop-icons script.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 04 Dec 2024 02:20:05 +0100
+ -- Kel Modderman <kelvmod@gmail.com>  Wed, 04 Dec 2024 19:54:57 +1000
 
 calamares-settings-aptosid (20241203.2) unstable; urgency=medium
 
