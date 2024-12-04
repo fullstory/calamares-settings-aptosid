@@ -1,3 +1,9 @@
+calamares-settings-aptosid (20241204.3) UNRELEASED; urgency=medium
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 04 Dec 2024 13:57:32 +0100
+
 calamares-settings-aptosid (20241204.2) unstable; urgency=medium
 
   * Build branding images from source svg.
