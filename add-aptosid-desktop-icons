@@ -10,30 +10,19 @@ DESKTOP=$(xdg-user-dir DESKTOP)
 # creation script.
 mkdir -p $DESKTOP
 
-# Among the Debian desktop environments, LXDE is the only one
-# that behaves completely different.
-if [ -f /usr/bin/lxsession ]; then
-    echo "[Desktop Entry]" > $DESKTOP/calamares-install-aptosid.desktop
-    echo "Type=Link" >> $DESKTOP/calamares-install-aptosid.desktop
-    echo "Name=Install aptosid" >> $DESKTOP/calamares-install-aptosid.desktop
-    echo "Icon=install-aptosid" >> $DESKTOP/calamares-install-aptosid.desktop
-    echo "URL=/usr/share/applications/calamares-install-aptosid.desktop" \
-          >> $DESKTOP/calamares-install-aptosid.desktop
-else
-    cp /usr/share/applications/calamares-install-aptosid.desktop $DESKTOP
-    # Xfce needs this executable otherwise it complains, everything
-    # else doesn't seem to care either way.
-    chmod +x $DESKTOP/calamares-install-aptosid.desktop
+if [ ! -f "$DESKTOP/aptosid-irc.desktop" ] && \
+    [ -f /usr/share/applications/calamares.desktop ]; then
+    install -m 0755 /usr/share/applications/calamares.desktop "$DESKTOP/"
 fi
 
 # Set desktop launcher as trusted under Xfce (See: #1037299)
 if [ "$XDG_CURRENT_DESKTOP" = "XFCE" ]; then
-    gio set --type=string ~/Desktop/calamares-install-aptosid.desktop \
+    gio set --type=string "$DESKTOP/calamares.desktop" \
         metadata::trusted true
-    gio set --type=string ~/Desktop/calamares-install-aptosid.desktop \
+    gio set --type=string "$DESKTOP/calamares.desktop" \
         metadata::xfce-exe-checksum \
-        "$(sha256sum ~/Desktop/calamares-install-aptosid.desktop | cut -f1 -d' ')"
-    touch ~/Desktop/calamares-install-aptosid.desktop
+        "$(sha256sum "$DESKTOP/calamares.desktop" | cut -f1 -d' ')"
+    touch "$DESKTOP/calamares.desktop"
 fi
 
 # create aptosid icons
@@ -42,15 +31,13 @@ if [ -s /etc/default/distro ]; then
 
     if [ ! -f "$DESKTOP/aptosid-manual.desktop" ] && \
     [ -f /usr/share/applications/aptosid/aptosid-manual.desktop ]; then
-        install -o ${FLL_LIVE_USER} -g ${FLL_LIVE_USER} -m 0755 \
-            /usr/share/applications/aptosid/aptosid-manual.desktop \
+        install -m 0755 /usr/share/applications/aptosid/aptosid-manual.desktop \
             "$DESKTOP/"
     fi
 
     if [ ! -f "$DESKTOP/aptosid-irc.desktop" ] && \
     [ -f /usr/share/applications/aptosid/aptosid-irc.desktop ]; then
-        install -o ${FLL_LIVE_USER} -g ${FLL_LIVE_USER} -m 0755 \
-            /usr/share/applications/aptosid/aptosid-irc.desktop \
+        install -m 0755 /usr/share/applications/aptosid/aptosid-irc.desktop \
             "$DESKTOP/"
     fi
 
@@ -71,7 +58,8 @@ if [ -s /etc/default/distro ]; then
     ###
     # create desktop shortcut to index.html
     ###
-    if [ -f "${INDEXFILE}" ] && [ ! -f "$DESKTOP/${FLL_DISTRO_NAME}.desktop" ]; then
+    if [ -f "${INDEXFILE}" ] && \
+        [ ! -f "$DESKTOP/${FLL_DISTRO_NAME}.desktop" ]; then
         cat > "$DESKTOP/${FLL_DISTRO_NAME}.desktop" \
     <<EOF
 #!/usr/bin/env xdg-open
