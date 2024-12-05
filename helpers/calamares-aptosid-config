@@ -18,6 +18,9 @@ if which make-ssl-cert >/dev/null; then
     chroot $CHROOT make-ssl-cert generate-default-snakeoil --force-overwrite
 fi
 
+# create openssh keys for new host
+chroot $CHROOT dpkg-reconfigure --frontend=noninteractive openssh-server
+
 # install the same package set as if liveapt ran at boot
 mkdir -p "${CHROOT}/fll"
 mount --bind /fll "${CHROOT}/fll"
