@@ -1,13 +1,10 @@
-calamares-settings-aptosid (20241204.3) UNRELEASED; urgency=medium
-
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
+calamares-settings-aptosid (20241204.3) unstable; urgency=medium
 
   [ Kel Modderman ]
   * helpers/calamares-aptosid-config: generate openssh keys for the
     newly installed host.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 04 Dec 2024 13:57:32 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 05 Dec 2024 08:20:48 +0100
 
 calamares-settings-aptosid (20241204.2) unstable; urgency=medium
 
