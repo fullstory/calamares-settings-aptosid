@@ -1,6 +1,11 @@
 calamares-settings-aptosid (20241204.4) UNRELEASED; urgency=medium
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
+
+  [ Kel Modderman ]
+  * gschema.override: remove firefox.desktop, add aptosid-irc.desktop
+    and xdg-browser-launcher.desktop.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 05 Dec 2024 08:21:03 +0100
 
