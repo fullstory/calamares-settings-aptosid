@@ -8,9 +8,9 @@ CHROOT=$(mount | grep proc | grep calamares | awk '{print $3}' | sed -e "s#/proc
 # module was disabled via settings.conf. This means a local block device was
 # present matching the systemd-homed key pair included on the live media.
 # Pass this identity into the installed system.
-if [ -r "/var/lib//systemd/home/${FLL_LIVE_USER}.identity" ]; then
-    cp --archive "/var/lib//systemd/home/${FLL_LIVE_USER}.identity" \
-        "${CHROOT}/var/lib//systemd/home/${FLL_LIVE_USER}.identity"
+if [ -r "/var/lib/systemd/home/${FLL_LIVE_USER}.identity" ]; then
+    cp --archive "/var/lib/systemd/home/${FLL_LIVE_USER}.identity" \
+        "${CHROOT}/var/lib/systemd/home/${FLL_LIVE_USER}.identity"
     if [ -d "/var/cache/systemd/home/${FLL_LIVE_USER}" ]; then
         cp --archive --recursive "/var/cache/systemd/home/${FLL_LIVE_USER}" \
             "${CHROOT}/var/cache/systemd/home/${FLL_LIVE_USER}"

@@ -8,6 +8,7 @@ calamares-settings-aptosid (20241204.5) unstable; urgency=medium
 
   [ Kel Modderman ]
   * Purge calamaresfb.service - we do not support it.
+  * calamares-aptosid-config: fix path to systemd-homed .identity file.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 09 Dec 2024 07:50:27 +0100
 
