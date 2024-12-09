@@ -1,6 +1,10 @@
 calamares-settings-aptosid (20241204.5) UNRELEASED; urgency=medium
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
+
+  [ Kel Modderman ]
+  * Purge calamaresfb.service - we do not support it.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 08 Dec 2024 06:40:49 +0100
 
