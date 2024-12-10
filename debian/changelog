@@ -1,16 +1,12 @@
-calamares-settings-aptosid (20241204.6) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20241210.1) unstable; urgency=medium
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Kel Modderman ]
   * Follow https://specifications.freedesktop.org/menu-
     spec/1.0/go01.html and prefix xdg-browser-launcher.desktop and
     aptosid.irc with aptosid-.
   * Rename conf source directory to desktop and move add-aptosid-
     desktop-icons inside, adjusting debian/install as required.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 09 Dec 2024 07:50:41 +0100
+ -- Kel Modderman <kelvmod@gmail.com>  Tue, 10 Dec 2024 21:38:50 +1000
 
 calamares-settings-aptosid (20241204.5) unstable; urgency=medium
 
