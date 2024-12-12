@@ -6,9 +6,7 @@ Copyright: 2016-2024, Jonathan Carter <jcc@debian.org>
            2024 Kel Modderman <kelvmod@gmail.com>
 License: ISC
 
-Files:
- icons/*
- calamares/branding/aptosid/*.png
+Files: calamares/branding/aptosid/*
 Copyright: 2007-2010, Bernard Gray <bernard.gray@gmail.com>
 License: GPL-2+
 
