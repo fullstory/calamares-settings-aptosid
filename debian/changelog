@@ -4,7 +4,9 @@ calamares-settings-aptosid (20241212.2) UNRELEASED; urgency=medium
   * NOT RELEASED YET
 
   [ Kel Modderman ]
-  * gschema.override: add file manager and terminal favorites.
+  * gschema.override:
+    - add file manager and terminal favorites
+    - drop other ovverides and do them in live boot
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 12 Dec 2024 19:34:04 +0100
 

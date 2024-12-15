@@ -1,10 +1,3 @@
 # Launcher icons
 [org.gnome.shell:GNOME]
 favorite-apps=['calamares.desktop', 'aptosid-aptosid-irc.desktop', 'aptosid-xdg-browser-launcher.desktop', 'nautilus.desktop', 'org.gnome.Terminal.desktop']
-
-# We don't want the screensaver to enable on the live media while installing
-[org.gnome.desktop.lockdown]
-disable-lock-screen=true
-
-[org.gnome.desktop.session]
-idle-delay=0
