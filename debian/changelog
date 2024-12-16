@@ -1,6 +1,11 @@
 calamares-settings-aptosid (20241212.3) UNRELEASED; urgency=medium
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
+
+  [ Kel Modderman ]
+  * add-aptosid-desktop-icons: fix obvious typo when checking for
+    existence of calamares.desktop.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 15 Dec 2024 12:54:15 +0100
 

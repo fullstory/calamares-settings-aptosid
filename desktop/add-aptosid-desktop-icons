@@ -10,7 +10,7 @@ DESKTOP=$(xdg-user-dir DESKTOP)
 # creation script.
 mkdir -p $DESKTOP
 
-if [ ! -f "$DESKTOP/aptosid-irc.desktop" ] && \
+if [ ! -f "$DESKTOP/calamares.desktop" ] && \
     [ -f /usr/share/applications/calamares.desktop ]; then
     install -m 0755 /usr/share/applications/calamares.desktop "$DESKTOP/"
 fi
