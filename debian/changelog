@@ -6,6 +6,7 @@ calamares-settings-aptosid (20241212.3) UNRELEASED; urgency=medium
   [ Kel Modderman ]
   * add-aptosid-desktop-icons: fix obvious typo when checking for
     existence of calamares.desktop.
+  * add-aptosid-desktop-icons: fix all desktop icons for xfce session.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 15 Dec 2024 12:54:15 +0100
 

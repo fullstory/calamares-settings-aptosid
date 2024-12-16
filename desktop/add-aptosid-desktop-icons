@@ -15,16 +15,6 @@ if [ ! -f "$DESKTOP/calamares.desktop" ] && \
     install -m 0755 /usr/share/applications/calamares.desktop "$DESKTOP/"
 fi
 
-# Set desktop launcher as trusted under Xfce (See: #1037299)
-if [ "$XDG_CURRENT_DESKTOP" = "XFCE" ]; then
-    gio set --type=string "$DESKTOP/calamares.desktop" \
-        metadata::trusted true
-    gio set --type=string "$DESKTOP/calamares.desktop" \
-        metadata::xfce-exe-checksum \
-        "$(sha256sum "$DESKTOP/calamares.desktop" | cut -f1 -d' ')"
-    touch "$DESKTOP/calamares.desktop"
-fi
-
 # create aptosid icons
 if [ -s /etc/default/distro ]; then
     . /etc/default/distro
@@ -76,3 +66,16 @@ EOF
         chmod u+x "$DESKTOP/${FLL_DISTRO_NAME}.desktop"
     fi
 fi
+
+# Set desktop launcher as trusted under Xfce (See: #1037299)
+if [ "$XDG_CURRENT_DESKTOP" = "XFCE" ]; then
+    for desktop in "$DESKTOP"/*.desktop; do
+        gio set --type=string "$desktop" \
+            metadata::trusted true
+        gio set --type=string "$desktop" \
+            metadata::xfce-exe-checksum \
+            "$(sha256sum "$desktop" | cut -f1 -d' ')"
+        touch "$desktop"
+    done
+fi
+
