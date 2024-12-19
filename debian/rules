@@ -3,13 +3,13 @@
 %:
 	dh $@
 
-create-branding-images:
+create-icons:
 	# requires inkscape and imagemagick to be installed
 	@if [ ! -x /usr/bin/inkscape ]; then \
 		echo "ERROR: inkscape not installed!" ; \
 		false ; \
 	fi
-
+	
 	for f in aptosid-icon aptosid aptosid2; do \
 		[ -r  $(CURDIR)/calamares/branding/aptosid/$${f}.svg ] || false ; \
 		inkscape --export-type="png" \

@@ -1,8 +1,11 @@
-calamares-settings-aptosid (20241212.4) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20241212.4) unstable; urgency=medium
 
-  * NOT RELEASED YET
+  * refresh SVG graphics, shut up inkscape's migration from old versions.
+  * rename icon generation target to match the other packages, even if the
+    naming doesn't match exactly for this purpose here.
+  * refresh icons.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 16 Dec 2024 23:33:50 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 19 Dec 2024 03:58:36 +0100
 
 calamares-settings-aptosid (20241212.3) unstable; urgency=medium
 
