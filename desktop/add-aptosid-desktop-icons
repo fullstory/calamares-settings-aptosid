@@ -67,15 +67,20 @@ EOF
     fi
 fi
 
-# Set desktop launcher as trusted under Xfce (See: #1037299)
-if [ "$XDG_CURRENT_DESKTOP" = "XFCE" ]; then
-    for desktop in "$DESKTOP"/*.desktop; do
-        gio set --type=string "$desktop" \
-            metadata::trusted true
-        gio set --type=string "$desktop" \
-            metadata::xfce-exe-checksum \
-            "$(sha256sum "$desktop" | cut -f1 -d' ')"
-        touch "$desktop"
-    done
-fi
-
+# Set desktop launchers as trusted (See: #1037299)
+for launcher in "$DESKTOP"/*.desktop; do
+    case "$XDG_CURRENT_DESKTOP" in
+        XFCE*)
+            gio set --type=string "$launcher" \
+                metadata::trusted true
+            gio set --type=string "$launcher" \
+                metadata::xfce-exe-checksum \
+                "$(sha256sum "$launcher" | cut -f1 -d' ')"
+            ;;
+        LXQt*)
+            gio set --type=string "$launcher" \
+                metadata::trust true
+            ;;
+    esac
+    touch "$launcher"
+done
