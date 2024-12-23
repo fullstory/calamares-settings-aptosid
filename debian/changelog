@@ -1,12 +1,9 @@
-calamares-settings-aptosid (20241212.5) UNRELEASED; urgency=medium
-
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
+calamares-settings-aptosid (20241212.5) unstable; urgency=medium
 
   [ Kel Modderman ]
   * Add trust metadata to launchers for LXQt desktop sessions.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 19 Dec 2024 03:58:55 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 23 Dec 2024 21:15:35 +0100
 
 calamares-settings-aptosid (20241212.4) unstable; urgency=medium
 
