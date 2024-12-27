@@ -1,6 +1,11 @@
 calamares-settings-aptosid (20241212.6) UNRELEASED; urgency=medium
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
+
+  [ Kel Modderman ]
+  * helpers/calamares-aptosid-config: purge spice-vdagent if not in a
+    vm.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 23 Dec 2024 21:15:51 +0100
 

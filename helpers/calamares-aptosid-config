@@ -22,8 +22,14 @@ if which make-ssl-cert >/dev/null; then
     chroot $CHROOT make-ssl-cert generate-default-snakeoil --force-overwrite
 fi
 
-# create openssh keys for new host
-chroot $CHROOT dpkg-reconfigure --frontend=noninteractive openssh-server
+if which sshd >/dev/null; then
+    # create openssh keys for new host
+    chroot $CHROOT dpkg-reconfigure --frontend=noninteractive openssh-server
+fi
+
+if ! systemd-detect-virt --quiet; then
+    DEBIAN_FRONTEND=noninteractive chroot $CHROOT dpkg --purge spice-vdagent
+fi
 
 # install the same package set as if liveapt ran at boot
 mkdir -p "${CHROOT}/fll"
