@@ -6,12 +6,10 @@ ON_USB=/usr/share/calamares/helpers/calamares-bootloader-config-chroot-on-usb.py
 echo "Running bootloader-config..."
 
 if python3 $ON_USB $CHROOT; then
-    # Install grub2-fll-portable-efi in the chroot
-    mount -o bind /fll ${CHROOT}/fll
-    APTGETBASE=$(find /fll/apt -type f -name '*.deb' | \
-        awk 'BEGIN{ print "apt-get -y"} { print " --with-source", $1} END { print " install "}')
-    DEBIAN_FRONTEND=noninteractive chroot $CHROOT ${APTGETBASE} grub2-fll-portable-efi os-prober-
-    umount ${CHROOT}/fll
+    ARCH=$(dpkg-architecture -q DEB_HOST_ARCH)
+    echo "grub-efi-${ARCH}  grub2/force_efi_extra_removable boolean true" | \
+        chroot $CHROOT debconf-set-selections
+    chroot $CHROOT dpkg-reconfigure -fnoninteractive grub-efi-${ARCH}
     # disable os-prober to be sure
     if grep -q '^#GRUB_DISABLE_OS_PROBER' $CHROOT/etc/default/grub; then
         sed -i "s/#GRUB_DISABLE_OS_PROBER=false/\nGRUB_DISABLE_OS_PROBER=true/g" \
