@@ -1,6 +1,10 @@
 calamares-settings-aptosid (20250111.3) UNRELEASED; urgency=medium
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
+
+  [ Kel Modderman ]
+  * No longer ask dpkg to do unsafe io, a crazy Debian default.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 11 Jan 2025 08:12:49 +0100
 
