@@ -7,6 +7,7 @@ calamares-settings-aptosid (20250111.1) UNRELEASED; urgency=medium
   * Switch to the new unpackfsc module for unsquashfs of /.
   * Restrict / filesystems to ext4 and btrfs, which are essential
     pyfll/aptosid packages.
+  * Disable autologinGroup in users.conf.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 10 Jan 2025 05:47:17 +0100
 
