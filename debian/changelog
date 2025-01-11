@@ -9,6 +9,7 @@ calamares-settings-aptosid (20250111.1) UNRELEASED; urgency=medium
     pyfll/aptosid packages.
   * Disable autologinGroup in users.conf.
   * Disable LVM in the partition module UI, it is broken upstream.
+  * Move add-aptosid-desktop-icon stuff to aptosid-settings-common.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 10 Jan 2025 05:47:17 +0100
 

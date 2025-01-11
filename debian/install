@@ -1,6 +1,3 @@
 calamares etc
 calamares-modules/* usr/lib/calamares/modules
-desktop/96_calamares-settings-aptosid.gschema.override usr/share/glib-2.0/schemas
-desktop/calamares-desktop-icon.desktop etc/xdg/autostart
-desktop/add-aptosid-desktop-icons usr/bin
 helpers/* usr/share/calamares/helpers

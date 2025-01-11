@@ -1,3 +1,0 @@
-# Launcher icons
-[org.gnome.shell:GNOME]
-favorite-apps=['calamares.desktop', 'aptosid-aptosid-irc.desktop', 'aptosid-xdg-browser-launcher.desktop', 'nautilus.desktop', 'org.gnome.Terminal.desktop']
