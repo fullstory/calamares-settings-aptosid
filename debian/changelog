@@ -1,6 +1,11 @@
 calamares-settings-aptosid (20250111.4) UNRELEASED; urgency=medium
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
+
+  [ Kel Modderman ]
+  * Purge calamares-bootloader-config module - it was flawed and not
+    effective.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 11 Jan 2025 08:42:45 +0100
 

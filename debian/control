@@ -15,7 +15,6 @@ Depends: calamares,
 	cracklib-runtime,
 	wamerican,
 	xdg-user-dirs,
-	python3-pyudev,
 	${misc:Depends}
 Recommends: cryptsetup-initramfs,
 	cryptsetup,
