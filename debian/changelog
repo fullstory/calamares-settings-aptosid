@@ -1,9 +1,5 @@
-calamares-settings-aptosid (20250111.1) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20250111.1) unstable; urgency=medium
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Kel Modderman ]
   * Switch to the new unpackfsc module for unsquashfs of /.
   * Restrict / filesystems to ext4 and btrfs, which are essential
     pyfll/aptosid packages.
@@ -12,7 +8,7 @@ calamares-settings-aptosid (20250111.1) UNRELEASED; urgency=medium
   * Move add-aptosid-desktop-icon stuff to aptosid-settings-common.
   * Remove debian/lintian-overrides: no longer required.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 10 Jan 2025 05:47:17 +0100
+ -- Kel Modderman <kelvmod@gmail.com>  Sat, 11 Jan 2025 12:50:46 +1000
 
 calamares-settings-aptosid (20241212.7) unstable; urgency=medium
 
