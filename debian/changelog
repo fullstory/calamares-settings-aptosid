@@ -8,6 +8,7 @@ calamares-settings-aptosid (20250111.1) UNRELEASED; urgency=medium
   * Restrict / filesystems to ext4 and btrfs, which are essential
     pyfll/aptosid packages.
   * Disable autologinGroup in users.conf.
+  * Disable LVM in the partition module UI, it is broken upstream.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 10 Jan 2025 05:47:17 +0100
 
