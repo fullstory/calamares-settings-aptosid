@@ -1,6 +1,10 @@
-calamares-settings-aptosid (20241212.8) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20250111.1) UNRELEASED; urgency=medium
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
+
+  [ Kel Modderman ]
+  * Switch to the new unpackfsc module for unsquashfs of /.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 10 Jan 2025 05:47:17 +0100
 
