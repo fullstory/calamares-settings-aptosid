@@ -1,2 +1,0 @@
-# Only meant to be run by calamares, so its scripts wouldn't have manpages
-calamares-settings-aptosid: no-manual-page [usr/bin/add-aptosid-desktop-icons]
