@@ -31,12 +31,8 @@ if ! systemd-detect-virt --quiet; then
     DEBIAN_FRONTEND=noninteractive chroot $CHROOT dpkg --purge spice-vdagent
 fi
 
-# install the same package set as if liveapt ran at boot
-mkdir -p "${CHROOT}/fll"
-mount --bind /fll "${CHROOT}/fll"
+# Setup console and keyboard defaults to match live session
 chroot $CHROOT /usr/share/fll-live-initscripts/fll_locales localize
-umount "${CHROOT}/fll"
-rm -rf "${CHROOT}/fll"
 
 # remove /etc/default/distro
 rm -f "${CHROOT}/etc/default/distro"
