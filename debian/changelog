@@ -1,10 +1,10 @@
-calamares-settings-aptosid (20250202.1) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20250202.1) unstable; urgency=medium
 
   [ Kel Modderman ]
   * helpers/calamares-aptosid-config: remove references to liveapt and
     /fll.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 02 Feb 2025 13:53:31 +1000
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 03 Feb 2025 03:09:54 +0100
 
 calamares-settings-aptosid (20250111.4) unstable; urgency=medium
 
