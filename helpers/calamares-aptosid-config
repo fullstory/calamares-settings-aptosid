@@ -28,7 +28,7 @@ if which sshd >/dev/null; then
 fi
 
 if ! systemd-detect-virt --quiet; then
-    DEBIAN_FRONTEND=noninteractive chroot $CHROOT dpkg --purge spice-vdagent
+    DEBIAN_FRONTEND=noninteractive chroot $CHROOT dpkg --purge spice-vdagent qemu-guest-agent
 fi
 
 # Setup console and keyboard defaults to match live session
