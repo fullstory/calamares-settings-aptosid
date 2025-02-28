@@ -1,12 +1,9 @@
-calamares-settings-aptosid (20250224.1) UNRELEASED; urgency=medium
-
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
+calamares-settings-aptosid (20250224.1) unstable; urgency=medium
 
   [ Kel Modderman ]
   * Purge qemu-guest-agent in non-virt environments.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 03 Feb 2025 03:10:19 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 28 Feb 2025 08:13:33 +0100
 
 calamares-settings-aptosid (20250202.1) unstable; urgency=medium
 
