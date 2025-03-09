@@ -31,6 +31,9 @@ if ! systemd-detect-virt --quiet; then
     DEBIAN_FRONTEND=noninteractive chroot $CHROOT dpkg --purge spice-vdagent qemu-guest-agent
 fi
 
+# set up root shell
+chroot $CHROOT cp /etc/skel/.* /root/
+
 # Setup console and keyboard defaults to match live session
 chroot $CHROOT /usr/share/fll-live-initscripts/fll_locales localize
 
