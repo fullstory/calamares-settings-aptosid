@@ -13,6 +13,7 @@ calamares-settings-aptosid (20250314.1) UNRELEASED; urgency=medium
   * Do not make a subvolume for /var, but do make subvolumes from relevant
     subdirectories of /var.
   * Disable COW for paths likely to host virtual machine images and containers.
+  * Add a @snapshots btrfs volume and mount on /.snapshots.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 09 Mar 2025 17:46:41 +0100
 
