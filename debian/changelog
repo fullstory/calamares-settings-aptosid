@@ -8,6 +8,7 @@ calamares-settings-aptosid (20250314.1) UNRELEASED; urgency=medium
   * Define btrfs subvolumes, and set default mount options including minimal
     zstd compression for btrfs on SSDs and standard zstd compression on
     spinning rust.
+  * Follow openSUSE lead on subvolume layout (for snapper compatibility).
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 09 Mar 2025 17:46:41 +0100
 
