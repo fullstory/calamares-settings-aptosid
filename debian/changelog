@@ -9,6 +9,7 @@ calamares-settings-aptosid (20250314.1) UNRELEASED; urgency=medium
     zstd compression for btrfs on SSDs and standard zstd compression on
     spinning rust.
   * Follow openSUSE lead on subvolume layout (for snapper compatibility).
+  * Clear mount module of deprecated options and enables tmpfs on /tmp on SSDs.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 09 Mar 2025 17:46:41 +0100
 
