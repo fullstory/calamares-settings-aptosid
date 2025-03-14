@@ -1,4 +1,4 @@
-calamares-settings-aptosid (20250314.1) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20250314.1) unstable; urgency=medium
 
   [ Kel Modderman ]
   * Fine tune installation requirements, partition and mount configurations.
@@ -15,7 +15,7 @@ calamares-settings-aptosid (20250314.1) UNRELEASED; urgency=medium
   * Disable COW for paths likely to host virtual machine images and containers.
   * Add a @snapshots btrfs volume and mount on /.snapshots.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 09 Mar 2025 17:46:41 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 14 Mar 2025 22:09:22 +0100
 
 calamares-settings-aptosid (20250224.2) unstable; urgency=medium
 
