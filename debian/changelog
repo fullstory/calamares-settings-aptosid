@@ -1,6 +1,13 @@
-calamares-settings-aptosid (20250224.3) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20250314.1) UNRELEASED; urgency=medium
 
-  * NOT RELEASED YET
+  [ Kel Modderman ]
+  * Fine tune installation requirements, partition and mount configurations.
+  * Reduce minimum storage requirement (GB) from 15 to 12.
+  * Set defaultFileSystemType to btrfs.
+  * Allow xfs in addition to btrfs and ext4.
+  * Define btrfs subvolumes, and set default mount options including minimal
+    zstd compression for btrfs on SSDs and standard zstd compression on
+    spinning rust.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 09 Mar 2025 17:46:41 +0100
 
