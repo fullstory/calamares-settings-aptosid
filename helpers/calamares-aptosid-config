@@ -40,4 +40,10 @@ chroot $CHROOT /usr/share/fll-live-initscripts/fll_locales localize
 # remove /etc/default/distro
 rm -f "${CHROOT}/etc/default/distro"
 
+# btrfs - disable COW for paths likely to host virtual machines and containers
+sed -i 's#subvol=/@var@lib@libvirt,.*#subvol=/@var@lib@libvirt,nodatacow 0 0#' \
+    "${CHROOT}/etc/fstab"
+sed -i 's#subvol=/@var@lib@docker,.*#subvol=/@var@lib@docker,nodatacow 0 0#' \
+    "${CHROOT}/etc/fstab"
+
 exit 0

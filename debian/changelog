@@ -10,7 +10,9 @@ calamares-settings-aptosid (20250314.1) UNRELEASED; urgency=medium
     spinning rust.
   * Follow openSUSE lead on subvolume layout (for snapper compatibility).
   * Clear mount module of deprecated options and enables tmpfs on /tmp on SSDs.
-  * Do not make a subvolume for /var.
+  * Do not make a subvolume for /var, but do make subvolumes from relevant
+    subdirectories of /var.
+  * Disable COW for paths likely to host virtual machine images and containers.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 09 Mar 2025 17:46:41 +0100
 
