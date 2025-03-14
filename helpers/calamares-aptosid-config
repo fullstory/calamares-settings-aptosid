@@ -45,5 +45,7 @@ sed -i 's#subvol=/@var@lib@libvirt,.*#subvol=/@var@lib@libvirt,nodatacow 0 0#' \
     "${CHROOT}/etc/fstab"
 sed -i 's#subvol=/@var@lib@docker,.*#subvol=/@var@lib@docker,nodatacow 0 0#' \
     "${CHROOT}/etc/fstab"
+sed -i 's#subvol=/@var@lib@machines,.*#subvol=/@var@lib@machines,nodatacow 0 0#' \
+    "${CHROOT}/etc/fstab"
 
 exit 0
