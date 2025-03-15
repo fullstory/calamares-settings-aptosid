@@ -13,6 +13,8 @@ calamares-settings-aptosid (20250315.2) UNRELEASED; urgency=medium
   * Remove the use of nodatacow - do not fix a problem that does not
     (yet) exist.
   * calamares-settings-aptosid: simplify /root/.bashrc setup.
+  * Do not create .snapshots volume on btfrs per default or else snapper
+    fails to create initial config.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 15 Mar 2025 03:24:33 +0100
 
