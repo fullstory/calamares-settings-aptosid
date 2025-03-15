@@ -17,6 +17,7 @@ calamares-settings-aptosid (20250315.2) UNRELEASED; urgency=medium
   * Disable DBus when calling snapper from the chroot, supply filesystem
     type for configuration.
   * Use _ instead of @ for path separators in subvolumes.
+  * Set less frequent snapper timeline snashot defaults.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 15 Mar 2025 03:24:33 +0100
 
