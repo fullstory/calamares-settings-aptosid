@@ -1,3 +1,3 @@
 calamares etc
-calamares-modules/* usr/lib/calamares/modules
-helpers/* usr/share/calamares/helpers
+aptosid/aptosid-config usr/lib/calamares/modules
+aptosid/helpers usr/share/calamares
