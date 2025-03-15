@@ -6,7 +6,7 @@ if [ -d "$CHROOT/.snapshots" ] && [ -x "$CHROOT/usr/bin/snapper" ]; then
      # chroot is on btrfs - configure snapper
      chroot $CHROOT umount /.snapshots
      chroot $CHROOT rmdir /.snapshots
-     chroot $CHROOT snapper -c root create-config /
+     chroot $CHROOT snapper --no-dbus --config root create-config --fstype btrfs /
      chroot $CHROOT btrfs subvolume delete /.snapshots
      chroot $CHROOT mkdir /.snapshots
  else
