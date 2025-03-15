@@ -2,6 +2,17 @@
 
 CHROOT=$(mount | grep proc | grep calamares | awk '{print $3}' | sed -e "s#/proc##g")
 
+if [ -d "$CHROOT/.snapshots" ] && [ -x "$CHROOT/usr/bin/snapper" ]; then
+     # chroot is on btrfs - configure snapper
+     chroot $CHROOT umount /.snapshots
+     chroot $CHROOT rmdir /.snapshots
+     chroot $CHROOT snapper -c root create-config /
+     chroot $CHROOT btrfs subvolume delete /.snapshots
+     chroot $CHROOT mkdir /.snapshots
+ else
+     DEBIAN_FRONTEND=noninteractive chroot $CHROOT dpkg --purge snapper
+ fi
+
 . /etc/default/distro
 
 # During live boot an unfixated home was blessed, and the calamares users
