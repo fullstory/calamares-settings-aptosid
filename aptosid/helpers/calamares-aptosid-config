@@ -32,7 +32,9 @@ if ! systemd-detect-virt --quiet; then
 fi
 
 # set up root shell
-chroot $CHROOT cp /etc/skel/.* /root/
+cat << EOF > "${CHROOT}/root/.bashrc"
+. /etc/profile
+EOF
 
 # Setup console and keyboard defaults to match live session
 chroot $CHROOT /usr/share/fll-live-initscripts/fll_locales localize
