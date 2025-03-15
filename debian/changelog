@@ -1,6 +1,5 @@
-calamares-settings-aptosid (20250315.1) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20250315.1) unstable; urgency=medium
 
-  [ Kel Modderman ]
   * Import full partitions.conf from upstream and configure swap
     choices.
 
