@@ -9,9 +9,10 @@ if [ -d "$CHROOT/.snapshots" ] && [ -x "$CHROOT/usr/bin/snapper" ]; then
     chroot $CHROOT snapper --no-dbus --config root create-config --fstype btrfs /
     chroot $CHROOT btrfs subvolume delete /.snapshots
     chroot $CHROOT mkdir /.snapshots
-    sed -i 's#TIMELINE_LIMIT_HOURLY="10"#TIMELINE_LIMIT_HOURLY="8"#' "$CHROOT/etc/snapper/configs/root"
+    # https://github.com/kdave/btrfsmaintenance?tab=readme-ov-file#tuning-periodic-snapshotting
+    sed -i 's#TIMELINE_LIMIT_HOURLY="10"#TIMELINE_LIMIT_HOURLY="12"#' "$CHROOT/etc/snapper/configs/root"
     sed -i 's#TIMELINE_LIMIT_DAILY="10"#TIMELINE_LIMIT_DAILY="7"#' "$CHROOT/etc/snapper/configs/root"
-    sed -i 's#TIMELINE_LIMIT_WEEKLY="0"#TIMELINE_LIMIT_WEEKLY="0"#' "$CHROOT/etc/snapper/configs/root"
+    sed -i 's#TIMELINE_LIMIT_WEEKLY="0"#TIMELINE_LIMIT_WEEKLY="1"#' "$CHROOT/etc/snapper/configs/root"
     sed -i 's#TIMELINE_LIMIT_MONTHLY="10"#TIMELINE_LIMIT_MONTHLY="0"#' "$CHROOT/etc/snapper/configs/root"
     sed -i 's#TIMELINE_LIMIT_YEARLY="10"#TIMELINE_LIMIT_YEARLY="0"#' "$CHROOT/etc/snapper/configs/root"
  else
