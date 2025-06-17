@@ -1,8 +1,12 @@
-calamares-settings-aptosid (20250315.5) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20250617.1) UNRELEASED; urgency=medium
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 22 Mar 2025 00:04:12 +0100
+  [ Kel Modderman ]
+  * Purge distro-defaults package post-install.
+
+ -- Kel Modderman <kelvmod@gmail.com>  Tue, 17 Jun 2025 18:50:37 +1000
 
 calamares-settings-aptosid (20250315.4) unstable; urgency=medium
 
