@@ -7,6 +7,8 @@ calamares-settings-aptosid (20250707.1) UNRELEASED; urgency=medium
   * Simplify btrfs subvolume setup by removing
     /var/lib/{libvirt,docker,machines}.
   * Revert to unpackfs module to support more filesystem types.
+  * Update debian/copright per lintian old-fsf-address-in-copyright-file
+    advice.
 
  -- Kel Modderman <kelvmod@gmail.com>  Mon, 07 Jul 2025 20:29:09 +1000
 
