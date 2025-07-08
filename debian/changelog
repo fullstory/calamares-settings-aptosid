@@ -1,9 +1,5 @@
-calamares-settings-aptosid (20250707.1) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20250707.1) unstable; urgency=medium
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Kel Modderman ]
   * Simplify btrfs subvolume setup by removing
     /var/lib/{libvirt,docker,machines}.
   * Update debian/copyright as per lintian old-fsf-address-in-copyright-file
