@@ -1,6 +1,11 @@
 calamares-settings-aptosid (20250707.2) UNRELEASED; urgency=medium
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
+
+  [ Kel Modderman ]
+  * Put FLL_READONLY_FSTYPE placeholder in unpackfs.conf to be
+    substituted at boot.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 08 Jul 2025 06:51:00 +0200
 
