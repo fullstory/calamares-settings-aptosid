@@ -16,7 +16,7 @@ if [ -d "$CHROOT/.snapshots" ] && [ -x "$CHROOT/usr/bin/snapper" ]; then
     sed -i 's#TIMELINE_LIMIT_MONTHLY="10"#TIMELINE_LIMIT_MONTHLY="0"#' "$CHROOT/etc/snapper/configs/root"
     sed -i 's#TIMELINE_LIMIT_YEARLY="10"#TIMELINE_LIMIT_YEARLY="0"#' "$CHROOT/etc/snapper/configs/root"
  else
-     DEBIAN_FRONTEND=noninteractive chroot $CHROOT dpkg --purge snapper
+     DEBIAN_FRONTEND=noninteractive chroot $CHROOT dpkg --purge snapper btrfs-assistant btrfsmaintenance
  fi
 
 . /etc/default/distro

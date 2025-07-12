@@ -1,6 +1,11 @@
 calamares-settings-aptosid (20250709.2) UNRELEASED; urgency=medium
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
+
+  [ Kel Modderman ]
+  * Purge btrfs support apps if not installed to btrfs.
+  * Execute aptosid helper script earlier in install sequence.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 09 Jul 2025 19:01:50 +0200
 
