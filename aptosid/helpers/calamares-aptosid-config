@@ -2,6 +2,41 @@
 
 CHROOT=$(mount | grep proc | grep calamares | awk '{print $3}' | sed -e "s#/proc##g")
 
+. /etc/default/distro
+
+# During live boot an unfixated home was blessed, and the calamares users
+# module was disabled via settings.conf. This means a local block device was
+# present matching the systemd-homed key pair included on the live media.
+# Pass this identity into the installed system.
+if [ -r "/var/lib/systemd/home/${FLL_LIVE_USER}.identity" ]; then
+    cp --archive "/var/lib/systemd/home/${FLL_LIVE_USER}.identity" \
+        "${CHROOT}/var/lib/systemd/home/${FLL_LIVE_USER}.identity"
+    if [ -d "/var/cache/systemd/home/${FLL_LIVE_USER}" ]; then
+        cp --archive --recursive "/var/cache/systemd/home/${FLL_LIVE_USER}" \
+            "${CHROOT}/var/cache/systemd/home/${FLL_LIVE_USER}"
+    fi
+fi
+
+# Setup console and keyboard defaults to match live session
+chroot $CHROOT /usr/share/fll-live-initscripts/fll_locales localize
+
+# remove /etc/default/distro
+rm -f "${CHROOT}"/etc/default/distro
+
+# regenerate default snakeoil with new hostname
+if which make-ssl-cert >/dev/null; then
+    chroot $CHROOT make-ssl-cert generate-default-snakeoil --force-overwrite
+fi
+
+if which sshd >/dev/null; then
+    # create openssh keys for new host
+    chroot $CHROOT dpkg-reconfigure --frontend=noninteractive openssh-server
+fi
+
+if ! systemd-detect-virt --quiet; then
+    DEBIAN_FRONTEND=noninteractive chroot $CHROOT dpkg --purge spice-vdagent qemu-guest-agent
+fi
+
 if [ -d "$CHROOT/.snapshots" ] && [ -x "$CHROOT/usr/bin/snapper" ]; then
     # chroot is on btrfs - configure snapper
     chroot $CHROOT umount /.snapshots
@@ -19,44 +54,31 @@ if [ -d "$CHROOT/.snapshots" ] && [ -x "$CHROOT/usr/bin/snapper" ]; then
      DEBIAN_FRONTEND=noninteractive chroot $CHROOT dpkg --purge snapper btrfs-assistant btrfsmaintenance
  fi
 
-. /etc/default/distro
+# setup root home dotfiles
+for dotfile in '.bash_logout' '.bash_profile' '.bashrc' '.profile'; do
+	if [ -f "/etc/skel/${dotfile}" ]; then
+		cp "/etc/skel/${dotfile}" "${CHROOT}/root/${dotfile}"
+	fi
+done
 
-# During live boot an unfixated home was blessed, and the calamares users
-# module was disabled via settings.conf. This means a local block device was
-# present matching the systemd-homed key pair included on the live media.
-# Pass this identity into the installed system.
-if [ -r "/var/lib/systemd/home/${FLL_LIVE_USER}.identity" ]; then
-    cp --archive "/var/lib/systemd/home/${FLL_LIVE_USER}.identity" \
-        "${CHROOT}/var/lib/systemd/home/${FLL_LIVE_USER}.identity"
-    if [ -d "/var/cache/systemd/home/${FLL_LIVE_USER}" ]; then
-        cp --archive --recursive "/var/cache/systemd/home/${FLL_LIVE_USER}" \
-            "${CHROOT}/var/cache/systemd/home/${FLL_LIVE_USER}"
-    fi
+# sync live skel conffiles with chroot to support desktop configuration
+rsync -a /etc/skel/. "${CHROOT}"/etc/skel/.
+
+# suport greetd configuration for sway, hyprland, labwc
+if [ -d /etc/greetd ]; then
+    rsync -a /etc/greetd/.  "${CHROOT}"/etc/greetd/.
+    sed -i '/\[initial_session\]/,/user = .*/d' \
+        "${CHROOT}"/etc/greetd/config.toml
 fi
 
-# regenerate default snakeoil with new hostname
-if which make-ssl-cert >/dev/null; then
-    chroot $CHROOT make-ssl-cert generate-default-snakeoil --force-overwrite
+# update lxqt configuration on installed system
+if [ -r /etc/xdg/lxqt/session.conf ]; then
+    cp /etc/xdg/lxqt/session.conf "${CHROOT}"/etc/xdg/lxqt/session.conf
 fi
 
-if which sshd >/dev/null; then
-    # create openssh keys for new host
-    chroot $CHROOT dpkg-reconfigure --frontend=noninteractive openssh-server
+# update labwc configuration on installed system
+if [ -r /etc/xdg/labwc/environment ]; then
+    cp /etc/xdg/labwc/environment "${CHROOT}"/etc/xdg/labwc/environment
 fi
-
-if ! systemd-detect-virt --quiet; then
-    DEBIAN_FRONTEND=noninteractive chroot $CHROOT dpkg --purge spice-vdagent qemu-guest-agent
-fi
-
-# set up root shell
-cat << EOF > "${CHROOT}/root/.bashrc"
-. /etc/profile
-EOF
-
-# Setup console and keyboard defaults to match live session
-chroot $CHROOT /usr/share/fll-live-initscripts/fll_locales localize
-
-# remove /etc/default/distro
-rm -f "${CHROOT}/etc/default/distro"
 
 exit 0
