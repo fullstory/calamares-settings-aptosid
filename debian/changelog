@@ -1,7 +1,4 @@
-calamares-settings-aptosid (20250709.2) UNRELEASED; urgency=medium
-
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
+calamares-settings-aptosid (20250709.2) unstable; urgency=medium
 
   [ Kel Modderman ]
   * Purge btrfs support apps if not installed to btrfs.
@@ -10,7 +7,7 @@ calamares-settings-aptosid (20250709.2) UNRELEASED; urgency=medium
     greetd, lxqt, labwc, hyprland and sway.
   * Configure root dotfiles.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 09 Jul 2025 19:01:50 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 12 Jul 2025 18:16:40 +0200
 
 calamares-settings-aptosid (20250709.1) unstable; urgency=medium
 
