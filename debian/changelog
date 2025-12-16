@@ -1,6 +1,10 @@
 calamares-settings-aptosid (20250803.2) UNRELEASED; urgency=medium
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
+
+  [ Kel Modderman ]
+  * calamares/modules/unpackfsc.conf: look in /run/fll.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 03 Aug 2025 17:31:46 +0200
 
