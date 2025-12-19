@@ -1,6 +1,10 @@
-calamares-settings-aptosid (20250803.3) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20251219.1) UNRELEASED; urgency=medium
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
+
+  [ Kel Modderman ]
+  * Enable ssh.service in install chroot and recreate openssh keys.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 16 Dec 2025 04:46:46 +0100
 

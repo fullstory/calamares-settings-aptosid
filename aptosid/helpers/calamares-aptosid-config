@@ -29,7 +29,8 @@ if which make-ssl-cert >/dev/null; then
 fi
 
 if which sshd >/dev/null; then
-    # create openssh keys for new host
+    # recreate openssh keys for new host
+    rm -f $CHROOT/etc/ssh/ssh_host_*
     chroot $CHROOT dpkg-reconfigure --frontend=noninteractive openssh-server
 fi
 
