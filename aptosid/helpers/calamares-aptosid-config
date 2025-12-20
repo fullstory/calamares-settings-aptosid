@@ -24,11 +24,11 @@ chroot $CHROOT /usr/share/fll-live-initscripts/fll_locales localize
 rm -f "${CHROOT}"/etc/default/distro
 
 # regenerate default snakeoil with new hostname
-if which make-ssl-cert >/dev/null; then
+if chroot $CHROOT dpkg-query -f'${db:Status-Status}\n' -W ssl-cert 2>/dev/null | grep -q ^installed; then
     chroot $CHROOT make-ssl-cert generate-default-snakeoil --force-overwrite
 fi
 
-if which sshd >/dev/null; then
+if chroot $CHROOT dpkg-query -f'${db:Status-Status}\n' -W openssh-server 2>/dev/null | grep -q ^installed; then
     # recreate openssh keys for new host
     rm -f $CHROOT/etc/ssh/ssh_host_*
     chroot $CHROOT dpkg-reconfigure --frontend=noninteractive openssh-server
