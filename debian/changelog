@@ -1,13 +1,10 @@
-calamares-settings-aptosid (20251220.1) UNRELEASED; urgency=medium
-
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
+calamares-settings-aptosid (20251220.1) unstable; urgency=medium
 
   [ Kel Modderman ]
   * Check if packages are installed in the chroot before attempting to
     execute their binaries (e.g. ssl-sert, openssh-server).
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 20 Dec 2025 01:09:28 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 21 Dec 2025 02:43:32 +0100
 
 calamares-settings-aptosid (20251219.1) unstable; urgency=medium
 
