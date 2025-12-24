@@ -12,6 +12,7 @@ calamares-settings-aptosid (20251224.1) UNRELEASED; urgency=medium
   * Sync calamares/modules/fstab.conf with upstream.
   * Sync calamares/modules/grubcfg.conf with upstream. Activate
     defaults, and add splash to default kernel params.
+  * Sync calamares/modules/luksopenswaphookcfg.conf with upstream.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 22 Dec 2025 00:52:45 +0100
 
