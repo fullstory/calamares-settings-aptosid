@@ -18,6 +18,9 @@ calamares-settings-aptosid (20251224.1) UNRELEASED; urgency=medium
   * Sync calamares/modules/mount.conf with upstream.
   * Sync calamares/modules/packages.conf with upstream. Set update_db to
     false.
+  * Sync calamares/modules/services-systemd.conf and add a comment about
+    why we re-activate some units during installation (they may be
+    disabled on the live media, e.g. ssh).
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 22 Dec 2025 00:52:45 +0100
 
