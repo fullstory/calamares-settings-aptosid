@@ -1,6 +1,10 @@
-calamares-settings-aptosid (20251220.3) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20251224.1) UNRELEASED; urgency=medium
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
+
+  [ Kel Modderman ]
+  * Sync calamares/modules/displaymanager.conf with upstream.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 22 Dec 2025 00:52:45 +0100
 
