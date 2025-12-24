@@ -22,6 +22,8 @@ calamares-settings-aptosid (20251224.1) UNRELEASED; urgency=medium
     why we re-activate some units during installation (they may be
     disabled on the live media, e.g. ssh).
   * Sync calamares/modules/unpackfsc.conf with upstream.
+  * Sync calamares/modules/users.conf and explicitly set hostname
+    options to defaults.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 22 Dec 2025 00:52:45 +0100
 
