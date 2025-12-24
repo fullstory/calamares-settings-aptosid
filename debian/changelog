@@ -5,6 +5,8 @@ calamares-settings-aptosid (20251224.1) UNRELEASED; urgency=medium
 
   [ Kel Modderman ]
   * Sync calamares/modules/displaymanager.conf with upstream.
+  * Sync calamares/modules/partition.conf with upstream.
+  * Default to ext4 filesystem in partitioning module.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 22 Dec 2025 00:52:45 +0100
 
