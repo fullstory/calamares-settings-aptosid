@@ -16,6 +16,8 @@ calamares-settings-aptosid (20251224.1) UNRELEASED; urgency=medium
   * Sync calamares/modules/machineid.conf and migrate from deprecated
     options.
   * Sync calamares/modules/mount.conf with upstream.
+  * Sync calamares/modules/packages.conf with upstream. Set update_db to
+    false.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 22 Dec 2025 00:52:45 +0100
 
