@@ -1,7 +1,4 @@
-calamares-settings-aptosid (20251224.1) UNRELEASED; urgency=medium
-
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
+calamares-settings-aptosid (20251224.1) unstable; urgency=medium
 
   [ Kel Modderman ]
   * Sync calamares/modules/displaymanager.conf with upstream.
@@ -26,7 +23,7 @@ calamares-settings-aptosid (20251224.1) UNRELEASED; urgency=medium
     options to defaults.
   * Sync calamares/modules/welcome.conf with upstream.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 22 Dec 2025 00:52:45 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 25 Dec 2025 04:56:49 +0100
 
 calamares-settings-aptosid (20251220.2) unstable; urgency=medium
 
