@@ -1,6 +1,10 @@
 calamares-settings-aptosid (20251224.2) UNRELEASED; urgency=medium
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
+
+  [ Kel Modderman ]
+  * Reorder availableFileSystemTypes such that ext4 is first.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 25 Dec 2025 04:57:12 +0100
 
