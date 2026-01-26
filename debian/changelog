@@ -1,13 +1,10 @@
-calamares-settings-aptosid (20260126.1) UNRELEASED; urgency=medium
-
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
+calamares-settings-aptosid (20260126.1) unstable; urgency=medium
 
   [ Kel Modderman ]
   * Enable live adjustment of timezone.
   * aptosid-config: do not execute fll_locales in chroot.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 26 Jan 2026 12:57:12 +1000
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 26 Jan 2026 13:19:28 +0100
 
 calamares-settings-aptosid (20251224.2) unstable; urgency=medium
 
