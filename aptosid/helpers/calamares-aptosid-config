@@ -20,11 +20,6 @@ if [ -r "/var/lib/systemd/home/${FLL_LIVE_USER}.identity" ]; then
     fi
 fi
 
-# Setup console and keyboard defaults to match live session
-if grep -q 'lang=' /proc/cmdline; then
-    chroot $CHROOT /usr/share/fll-live-initscripts/fll_locales localize
-fi
-
 # regenerate default snakeoil with new hostname
 if chroot $CHROOT dpkg-query -f'${db:Status-Status}\n' -W ssl-cert 2>/dev/null | grep -q ^installed; then
     chroot $CHROOT make-ssl-cert generate-default-snakeoil --force-overwrite

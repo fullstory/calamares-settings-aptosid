@@ -2,11 +2,10 @@ calamares-settings-aptosid (20260126.1) UNRELEASED; urgency=medium
 
   [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
-  * aptosid-config: only execute fll_locales if lang= was specified at
-    boot time.
 
   [ Kel Modderman ]
   * Enable live adjustment of timezone.
+  * aptosid-config: do not execute fll_locales in chroot.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 26 Jan 2026 12:57:12 +1000
 
