@@ -4,6 +4,9 @@ CHROOT=$(mount | grep proc | grep calamares | awk '{print $3}' | sed -e "s#/proc
 
 . /etc/default/distro
 
+# remove /etc/default/distro
+rm -f "${CHROOT}"/etc/default/distro
+
 # During live boot an unfixated home was blessed, and the calamares users
 # module was disabled via settings.conf. This means a local block device was
 # present matching the systemd-homed key pair included on the live media.
@@ -18,10 +21,9 @@ if [ -r "/var/lib/systemd/home/${FLL_LIVE_USER}.identity" ]; then
 fi
 
 # Setup console and keyboard defaults to match live session
-chroot $CHROOT /usr/share/fll-live-initscripts/fll_locales localize
-
-# remove /etc/default/distro
-rm -f "${CHROOT}"/etc/default/distro
+if grep -q 'lang=' /proc/cmdline; then
+    chroot $CHROOT /usr/share/fll-live-initscripts/fll_locales localize
+fi
 
 # regenerate default snakeoil with new hostname
 if chroot $CHROOT dpkg-query -f'${db:Status-Status}\n' -W ssl-cert 2>/dev/null | grep -q ^installed; then
