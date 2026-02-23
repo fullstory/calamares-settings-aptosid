@@ -1,8 +1,10 @@
-calamares-settings-aptosid (20260126.2) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20260223.1) UNRELEASED; urgency=medium
 
-  * NOT RELEASED YET
+  [ Kel Modderman ]
+  * partition.conf: enable luks2 now that grub 2.14 is released with
+    Argon2id support.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 26 Jan 2026 13:19:44 +0100
+ -- Kel Modderman <kelvmod@gmail.com>  Mon, 23 Feb 2026 19:45:04 +1000
 
 calamares-settings-aptosid (20260126.1) unstable; urgency=medium
 
