@@ -1,4 +1,4 @@
-calamares-settings-aptosid (20260223.1) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20260223.1) unstable; urgency=medium
 
   [ Kel Modderman ]
   * partition.conf: enable luks2 now that grub 2.14 is released with
