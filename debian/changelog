@@ -1,9 +1,5 @@
-calamares-settings-aptosid (20260414.1) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20260414.1) unstable; urgency=medium
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Kel Modderman ]
   * calamares/modules/users.conf: purge default list of groups and have
     chroot build system insert them above the FLL_DEFAULT_GROUPS marker.
 
