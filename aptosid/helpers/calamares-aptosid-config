@@ -20,6 +20,12 @@ if [ -r "/var/lib/systemd/home/${FLL_LIVE_USER}.identity" ]; then
     fi
 fi
 
+
+# if refind is installed activate postinst in installed system
+if [ -d "$CHROOT/usr/share/refind" ]; then
+    echo "refind refind/install_to_esp boolean true" | chroot $CHROOT debconf-set-selections
+fi
+
 # regenerate default snakeoil with new hostname
 if chroot $CHROOT dpkg-query -f'${db:Status-Status}\n' -W ssl-cert 2>/dev/null | grep -q ^installed; then
     chroot $CHROOT make-ssl-cert generate-default-snakeoil --force-overwrite
