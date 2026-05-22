@@ -1,3 +1,9 @@
+calamares-settings-aptosid (20260522.2) UNRELEASED; urgency=medium
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 22 May 2026 16:06:51 +0200
+
 calamares-settings-aptosid (20260522.1) unstable; urgency=medium
 
   * calamares-aptosid-config: if refind is installed activate postinst
