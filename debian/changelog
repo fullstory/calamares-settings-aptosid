@@ -1,6 +1,6 @@
-calamares-settings-aptosid (20260524.1) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20260524.1) unstable; urgency=medium
 
-  * NOT RELEASED YET
+  [ Kel Modderman ]
   * Remove cron/anacron from services-systemd.conf.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 24 May 2026 21:55:19 +1000
