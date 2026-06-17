@@ -1,9 +1,5 @@
-calamares-settings-aptosid (20260617.1) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20260617.1) unstable; urgency=medium
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Kel Modderman ]
   * services-systemd: disable systemd-networkd-wait-online, enable
     NetworkManager-wait-online
 
