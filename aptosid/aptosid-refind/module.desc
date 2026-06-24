@@ -1,0 +1,6 @@
+---
+type:       "job"
+name:       "aptosid-refind"
+interface:  "process"
+command:    "/usr/share/calamares/helpers/calamares-aptosid-refind"
+timeout:    60

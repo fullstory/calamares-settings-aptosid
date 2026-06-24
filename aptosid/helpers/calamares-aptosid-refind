@@ -1,0 +1,41 @@
+#!/bin/sh
+#
+# aptosid-refind: theme and finalise rEFInd in the installed system.
+#
+# Runs in the host context (module.desc: no chroot) AFTER the calamares
+# bootloader module has run refind-install, so the rEFInd directory already
+# exists on the target ESP. Sources /etc/default/distro from the live session
+# for FLL_WALLPAPER, mirroring the rEFInd theming pyfll applies to the live
+# media (banner from the -wide wallpaper, scaled to fill the screen).
+
+CHROOT=$(mount | grep proc | grep calamares | awk '{print $3}' | sed -e "s#/proc##g")
+
+. /etc/default/distro
+
+# Activate the refind package postinst in the installed system so that future
+# package upgrades reinstall the loader to the ESP.
+if [ -d "${CHROOT}/usr/share/refind" ]; then
+    echo "refind refind/install_to_esp boolean true" | \
+        chroot "${CHROOT}" debconf-set-selections
+fi
+
+REFIND_DIR="${CHROOT}/boot/efi/EFI/refind"
+REFIND_CONF="${REFIND_DIR}/refind.conf"
+WALLPAPER="${CHROOT}${FLL_WALLPAPER}-wide.png"
+
+# Theme rEFInd only when it was installed as the target bootloader and the
+# wallpaper asset is available. cp dereferences the -wide symlink.
+if [ -d "${REFIND_DIR}" ] && [ -f "${REFIND_CONF}" ] && [ -r "${WALLPAPER}" ]; then
+    cp -L "${WALLPAPER}" "${REFIND_DIR}/background.png"
+    cat >> "${REFIND_CONF}" <<'EOF'
+
+# aptosid theme
+# banner path is relative to the directory holding refind.efi (EFI/refind/),
+# where refind-install also placed refind.conf and where we copy background.png
+banner background.png
+banner_scale fillscreen
+use_graphics_for linux
+EOF
+fi
+
+exit 0

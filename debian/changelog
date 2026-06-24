@@ -1,8 +1,23 @@
-calamares-settings-aptosid (20260617.2) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20260624.1) UNRELEASED; urgency=medium
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 17 Jun 2026 22:32:45 +0200
+  [ Kel Modderman ]
+  * Break the monolithic calamares-aptosid-config helper into dedicated,
+    individually-configurable module instances declared in settings.conf:
+    shellprocess@{desktop,hostid,snapper,devirt,cleanup} and
+    preservefiles@xdg. Drops the fragile mount-derived chroot path from
+    everything except where it is genuinely unavoidable.
+  * Remove the systemd-homed live identity passthrough, no longer valid.
+  * Add aptosid-refind job, sequenced after the bootloader module, to
+    theme rEFInd on the installed system: copy ${FLL_WALLPAPER}-wide.png
+    to the ESP as the banner (scaled to fill), mirroring the live media,
+    and consolidate the refind debconf preseed here.
+  * Remove /etc/default/distro only after its last consumer,
+    aptosid-refind, has run.
+
+ -- Kel Modderman <kelvmod@gmail.com>  Wed, 24 Jun 2026 21:04:50 +1000
 
 calamares-settings-aptosid (20260617.1) unstable; urgency=medium
 
