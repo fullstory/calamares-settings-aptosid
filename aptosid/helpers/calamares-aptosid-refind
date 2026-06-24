@@ -30,6 +30,7 @@ if [ -d "${REFIND_DIR}" ] && [ -f "${REFIND_CONF}" ] && [ -r "${WALLPAPER}" ]; t
     cat >> "${REFIND_CONF}" <<'EOF'
 
 # aptosid theme
+timeout 5
 # banner path is relative to the directory holding refind.efi (EFI/refind/),
 # where refind-install also placed refind.conf and where we copy background.png
 banner background.png
