@@ -17,6 +17,8 @@ calamares-settings-aptosid (20260624.1) UNRELEASED; urgency=medium
   * Remove /etc/default/distro only after its last consumer,
     aptosid-refind, has run.
   * Set refind timeout to 5 seconds.
+  * Brand the refind boot entry with the aptosid icon via .VolumeIcon.png
+    on the kernel volume, leaving refind's bundled icons untouched.
 
  -- Kel Modderman <kelvmod@gmail.com>  Wed, 24 Jun 2026 21:04:50 +1000
 

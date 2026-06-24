@@ -21,22 +21,45 @@ fi
 
 REFIND_DIR="${CHROOT}/boot/efi/EFI/refind"
 REFIND_CONF="${REFIND_DIR}/refind.conf"
-WALLPAPER="${CHROOT}${FLL_WALLPAPER}-wide.png"
 
-# Theme rEFInd only when it was installed as the target bootloader and the
-# wallpaper asset is available. cp dereferences the -wide symlink.
-if [ -d "${REFIND_DIR}" ] && [ -f "${REFIND_CONF}" ] && [ -r "${WALLPAPER}" ]; then
-    cp -L "${WALLPAPER}" "${REFIND_DIR}/background.png"
+# Theme rEFInd only when it was installed as the target bootloader. refind
+# honours the last occurrence of a directive, so appending overrides the
+# shipped sample's defaults.
+if [ -d "${REFIND_DIR}" ] && [ -f "${REFIND_CONF}" ]; then
     cat >> "${REFIND_CONF}" <<'EOF'
 
 # aptosid theme
 timeout 5
-# banner path is relative to the directory holding refind.efi (EFI/refind/),
-# where refind-install also placed refind.conf and where we copy background.png
+EOF
+
+    # Banner from the -wide wallpaper, scaled to fill. cp -L dereferences the
+    # -wide symlink. The banner path is relative to the directory holding
+    # refind.efi (EFI/refind/), where we copy background.png.
+    WALLPAPER="${CHROOT}${FLL_WALLPAPER}-wide.png"
+    if [ -r "${WALLPAPER}" ]; then
+        cp -L "${WALLPAPER}" "${REFIND_DIR}/background.png"
+        cat >> "${REFIND_CONF}" <<'EOF'
 banner background.png
 banner_scale fillscreen
 use_graphics_for linux
 EOF
+    fi
+
+    # OS icon: brand the installed system's entry with the aptosid icon
+    # without touching refind's bundled icon set. refind uses a volume's
+    # .VolumeIcon.png (placed at that volume's root) in preference to the
+    # detected os_*.png, so only the aptosid entry is affected. The icon goes
+    # on whichever volume holds the kernels: the root filesystem, or a
+    # separate /boot partition when present. Sourced from the running
+    # calamares settings on the host.
+    ICON="/etc/calamares/branding/aptosid/aptosid-icon.png"
+    if [ -r "${ICON}" ]; then
+        if mountpoint -q "${CHROOT}/boot" 2>/dev/null; then
+            cp "${ICON}" "${CHROOT}/boot/.VolumeIcon.png"
+        else
+            cp "${ICON}" "${CHROOT}/.VolumeIcon.png"
+        fi
+    fi
 fi
 
 exit 0
