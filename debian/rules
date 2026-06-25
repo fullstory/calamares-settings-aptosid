@@ -33,7 +33,8 @@ create-icons:
 	inkscape --export-type="png" --export-height=480 \
 		--export-filename="$(CURDIR)/calamares/branding/aptosid/fred-world.png" \
 		$(CURDIR)/calamares/branding/aptosid/fred-world.svg
-	# big fred (close-up) paired with the wordmark on the sign-off slide
-	inkscape --export-type="png" --export-height=400 \
+	# big fred (close-up) lunging from the corner on the sign-off slide;
+	# rendered near native size so it stays crisp when shown large
+	inkscape --export-type="png" --export-height=640 \
 		--export-filename="$(CURDIR)/calamares/branding/aptosid/big-fred.png" \
 		$(CURDIR)/calamares/branding/aptosid/big-fred.svg

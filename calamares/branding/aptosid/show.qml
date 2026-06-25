@@ -72,7 +72,7 @@ Presentation
                 horizontalAlignment: Text.Center
                 wrapMode: Text.WordWrap
                 color: presentation.bodyText
-                text: qsTr("Fully automated — blink and you'll miss it. A minute or two, tops.")
+                text: qsTr("Fully automated — blink and you'll miss it.")
             }
         }
     }
@@ -144,34 +144,44 @@ Presentation
         }
     }
 
-    // Slide 4 - sign-off (big Fred over the wordmark)
+    // Slide 4 - sign-off: big Fred lunges out of the bottom-right corner
+    // (oversized + anchored past the edge so his cropped edges run off-slide),
+    // with the wordmark + tagline in the open upper-left. clip keeps the
+    // overspill inside the slide. Tune the margins/sizes to taste.
     Slide {
+        clip: true
+
+        Image {
+            source: "big-fred.png"
+            height: parent.height * 1.15
+            fillMode: Image.PreserveAspectFit
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
+            anchors.rightMargin: -parent.width * 0.08
+            anchors.bottomMargin: -parent.height * 0.08
+        }
+
         Column {
-            anchors.centerIn: parent
-            spacing: 14
-            Image {
-                source: "big-fred.png"
-                height: 180
-                fillMode: Image.PreserveAspectFit
-                anchors.horizontalCenter: parent.horizontalCenter
-            }
+            anchors.left: parent.left
+            anchors.top: parent.top
+            anchors.leftMargin: parent.width * 0.08
+            anchors.topMargin: parent.height * 0.14
+            spacing: 16
+
             Image {
                 source: "aptosid.png"
-                width: 260; height: 96
+                width: presentation.width * 0.46
                 fillMode: Image.PreserveAspectFit
-                anchors.horizontalCenter: parent.horizontalCenter
             }
             Text {
-                anchors.horizontalCenter: parent.horizontalCenter
-                horizontalAlignment: Text.Center
+                horizontalAlignment: Text.AlignLeft
                 font.pointSize: 16; font.bold: true
                 color: presentation.accent
                 text: qsTr("Welcome to the dark side")
             }
             Text {
-                width: presentation.width * 0.8
-                anchors.horizontalCenter: parent.horizontalCenter
-                horizontalAlignment: Text.Center
+                width: presentation.width * 0.42
+                horizontalAlignment: Text.AlignLeft
                 wrapMode: Text.WordWrap
                 color: presentation.bodyText
                 text: qsTr("Docs and source code at github.com/fullstory.")
