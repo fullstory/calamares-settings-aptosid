@@ -87,7 +87,7 @@ Presentation
                 }
                 Image {
                     anchors.fill: parent
-                    source: "unstreaked-fred-light.png"
+                    source: "unstreaked-fred.png"
                     fillMode: Image.PreserveAspectFit
                 }
             }
@@ -116,7 +116,7 @@ Presentation
             anchors.centerIn: parent
             spacing: 18
             Image {
-                source: "little-fred-light.png"
+                source: "little-fred.png"
                 height: 120
                 fillMode: Image.PreserveAspectFit
                 anchors.horizontalCenter: parent.horizontalCenter

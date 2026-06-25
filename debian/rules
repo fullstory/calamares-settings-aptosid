@@ -31,13 +31,3 @@ create-icons:
 	inkscape --export-type="png" --export-height=160 \
 		--export-filename="$(CURDIR)/calamares/branding/aptosid/little-fred.png" \
 		$(CURDIR)/calamares/branding/aptosid/little-fred.svg
-
-	# the freds are dark art for light backgrounds; the slideshow uses a
-	# Breeze-dark backdrop, so derive negated (light) variants that read on
-	# dark. streaked-fred (blue) is left as-is.
-	magick $(CURDIR)/calamares/branding/aptosid/unstreaked-fred.png \
-		-channel RGB -negate \
-		$(CURDIR)/calamares/branding/aptosid/unstreaked-fred-light.png
-	magick $(CURDIR)/calamares/branding/aptosid/little-fred.png \
-		-channel RGB -negate \
-		$(CURDIR)/calamares/branding/aptosid/little-fred-light.png
