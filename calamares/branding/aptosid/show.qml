@@ -84,7 +84,7 @@ Presentation
             anchors.centerIn: parent
             spacing: 18
             Item {
-                width: 181; height: 300   // 217:360 aspect of the fred canvas
+                width: 241; height: 400   // 217:360 aspect of the fred canvas
                 anchors.horizontalCenter: parent.horizontalCenter
                 Image {
                     anchors.fill: parent
@@ -157,8 +157,8 @@ Presentation
             fillMode: Image.PreserveAspectFit
             anchors.right: parent.right
             anchors.bottom: parent.bottom
-            anchors.rightMargin: -parent.width * 0.08
-            anchors.bottomMargin: -parent.height * 0.08
+            anchors.rightMargin: -parent.width * 0.12
+            anchors.bottomMargin: -parent.height * 0.02
         }
 
         Column {

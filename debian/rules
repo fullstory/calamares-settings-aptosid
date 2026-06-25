@@ -22,10 +22,10 @@ create-icons:
 	# streaked-fred and unstreaked-fred share a canvas and are layered in
 	# show.qml (sharp fred over motion streaks), so export both at the same
 	# height to keep them pixel-aligned.
-	inkscape --export-type="png" --export-height=360 \
+	inkscape --export-type="png" --export-height=480 \
 		--export-filename="$(CURDIR)/calamares/branding/aptosid/streaked-fred.png" \
 		$(CURDIR)/calamares/branding/aptosid/streaked-fred.svg
-	inkscape --export-type="png" --export-height=360 \
+	inkscape --export-type="png" --export-height=480 \
 		--export-filename="$(CURDIR)/calamares/branding/aptosid/unstreaked-fred.png" \
 		$(CURDIR)/calamares/branding/aptosid/unstreaked-fred.svg
 	# fred world map (thanatos sddm background), shrunk for slideshow slide 3;
@@ -38,3 +38,16 @@ create-icons:
 	inkscape --export-type="png" --export-height=640 \
 		--export-filename="$(CURDIR)/calamares/branding/aptosid/big-fred.png" \
 		$(CURDIR)/calamares/branding/aptosid/big-fred.svg
+	# feather his cropped top/right/bottom edges into transparency so they
+	# blend with the dark slideshow backdrop instead of ending in a hard
+	# line. The left edge is left crisp so his face stays sharp.
+	set -e; d="$(CURDIR)/calamares/branding/aptosid"; \
+		w=$$(magick identify -format '%w' "$$d/big-fred.png"); \
+		h=$$(magick identify -format '%h' "$$d/big-fred.png"); f=90; \
+		magick -size $${w}x$${h} xc:black -fill white \
+			-draw "rectangle 0,$$f $$((w-f)),$$((h-f))" -blur 0x35 "$$d/_mask.png"; \
+		magick "$$d/big-fred.png" -alpha extract "$$d/_a.png"; \
+		magick "$$d/_a.png" "$$d/_mask.png" -compose multiply -composite "$$d/_na.png"; \
+		magick "$$d/big-fred.png" "$$d/_na.png" -alpha off \
+			-compose CopyOpacity -composite "$$d/big-fred.png"; \
+		rm -f "$$d/_mask.png" "$$d/_a.png" "$$d/_na.png"
