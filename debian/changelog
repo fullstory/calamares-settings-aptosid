@@ -19,6 +19,8 @@ calamares-settings-aptosid (20260624.1) UNRELEASED; urgency=medium
   * Set refind timeout to 5 seconds.
   * Brand the refind boot entry with the aptosid icon via .VolumeIcon.png
     on the kernel volume, leaving refind's bundled icons untouched.
+  * Put some effort into the aptosid welcome slideshow, show off fred
+    a bit more.
 
  -- Kel Modderman <kelvmod@gmail.com>  Wed, 24 Jun 2026 21:04:50 +1000
 

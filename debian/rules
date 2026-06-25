@@ -16,3 +16,28 @@ create-icons:
 			 --export-filename="$(CURDIR)/calamares/branding/aptosid/$${f}.png" \
 			$(CURDIR)/calamares/branding/aptosid/$${f}.svg ; \
 	done
+
+	# slideshow mascots (fred), rasterised larger than their small native
+	# size so they stay crisp when scaled in the QML slideshow.
+	# streaked-fred and unstreaked-fred share a canvas and are layered in
+	# show.qml (sharp fred over motion streaks), so export both at the same
+	# height to keep them pixel-aligned.
+	inkscape --export-type="png" --export-height=360 \
+		--export-filename="$(CURDIR)/calamares/branding/aptosid/streaked-fred.png" \
+		$(CURDIR)/calamares/branding/aptosid/streaked-fred.svg
+	inkscape --export-type="png" --export-height=360 \
+		--export-filename="$(CURDIR)/calamares/branding/aptosid/unstreaked-fred.png" \
+		$(CURDIR)/calamares/branding/aptosid/unstreaked-fred.svg
+	inkscape --export-type="png" --export-height=160 \
+		--export-filename="$(CURDIR)/calamares/branding/aptosid/little-fred.png" \
+		$(CURDIR)/calamares/branding/aptosid/little-fred.svg
+
+	# the freds are dark art for light backgrounds; the slideshow uses a
+	# Breeze-dark backdrop, so derive negated (light) variants that read on
+	# dark. streaked-fred (blue) is left as-is.
+	magick $(CURDIR)/calamares/branding/aptosid/unstreaked-fred.png \
+		-channel RGB -negate \
+		$(CURDIR)/calamares/branding/aptosid/unstreaked-fred-light.png
+	magick $(CURDIR)/calamares/branding/aptosid/little-fred.png \
+		-channel RGB -negate \
+		$(CURDIR)/calamares/branding/aptosid/little-fred-light.png
