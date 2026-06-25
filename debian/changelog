@@ -1,9 +1,5 @@
-calamares-settings-aptosid (20260624.1) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20260624.1) unstable; urgency=medium
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Kel Modderman ]
   * Break the monolithic calamares-aptosid-config helper into dedicated,
     individually-configurable module instances declared in settings.conf:
     shellprocess@{desktop,hostid,snapper,devirt,cleanup} and
