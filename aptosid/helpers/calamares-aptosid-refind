@@ -28,8 +28,9 @@ REFIND_CONF="${REFIND_DIR}/refind.conf"
 if [ -d "${REFIND_DIR}" ] && [ -f "${REFIND_CONF}" ]; then
     cat >> "${REFIND_CONF}" <<'EOF'
 
-# aptosid theme
+# aptosid config
 timeout 5
+scanfor internal,external,optical,manual,firmware
 EOF
 
     # Banner from the -wide wallpaper, scaled to fill. cp -L dereferences the
