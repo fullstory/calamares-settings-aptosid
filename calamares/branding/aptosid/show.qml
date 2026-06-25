@@ -52,7 +52,7 @@ Presentation
     Slide {
         Column {
             anchors.centerIn: parent
-            spacing: 24
+            spacing: 18
             Image {
                 source: "aptosid2.png"
                 width: 467; height: 280
@@ -82,9 +82,9 @@ Presentation
     Slide {
         Column {
             anchors.centerIn: parent
-            spacing: 18
+            spacing: 2   // image -> headline only; headline -> body kept at 18 below
             Item {
-                width: 241; height: 400   // 217:360 aspect of the fred canvas
+                width: 211; height: 350   // 217:360 aspect of the fred canvas
                 anchors.horizontalCenter: parent.horizontalCenter
                 Image {
                     anchors.fill: parent
@@ -97,20 +97,24 @@ Presentation
                     fillMode: Image.PreserveAspectFit
                 }
             }
-            Text {
+            Column {
+                spacing: 18   // headline -> body, kept consistent across slides
                 anchors.horizontalCenter: parent.horizontalCenter
-                horizontalAlignment: Text.Center
-                font.pointSize: 16; font.bold: true
-                color: presentation.accent
-                text: qsTr("Flat out on sid")
-            }
-            Text {
-                width: presentation.width * 0.8
-                anchors.horizontalCenter: parent.horizontalCenter
-                horizontalAlignment: Text.Center
-                wrapMode: Text.WordWrap
-                color: presentation.bodyText
-                text: qsTr("One install, updated forever. Fred doesn't do reinstalls.")
+                Text {
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    horizontalAlignment: Text.Center
+                    font.pointSize: 16; font.bold: true
+                    color: presentation.accent
+                    text: qsTr("Flat out on sid")
+                }
+                Text {
+                    width: presentation.width * 0.8
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    horizontalAlignment: Text.Center
+                    wrapMode: Text.WordWrap
+                    color: presentation.bodyText
+                    text: qsTr("One install, updated forever. Fred doesn't do reinstalls.")
+                }
             }
         }
     }
@@ -166,7 +170,7 @@ Presentation
             anchors.top: parent.top
             anchors.leftMargin: parent.width * 0.08
             anchors.topMargin: parent.height * 0.14
-            spacing: 16
+            spacing: 18
 
             Image {
                 source: "aptosid.png"
