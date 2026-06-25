@@ -60,13 +60,19 @@ Presentation
                 anchors.horizontalCenter: parent.horizontalCenter
             }
             Text {
+                anchors.horizontalCenter: parent.horizontalCenter
+                horizontalAlignment: Text.Center
+                font.pointSize: 16; font.bold: true
+                color: presentation.accent
+                text: qsTr("Strap in, Fred's got this")
+            }
+            Text {
                 width: presentation.width * 0.8
                 anchors.horizontalCenter: parent.horizontalCenter
                 horizontalAlignment: Text.Center
                 wrapMode: Text.WordWrap
                 color: presentation.bodyText
-                text: qsTr("Welcome to aptosid nemesis.<br/>" +
-                           "The rest of the installation is automated and will complete in a few minutes.")
+                text: qsTr("Fully automated — blink and you'll miss it. A minute or two, tops.")
             }
         }
     }
@@ -104,20 +110,19 @@ Presentation
                 horizontalAlignment: Text.Center
                 wrapMode: Text.WordWrap
                 color: presentation.bodyText
-                text: qsTr("aptosid rides Debian's unstable branch — updated continuously. " +
-                           "Install once; no reinstalls, no waiting for the next big release.")
+                text: qsTr("One install, updated forever. Fred doesn't do reinstalls.")
             }
         }
     }
 
-    // Slide 3 - the pitch (little-fred)
+    // Slide 3 - the pitch (fred world map)
     Slide {
         Column {
             anchors.centerIn: parent
             spacing: 18
             Image {
-                source: "little-fred.png"
-                height: 120
+                source: "fred-world.png"
+                height: 260
                 fillMode: Image.PreserveAspectFit
                 anchors.horizontalCenter: parent.horizontalCenter
             }
@@ -126,7 +131,7 @@ Presentation
                 horizontalAlignment: Text.Center
                 font.pointSize: 16; font.bold: true
                 color: presentation.accent
-                text: qsTr("Bleeding edge, minus the bleeding")
+                text: qsTr("Resistance is Fred-ile")
             }
             Text {
                 width: presentation.width * 0.8
@@ -134,19 +139,25 @@ Presentation
                 horizontalAlignment: Text.Center
                 wrapMode: Text.WordWrap
                 color: presentation.bodyText
-                text: qsTr("All the thrill of the front line, with the sharp bits filed off. Mostly.")
+                text: qsTr("You will be assimilated.")
             }
         }
     }
 
-    // Slide 4 - sign-off
+    // Slide 4 - sign-off (big Fred over the wordmark)
     Slide {
         Column {
             anchors.centerIn: parent
-            spacing: 18
+            spacing: 14
             Image {
-                source: "aptosid-icon.png"
-                width: 96; height: 96
+                source: "big-fred.png"
+                height: 180
+                fillMode: Image.PreserveAspectFit
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+            Image {
+                source: "aptosid.png"
+                width: 260; height: 96
                 fillMode: Image.PreserveAspectFit
                 anchors.horizontalCenter: parent.horizontalCenter
             }
