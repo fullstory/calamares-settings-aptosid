@@ -123,35 +123,39 @@ Presentation
     Slide {
         Column {
             anchors.centerIn: parent
-            spacing: 18
+            spacing: 40   // art -> heading only; pushes the text down a bit
             Image {
                 source: "fred-world.png"
                 height: 260
                 fillMode: Image.PreserveAspectFit
                 anchors.horizontalCenter: parent.horizontalCenter
             }
-            Text {
+            Column {
+                spacing: 18   // heading -> body, kept consistent across slides
                 anchors.horizontalCenter: parent.horizontalCenter
-                horizontalAlignment: Text.Center
-                font.pointSize: 16; font.bold: true
-                color: presentation.accent
-                text: qsTr("Resistance is Fred-ile")
-            }
-            Text {
-                width: presentation.width * 0.8
-                anchors.horizontalCenter: parent.horizontalCenter
-                horizontalAlignment: Text.Center
-                wrapMode: Text.WordWrap
-                color: presentation.bodyText
-                text: qsTr("You will be assimilated.")
+                Text {
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    horizontalAlignment: Text.Center
+                    font.pointSize: 16; font.bold: true
+                    color: presentation.accent
+                    text: qsTr("Resistance is Fred-ile")
+                }
+                Text {
+                    width: presentation.width * 0.8
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    horizontalAlignment: Text.Center
+                    wrapMode: Text.WordWrap
+                    color: presentation.bodyText
+                    text: qsTr("You will be assimilated.")
+                }
             }
         }
     }
 
     // Slide 4 - sign-off: big Fred lunges out of the bottom-right corner
     // (oversized + anchored past the edge so his cropped edges run off-slide),
-    // with the wordmark + tagline in the open upper-left. clip keeps the
-    // overspill inside the slide. Tune the margins/sizes to taste.
+    // with the tagline to the side. clip keeps the overspill inside the slide.
+    // Tune the margins/sizes to taste.
     Slide {
         clip: true
 
@@ -167,16 +171,10 @@ Presentation
 
         Column {
             anchors.left: parent.left
-            anchors.top: parent.top
+            anchors.verticalCenter: parent.verticalCenter
             anchors.leftMargin: parent.width * 0.08
-            anchors.topMargin: parent.height * 0.14
             spacing: 18
 
-            Image {
-                source: "aptosid.png"
-                width: presentation.width * 0.46
-                fillMode: Image.PreserveAspectFit
-            }
             Text {
                 horizontalAlignment: Text.AlignLeft
                 font.pointSize: 16; font.bold: true
