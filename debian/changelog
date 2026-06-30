@@ -1,8 +1,13 @@
-calamares-settings-aptosid (20260624.2) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20260630.1) UNRELEASED; urgency=medium
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 25 Jun 2026 23:10:43 +0200
+  [ Kel Modderman ]
+  * Set enableLuksAutomatedPartitioning to true in partition.conf so it
+    may be disabled by fll-live-boot at runtime if appropriate.
+
+ -- Kel Modderman <kelvmod@gmail.com>  Tue, 30 Jun 2026 13:02:18 +1000
 
 calamares-settings-aptosid (20260624.1) unstable; urgency=medium
 
