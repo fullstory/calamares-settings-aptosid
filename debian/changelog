@@ -6,8 +6,10 @@ calamares-settings-aptosid (20260630.1) UNRELEASED; urgency=medium
   [ Kel Modderman ]
   * Set enableLuksAutomatedPartitioning to true in partition.conf so it
     may be disabled by fll-live-boot at runtime if appropriate.
+  * Pin big Fred to the top-right corner on slideshow slide 4 and drop
+    the ImageMagick edge feathering.
 
- -- Kel Modderman <kelvmod@gmail.com>  Tue, 30 Jun 2026 13:02:18 +1000
+ -- Kel Modderman <kelvmod@gmail.com>  Tue, 30 Jun 2026 13:12:04 +1000
 
 calamares-settings-aptosid (20260624.1) unstable; urgency=medium
 

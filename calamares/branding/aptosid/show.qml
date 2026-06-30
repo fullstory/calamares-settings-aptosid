@@ -152,10 +152,12 @@ Presentation
         }
     }
 
-    // Slide 4 - sign-off: big Fred lunges out of the bottom-right corner
-    // (oversized + anchored past the edge so his cropped edges run off-slide),
-    // with the tagline to the side. clip keeps the overspill inside the slide.
-    // Tune the margins/sizes to taste.
+    // Slide 4 - sign-off: big Fred is pinned flush into the top-right corner
+    // (oversized so he bleeds off the top/right/bottom window edges), with the
+    // tagline to the side. The Image item keeps the source's natural width, so
+    // PreserveAspectFit would otherwise centre the bitmap and leave a gap; the
+    // alignment props push the painted pixels hard into the corner instead.
+    // clip keeps the overspill inside the slide. Tune the height to taste.
     Slide {
         clip: true
 
@@ -163,10 +165,10 @@ Presentation
             source: "big-fred.png"
             height: parent.height * 1.15
             fillMode: Image.PreserveAspectFit
+            horizontalAlignment: Image.AlignRight
+            verticalAlignment: Image.AlignTop
             anchors.right: parent.right
-            anchors.bottom: parent.bottom
-            anchors.rightMargin: -parent.width * 0.12
-            anchors.bottomMargin: -parent.height * 0.02
+            anchors.top: parent.top
         }
 
         Column {
