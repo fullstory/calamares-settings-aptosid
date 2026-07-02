@@ -1,9 +1,5 @@
-calamares-settings-aptosid (20260702.1) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20260702.1) unstable; urgency=medium
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Kel Modderman ]
   * Release apt hold on linux-{image,headers} metapackages if existing
     in live media (pyfll >= b03c87d).
 
