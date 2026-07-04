@@ -1,6 +1,4 @@
-calamares-settings-aptosid (20260702.2) UNRELEASED; urgency=medium
-
-  * NOT RELEASED YET
+calamares-settings-aptosid (20260702.2) unstable; urgency=medium
 
   [ Kel Modderman ]
   * Add shellprocess@hyprkbd, run after the keyboard module, to regenerate the
