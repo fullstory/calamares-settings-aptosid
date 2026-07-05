@@ -15,6 +15,11 @@ calamares-settings-aptosid (20260705.1) UNRELEASED; urgency=medium
     entry launches via the wrapper. Retains the upstream translations.
   * Add python3-toml to Depends, it is required by the displaymanager
     module under some circumstances.
+  * Split the greetd config passthrough out of shellprocess@desktop into
+    its own shellprocess@greetd, sequenced after the displaymanager
+    module. The live greeter command (the uwsm-managed Hyprland session)
+    now survives on the target instead of being overwritten by
+    displaymanager's generic command.
 
  -- Kel Modderman <kelvmod@gmail.com>  Sun, 05 Jul 2026 16:11:43 +1000
 
