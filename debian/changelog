@@ -1,6 +1,18 @@
 calamares-settings-aptosid (20260702.3) UNRELEASED; urgency=medium
 
   * NOT RELEASED YET
+  * Add /usr/libexec/calamares-install-aptosid: run calamares as root while
+    preserving the graphical session, so the installer reaches the compositor
+    (Wayland app_id "calamares") and keeps the user's styling. pkexec scrubs
+    the environment, so the wrapper forwards the display/toolkit variables
+    across the re-exec, with a transient xhost grant as an X11 fallback.
+    Depends on pkexec.
+  * Ship 49-calamares-aptosid.rules, authorising the local active user to run
+    the launcher without a password (JS rule; pkla-compat is gone). Scoped to
+    the launcher path.
+  * Ship calamares-install-aptosid.desktop and divert the upstream
+    calamares.desktop (Exec=pkexec calamares), so the "Install System" menu
+    entry launches via the wrapper. Retains the upstream translations.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 04 Jul 2026 04:51:53 +0200
 

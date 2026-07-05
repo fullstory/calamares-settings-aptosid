@@ -1,0 +1,57 @@
+#!/bin/sh
+#
+# calamares-install-aptosid — launch the aptosid Calamares installer as root
+# while keeping it a client of the running graphical session.
+#
+# Calamares needs root, but pkexec scrubs the environment, which otherwise
+# leaves the installer unable to reach the user's Wayland compositor (or X
+# server) and unstyled. This wrapper captures the session's display and toolkit
+# variables while it is still running as the invoking user, then re-execs
+# itself under pkexec and re-exports them. On Wayland the installer then maps
+# with app_id "calamares" (so the aptosid Hyprland float rule applies); on X11
+# it authenticates with the forwarded cookie, falling back to a temporary xhost
+# grant when no XAUTHORITY is set.
+#
+# A polkit rule (/usr/share/polkit-1/rules.d/49-calamares-aptosid.rules)
+# authorises the local active user to run this without a password, as needed on
+# the live medium.
+
+SELF=/usr/libexec/calamares-install-aptosid
+
+# --- privileged side: re-export the forwarded (allowlisted) variables --------
+if [ "$(id -u)" -eq 0 ]; then
+    for kv in "$@"; do
+        case "$kv" in
+            WAYLAND_DISPLAY=*|XDG_RUNTIME_DIR=*|DISPLAY=*|XAUTHORITY=*|QT_QPA_PLATFORM=*|QT_STYLE_OVERRIDE=*|QT_SCALE_FACTOR=*|XCURSOR_THEME=*|XCURSOR_SIZE=*|GTK_THEME=*)
+                export "$kv"
+                ;;
+        esac
+    done
+    exec calamares
+fi
+
+# --- user side: forward the session environment through pkexec ----------------
+xhost_granted=
+
+cleanup() {
+    [ -n "$xhost_granted" ] && xhost -si:localuser:root >/dev/null 2>&1
+}
+trap cleanup EXIT INT TERM
+
+# On X11 without an explicit cookie, root cannot open the display; grant it
+# transient access. When XAUTHORITY is set the forwarded cookie is enough.
+if [ -n "${DISPLAY:-}" ] && [ -z "${XAUTHORITY:-}" ] && command -v xhost >/dev/null 2>&1; then
+    xhost +si:localuser:root >/dev/null 2>&1 && xhost_granted=1
+fi
+
+pkexec "$SELF" \
+    "WAYLAND_DISPLAY=${WAYLAND_DISPLAY:-}" \
+    "XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR:-}" \
+    "DISPLAY=${DISPLAY:-}" \
+    "XAUTHORITY=${XAUTHORITY:-}" \
+    "QT_QPA_PLATFORM=${QT_QPA_PLATFORM:-}" \
+    "QT_STYLE_OVERRIDE=${QT_STYLE_OVERRIDE:-}" \
+    "QT_SCALE_FACTOR=${QT_SCALE_FACTOR:-}" \
+    "XCURSOR_THEME=${XCURSOR_THEME:-}" \
+    "XCURSOR_SIZE=${XCURSOR_SIZE:-}" \
+    "GTK_THEME=${GTK_THEME:-}"

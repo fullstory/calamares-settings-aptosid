@@ -13,6 +13,7 @@ Package: calamares-settings-aptosid
 Architecture: all
 Depends: calamares,
 	cracklib-runtime,
+	pkexec,
 	wamerican,
 	xdg-user-dirs,
 	${misc:Depends}

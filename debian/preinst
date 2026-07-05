@@ -1,0 +1,15 @@
+#!/bin/sh
+set -e
+
+case "$1" in
+    install|upgrade)
+        # Hide the upstream calamares menu entry (Exec=pkexec calamares); we
+        # ship calamares-install-aptosid.desktop, which launches via the
+        # environment-preserving wrapper instead.
+        dpkg-divert --quiet --package calamares-settings-aptosid \
+            --divert /usr/share/applications/calamares.desktop.orig \
+            --rename /usr/share/applications/calamares.desktop
+    ;;
+esac
+
+#DEBHELPER#

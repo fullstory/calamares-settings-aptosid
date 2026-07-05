@@ -1,0 +1,12 @@
+// Allow the local, active user to launch the aptosid Calamares installer
+// without a password. calamares-install-aptosid re-execs itself via pkexec to
+// run the installer as root; this rule is scoped to that exact program so it is
+// not a general pkexec bypass. Needed on the live medium, where the autologin
+// user must be able to start the installer.
+polkit.addRule(function(action, subject) {
+    if (action.id == "org.freedesktop.policykit.exec" &&
+        action.lookup("program") == "/usr/libexec/calamares-install-aptosid" &&
+        subject.local && subject.active) {
+        return polkit.Result.YES;
+    }
+});

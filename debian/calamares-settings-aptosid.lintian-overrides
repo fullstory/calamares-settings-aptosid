@@ -1,0 +1,4 @@
+# We divert the upstream calamares.desktop (owned by the calamares package) to
+# hide its "pkexec calamares" launcher, shipping calamares-install-aptosid
+# .desktop in its place.
+calamares-settings-aptosid: diversion-for-unknown-file usr/share/applications/calamares.desktop

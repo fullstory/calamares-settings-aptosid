@@ -1,3 +1,6 @@
 calamares etc
 aptosid/aptosid-refind usr/lib/calamares/modules
 aptosid/helpers usr/share/calamares
+aptosid/calamares-install-aptosid usr/libexec
+aptosid/calamares-install-aptosid.desktop usr/share/applications
+aptosid/polkit/49-calamares-aptosid.rules usr/share/polkit-1/rules.d
