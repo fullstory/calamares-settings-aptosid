@@ -1,6 +1,6 @@
-calamares-settings-aptosid (20260702.3) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20260705.1) UNRELEASED; urgency=medium
 
-  * NOT RELEASED YET
+  [ Kel Modderman ]
   * Add /usr/libexec/calamares-install-aptosid: run calamares as root while
     preserving the graphical session, so the installer reaches the compositor
     (Wayland app_id "calamares") and keeps the user's styling. pkexec scrubs
@@ -14,7 +14,7 @@ calamares-settings-aptosid (20260702.3) UNRELEASED; urgency=medium
     calamares.desktop (Exec=pkexec calamares), so the "Install System" menu
     entry launches via the wrapper. Retains the upstream translations.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 04 Jul 2026 04:51:53 +0200
+ -- Kel Modderman <kelvmod@gmail.com>  Sun, 05 Jul 2026 16:11:43 +1000
 
 calamares-settings-aptosid (20260702.2) unstable; urgency=medium
 
