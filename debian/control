@@ -14,6 +14,7 @@ Architecture: all
 Depends: calamares,
 	cracklib-runtime,
 	pkexec,
+	python3-toml,
 	wamerican,
 	xdg-user-dirs,
 	${misc:Depends}

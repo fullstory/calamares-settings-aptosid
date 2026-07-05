@@ -13,6 +13,8 @@ calamares-settings-aptosid (20260705.1) UNRELEASED; urgency=medium
   * Ship calamares-install-aptosid.desktop and divert the upstream
     calamares.desktop (Exec=pkexec calamares), so the "Install System" menu
     entry launches via the wrapper. Retains the upstream translations.
+  * Add python3-toml to Depends, it is required by the displaymanager
+    module under some circumstances.
 
  -- Kel Modderman <kelvmod@gmail.com>  Sun, 05 Jul 2026 16:11:43 +1000
 
