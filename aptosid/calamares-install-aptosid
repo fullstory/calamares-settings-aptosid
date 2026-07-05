@@ -5,10 +5,13 @@
 #
 # Calamares needs root, but pkexec scrubs the environment, which otherwise
 # leaves the installer unable to reach the user's Wayland compositor (or X
-# server) and unstyled. This wrapper captures the session's display and toolkit
-# variables while it is still running as the invoking user, then re-execs
-# itself under pkexec and re-exports them. On Wayland the installer then maps
-# with app_id "calamares" (so the aptosid Hyprland float rule applies); on X11
+# server) and unstyled. This wrapper captures the session's HOME, display and
+# toolkit variables while it is still running as the invoking user, then
+# re-execs itself under pkexec and re-exports them. Forwarding HOME (as the old
+# "sudo -E" launcher did) lets KDE apps resolve the user's colour scheme, e.g.
+# Breeze Dark, from ~/.config/kdeglobals - no system-wide duplicate needed.
+# On Wayland the installer then maps with app_id "calamares" (so the aptosid
+# Hyprland float rule applies); on X11
 # it authenticates with the forwarded cookie, falling back to a temporary xhost
 # grant when no XAUTHORITY is set.
 #
@@ -22,7 +25,7 @@ SELF=/usr/libexec/calamares-install-aptosid
 if [ "$(id -u)" -eq 0 ]; then
     for kv in "$@"; do
         case "$kv" in
-            WAYLAND_DISPLAY=*|XDG_RUNTIME_DIR=*|DISPLAY=*|XAUTHORITY=*|QT_QPA_PLATFORM=*|QT_STYLE_OVERRIDE=*|QT_SCALE_FACTOR=*|XCURSOR_THEME=*|XCURSOR_SIZE=*|GTK_THEME=*)
+            HOME=*|WAYLAND_DISPLAY=*|XDG_RUNTIME_DIR=*|DISPLAY=*|XAUTHORITY=*|XDG_CURRENT_DESKTOP=*|QT_QPA_PLATFORM=*|QT_QPA_PLATFORMTHEME=*|QT_STYLE_OVERRIDE=*|QT_SCALE_FACTOR=*|XDG_CONFIG_DIRS=*|XDG_DATA_DIRS=*|XCURSOR_THEME=*|XCURSOR_SIZE=*|GTK_THEME=*)
                 export "$kv"
                 ;;
         esac
@@ -45,13 +48,18 @@ if [ -n "${DISPLAY:-}" ] && [ -z "${XAUTHORITY:-}" ] && command -v xhost >/dev/n
 fi
 
 pkexec "$SELF" \
+    "HOME=${HOME}" \
     "WAYLAND_DISPLAY=${WAYLAND_DISPLAY:-}" \
     "XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR:-}" \
     "DISPLAY=${DISPLAY:-}" \
     "XAUTHORITY=${XAUTHORITY:-}" \
+    "XDG_CURRENT_DESKTOP=${XDG_CURRENT_DESKTOP:-}" \
     "QT_QPA_PLATFORM=${QT_QPA_PLATFORM:-}" \
+    "QT_QPA_PLATFORMTHEME=${QT_QPA_PLATFORMTHEME:-}" \
     "QT_STYLE_OVERRIDE=${QT_STYLE_OVERRIDE:-}" \
     "QT_SCALE_FACTOR=${QT_SCALE_FACTOR:-}" \
+    "XDG_CONFIG_DIRS=${XDG_CONFIG_DIRS:-}" \
+    "XDG_DATA_DIRS=${XDG_DATA_DIRS:-}" \
     "XCURSOR_THEME=${XCURSOR_THEME:-}" \
     "XCURSOR_SIZE=${XCURSOR_SIZE:-}" \
     "GTK_THEME=${GTK_THEME:-}"
