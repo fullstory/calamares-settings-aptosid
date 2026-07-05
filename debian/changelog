@@ -1,8 +1,18 @@
-calamares-settings-aptosid (20260705.2) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20260706.1) UNRELEASED; urgency=medium
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 05 Jul 2026 23:35:31 +0200
+  [ Kel Modderman ]
+  * grubcfg: set always_use_defaults so GRUB_DISABLE_SUBMENU,
+    GRUB_TIMEOUT and the other defaults are written when editing the
+    existing /etc/default/grub, not only when overwriting it. Previously
+    an install left these unset.
+  * grubcfg: drop redundant "splash" from kernel_params; the module
+    already appends it when plymouth is present, which produced "splash
+    splash" on the kernel command line.
+
+ -- Kel Modderman <kelvmod@gmail.com>  Mon, 06 Jul 2026 09:46:18 +1000
 
 calamares-settings-aptosid (20260705.1) unstable; urgency=medium
 
