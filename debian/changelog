@@ -11,6 +11,10 @@ calamares-settings-aptosid (20260706.1) UNRELEASED; urgency=medium
   * grubcfg: drop redundant "splash" from kernel_params; the module
     already appends it when plymouth is present, which produced "splash
     splash" on the kernel command line.
+  * shellprocess@snapper: rename the module title to "Configuring
+    snapshot support" so it reads correctly on non-btrfs installs, where
+    the step removes the btrfs tooling rather than configuring
+    snapshots.
 
  -- Kel Modderman <kelvmod@gmail.com>  Mon, 06 Jul 2026 09:46:18 +1000
 
