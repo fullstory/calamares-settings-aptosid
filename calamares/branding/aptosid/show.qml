@@ -24,9 +24,19 @@ Presentation
 {
     id: presentation
 
-    // Brightened aptosid teal for all slide text, tuned to read against the
-    // dark-themed Calamares window showing through the (transparent) slideshow.
+    // Breeze-dark palette: dark backdrop with brightened aptosid teal text.
+    // The QML only sees Calamares' own Qt palette (not the live Plasma colour
+    // scheme), and it renders light here, so emulate Breeze Dark explicitly
+    // rather than inherit a white window.
     property color accent:   "#1abc9c"
+
+    // Dark backdrop behind every slide. It is not a Slide, so the Presentation
+    // never hides it; z:-1 keeps it behind the (transparent) slides.
+    Rectangle {
+        anchors.fill: parent
+        color: "#232629"
+        z: -1
+    }
 
     // Auto-advance, but only while this slideshow is the active page in
     // Calamares (activatedInCalamares); the timer is otherwise stopped.
