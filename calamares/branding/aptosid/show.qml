@@ -24,19 +24,9 @@ Presentation
 {
     id: presentation
 
-    // Breeze-dark palette: dark backdrop, light body text, and a brightened
-    // aptosid teal for headings so it reads on the dark background.
+    // Brightened aptosid teal for all slide text, tuned to read against the
+    // dark-themed Calamares window showing through the (transparent) slideshow.
     property color accent:   "#1abc9c"
-    property color bodyText: "#eff0f1"
-
-    // Dark backdrop behind every slide, matching Breeze Dark. It is not a
-    // Slide, so the Presentation never hides it; z:-1 keeps it behind the
-    // (transparent) slides.
-    Rectangle {
-        anchors.fill: parent
-        color: "#232629"
-        z: -1
-    }
 
     // Auto-advance, but only while this slideshow is the active page in
     // Calamares (activatedInCalamares); the timer is otherwise stopped.
@@ -71,7 +61,8 @@ Presentation
                 anchors.horizontalCenter: parent.horizontalCenter
                 horizontalAlignment: Text.Center
                 wrapMode: Text.WordWrap
-                color: presentation.bodyText
+                font.pointSize: 12; font.bold: true
+                color: presentation.accent
                 text: qsTr("Fully automated — blink and you'll miss it.")
             }
         }
@@ -112,7 +103,8 @@ Presentation
                     anchors.horizontalCenter: parent.horizontalCenter
                     horizontalAlignment: Text.Center
                     wrapMode: Text.WordWrap
-                    color: presentation.bodyText
+                    font.pointSize: 12; font.bold: true
+                    color: presentation.accent
                     text: qsTr("One install, updated forever. Fred doesn't do reinstalls.")
                 }
             }
@@ -145,7 +137,8 @@ Presentation
                     anchors.horizontalCenter: parent.horizontalCenter
                     horizontalAlignment: Text.Center
                     wrapMode: Text.WordWrap
-                    color: presentation.bodyText
+                    font.pointSize: 12; font.bold: true
+                    color: presentation.accent
                     text: qsTr("You will be assimilated.")
                 }
             }
@@ -187,7 +180,8 @@ Presentation
                 width: presentation.width * 0.42
                 horizontalAlignment: Text.AlignLeft
                 wrapMode: Text.WordWrap
-                color: presentation.bodyText
+                font.pointSize: 12; font.bold: true
+                color: presentation.accent
                 text: qsTr("Docs and source code at github.com/fullstory.")
             }
         }

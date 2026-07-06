@@ -15,6 +15,11 @@ calamares-settings-aptosid (20260706.1) UNRELEASED; urgency=medium
     snapshot support" so it reads correctly on non-btrfs installs, where
     the step removes the btrfs tooling rather than configuring
     snapshots.
+  * branding/aptosid: drop the hardcoded dark backdrop from the
+    slideshow so it inherits the Calamares window background
+    (transparent slideshow).
+  * branding/aptosid: style slideshow body text in the same teal as the
+    headings, slightly larger and bold.
 
  -- Kel Modderman <kelvmod@gmail.com>  Mon, 06 Jul 2026 09:46:18 +1000
 
