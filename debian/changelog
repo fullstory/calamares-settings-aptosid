@@ -20,14 +20,17 @@ calamares-settings-aptosid (20260706.1) UNRELEASED; urgency=medium
     (transparent slideshow).
   * branding/aptosid: style slideshow body text in the same teal as the
     headings, slightly larger and bold.
-  * Add shellprocess@grubtheme: re-apply the live media's boot theme
-    (FLL_GFXBOOT_THEME) as GRUB_THEME in the target. This was lost when
-    the monolithic helper was split up and grub defaults were adopted,
-    leaving installs with an unthemed boot menu.
+  * Add shellprocess@grubtheme: set GRUB_THEME in the target from the
+    live media's boot theme (FLL_GFXBOOT_THEME), so the themed boot menu
+    is configured even when the live image does not preconfigure it.
   * branding/aptosid: restore the Breeze Dark slideshow backdrop. The
     QML only sees Calamares' own (light) Qt palette, not the live Plasma
     colour scheme, so the transparent slideshow showed a white window
     instead of inheriting the system theme.
+  * grubcfg: set GRUB_TERMINAL_OUTPUT to "gfxterm" instead of "console"
+    in the defaults. console selects grub's text terminal, which
+    suppresses the graphical GRUB_THEME; gfxterm is required for the
+    themed boot menu to render.
 
  -- Kel Modderman <kelvmod@gmail.com>  Mon, 06 Jul 2026 09:46:18 +1000
 
