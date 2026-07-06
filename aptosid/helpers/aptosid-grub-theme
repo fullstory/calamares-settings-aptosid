@@ -1,0 +1,34 @@
+#!/bin/sh
+#
+# aptosid-grub-theme: apply the live media's boot menu theme to the target.
+#
+# Runs in the host context (no chroot), after the grubcfg module has written
+# the target's /etc/default/grub and before the bootloader module runs
+# grub-mkconfig. The live session declares its boot theme via FLL_GFXBOOT_THEME
+# in /etc/default/distro; grub's own defaults don't carry it, so map it onto
+# GRUB_THEME (updating an existing line, otherwise appending one) when the
+# referenced theme is actually installed in the target.
+#
+# The theme logic lives here rather than inline in the shellprocess config
+# because calamares expands ${...} in module commands as its own macros and
+# fails the job on any it does not recognise (e.g. FLL_GFXBOOT_THEME); a real
+# script keeps those variables away from that expansion. Mirrors the
+# calamares-aptosid-refind helper.
+#
+# $1 is the target root mount point (${ROOT} from calamares).
+
+CHROOT="$1"
+
+. /etc/default/distro
+
+[ -n "${FLL_GFXBOOT_THEME}" ] || exit 0
+
+theme="/usr/share/grub/themes/${FLL_GFXBOOT_THEME}/theme.txt"
+[ -r "${CHROOT}${theme}" ] || exit 0
+
+if grep -q '^GRUB_THEME=' "${CHROOT}/etc/default/grub" 2>/dev/null; then
+    sed -i "s|^GRUB_THEME=.*|GRUB_THEME=\"${theme}\"|" "${CHROOT}/etc/default/grub"
+else
+    printf '\n# Set theme defined by FLL_GFXBOOT_THEME in /etc/default/distro\n' >>"${CHROOT}/etc/default/grub"
+    printf 'GRUB_THEME="%s"\n' "${theme}" >>"${CHROOT}/etc/default/grub"
+fi
