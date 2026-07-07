@@ -1,9 +1,5 @@
-calamares-settings-aptosid (20260706.1) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20260706.1) unstable; urgency=medium
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Kel Modderman ]
   * grubcfg: set always_use_defaults so GRUB_DISABLE_SUBMENU,
     GRUB_TIMEOUT and the other defaults are written when editing the
     existing /etc/default/grub, not only when overwriting it. Previously
