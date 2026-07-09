@@ -7,10 +7,10 @@ Keywords=calamares;system;installer;
 TryExec=/usr/libexec/calamares-install-aptosid
 Exec=/usr/libexec/calamares-install-aptosid
 Comment=Calamares — System Installer
-Icon=calamares
+Icon=emblem-aptosid
 Terminal=false
 StartupNotify=true
-StartupWMClass=calamares
+StartupWMClass=io.calamares.calamares
 Categories=Qt;System;
 X-AppStream-Ignore=true
 

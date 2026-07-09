@@ -10,8 +10,8 @@
 # re-execs itself under pkexec and re-exports them. Forwarding HOME (as the old
 # "sudo -E" launcher did) lets KDE apps resolve the user's colour scheme, e.g.
 # Breeze Dark, from ~/.config/kdeglobals - no system-wide duplicate needed.
-# On Wayland the installer then maps with app_id "calamares" (so the aptosid
-# Hyprland float rule applies); on X11
+# On Wayland the installer then maps with app_id "io.calamares.calamares" (so
+# the aptosid Hyprland float rule applies); on X11
 # it authenticates with the forwarded cookie, falling back to a temporary xhost
 # grant when no XAUTHORITY is set.
 #
