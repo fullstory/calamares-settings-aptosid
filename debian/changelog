@@ -1,7 +1,5 @@
-calamares-settings-aptosid (20260709.1) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20260709.1) unstable; urgency=medium
 
-
-  [ Kel Modderman ]
   * Depend on qml6-module-qtquick-window. Calamares' slideshow imports
     QtQuick.Window; without this module it failed to load and the
     install screen showed a blank white slideshow. Heavier desktops like
