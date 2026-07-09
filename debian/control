@@ -15,6 +15,7 @@ Depends: calamares,
 	cracklib-runtime,
 	pkexec,
 	python3-toml,
+	qml6-module-qtquick-window,
 	wamerican,
 	xdg-user-dirs,
 	${misc:Depends}
