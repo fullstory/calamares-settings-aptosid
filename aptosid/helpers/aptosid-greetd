@@ -1,0 +1,80 @@
+#!/usr/bin/python3
+#
+# aptosid-greetd: preserve the live greeter command on the target, without
+# disturbing the installer's autologin choice.
+#
+# Runs in the host context (dontChroot: true), after the displaymanager module.
+# displaymanager already owns the target's /etc/greetd/config.toml: it writes
+# the [initial_session] autologin block iff the user ticked "autologin" on the
+# users page, and it rewrites default_session.command to a *generic* greeter
+# command -- losing the live session's real command (the uwsm-managed Hyprland
+# session, and the sway/labwc per-flavour variants).
+#
+# This helper restores the two things displaymanager gets wrong for our
+# sessions, while leaving its autologin *decision* (whether [initial_session]
+# exists at all) intact:
+#   - default_session.command: displaymanager writes a generic greeter; we put
+#     back the live greeter command.
+#   - initial_session.command: when autologin is on, displaymanager aims it at
+#     the bare compositor; we re-aim it at the live session launch command
+#     (uwsm-managed where applicable), keeping displaymanager's target user.
+# The old wholesale rsync + unconditional strip discarded the autologin block
+# entirely and broke the checkbox.
+#
+# Best-effort: a missing config on either side is not fatal (a flavour may not
+# use greetd at all), mirroring the leading "-" on the old shellprocess command.
+#
+# $1 is the target root mount point (${ROOT} from calamares).
+
+import shlex
+import sys
+import toml
+
+CONF = "/etc/greetd/config.toml"
+
+
+def session_command(greeter_command):
+    """The session launch command the greeter runs, from its --cmd argument.
+
+    fll_desktop builds --cmd as the uwsm-managed launch for uwsm sessions
+    (e.g. "uwsm start hyprland.desktop"), so autologin must use the same
+    command to land in an equivalent systemd session.
+    """
+    tokens = shlex.split(greeter_command)
+    if "--cmd" in tokens:
+        index = tokens.index("--cmd")
+        if index + 1 < len(tokens):
+            return tokens[index + 1]
+    return None
+
+
+def main():
+    root = sys.argv[1] if len(sys.argv) > 1 else "/"
+    target = f"{root}/etc/greetd/config.toml"
+
+    try:
+        greeter = toml.load(CONF)["default_session"]["command"]
+    except (FileNotFoundError, KeyError):
+        return 0
+
+    try:
+        config = toml.load(target)
+    except FileNotFoundError:
+        return 0
+
+    # Restore the live greeter command over displaymanager's generic one.
+    config.setdefault("default_session", {})["command"] = greeter
+
+    # displaymanager writes [initial_session] iff autologin was ticked, but
+    # aims it at the bare compositor; re-aim it at the live session command.
+    session = session_command(greeter)
+    if "initial_session" in config and session:
+        config["initial_session"]["command"] = session
+
+    with open(target, "w") as f:
+        toml.dump(config, f)
+
+    return 0
+
+if __name__ == "__main__":
+    sys.exit(main())
