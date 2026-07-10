@@ -10,6 +10,7 @@ calamares-settings-aptosid (20260710.2) UNRELEASED; urgency=medium
     no effect. It now keeps the live greeter command and, when autologin
     is enabled, logs the installed user straight into the same session
     as a normal login (uwsm-managed on Hyprland, Sway and labwc).
+  * Add Depends on python3 to debian/control.
 
  -- Kel Modderman <kelvmod@gmail.com>  Fri, 10 Jul 2026 19:44:40 +1000
 
