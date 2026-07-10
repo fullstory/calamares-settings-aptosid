@@ -1,9 +1,5 @@
-calamares-settings-aptosid (20260710.1) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20260710.1) unstable; urgency=medium
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Kel Modderman ]
   * calamares-install-aptosid.desktop: use the emblem-aptosid icon
     instead of the generic calamares icon for the installer menu entry.
   * calamares-install-aptosid.desktop: correct StartupWMClass to
