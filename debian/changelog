@@ -1,3 +1,9 @@
+calamares-settings-aptosid (20260710.3) UNRELEASED; urgency=medium
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 11 Jul 2026 23:30:17 +0200
+
 calamares-settings-aptosid (20260710.2) unstable; urgency=medium
 
   * greetd: honour the autologin choice from the installer's user page.
