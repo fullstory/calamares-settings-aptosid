@@ -18,34 +18,82 @@
 #   - initial_session.command: when autologin is on, displaymanager aims it at
 #     the bare compositor; we re-aim it at the live session launch command
 #     (uwsm-managed where applicable), keeping displaymanager's target user.
-# The old wholesale rsync + unconditional strip discarded the autologin block
-# entirely and broke the checkbox.
+#
+# It also carries any greeter config the live command references from under
+# /etc/greetd onto the target: a gtkgreet host compositor is launched with its
+# own generated config, e.g. "sway --config /etc/greetd/sway-config" (and the
+# hyprland/labwc/cage variants). fll_desktop generates those at live boot, so
+# they must be copied too. Packaged files (e.g. gtkgreet.css) are copied
+# harmlessly over an identical target.
 #
 # Best-effort: a missing config on either side is not fatal (a flavour may not
 # use greetd at all), mirroring the leading "-" on the old shellprocess command.
 #
 # $1 is the target root mount point (${ROOT} from calamares).
 
+import os
+import re
 import shlex
+import shutil
 import sys
 import toml
 
 CONF = "/etc/greetd/config.toml"
+GREETD_DIR = "/etc/greetd/"
+
+# A greeter's session launch command, from its --cmd (tuigreet, agreety) or -c
+# (gtkgreet). -c is matched only as a standalone flag, never inside --config or
+# a path like sway-config. The value may be single/double quoted or bare.
+SESSION_RE = re.compile(
+    r"""(?:--cmd|(?<![\w-])-c)\s+(?:'([^']*)'|"([^"]*)"|([^\s;]+))"""
+)
 
 
-def session_command(greeter_command):
-    """The session launch command the greeter runs, from its --cmd argument.
+def referenced_configs(greeter_command):
+    """Existing files under /etc/greetd that the greeter command points at."""
+    return [
+        token
+        for token in shlex.split(greeter_command)
+        if token.startswith(GREETD_DIR) and os.path.isfile(token)
+    ]
 
-    fll_desktop builds --cmd as the uwsm-managed launch for uwsm sessions
-    (e.g. "uwsm start hyprland.desktop"), so autologin must use the same
-    command to land in an equivalent systemd session.
+
+def session_command(live_config, greeter_command):
+    """The session launch command the greeter runs on login.
+
+    Prefer the live [initial_session] command: fll_desktop writes it as the
+    real launch command (e.g. "uwsm start sway.desktop") for every greeter, so
+    this is greeter-agnostic. For a live boot without autologin, recover it from
+    the greeter's own --cmd/-c -- either in the command itself, or inside the
+    host-compositor config it references (sway-config, hyprland-config, ...).
     """
-    tokens = shlex.split(greeter_command)
-    if "--cmd" in tokens:
-        index = tokens.index("--cmd")
-        if index + 1 < len(tokens):
-            return tokens[index + 1]
+    try:
+        command = live_config["initial_session"]["command"]
+        if command:
+            return command
+    except KeyError:
+        pass
+
+    texts = [greeter_command]
+    for path in referenced_configs(greeter_command):
+        try:
+            with open(path) as handle:
+                texts.append(handle.read())
+        except OSError:
+            pass
+    for text in texts:
+        match = SESSION_RE.search(text)
+        if match:
+            return match.group(1) or match.group(2) or match.group(3)
     return None
+
+
+def preserve_greeter_configs(greeter_command, root):
+    """Copy live-generated greeter configs onto the target root."""
+    for path in referenced_configs(greeter_command):
+        dest = f"{root}{path}"
+        os.makedirs(os.path.dirname(dest), exist_ok=True)
+        shutil.copy2(path, dest)
 
 
 def main():
@@ -53,7 +101,8 @@ def main():
     target = f"{root}/etc/greetd/config.toml"
 
     try:
-        greeter = toml.load(CONF)["default_session"]["command"]
+        live = toml.load(CONF)
+        greeter = live["default_session"]["command"]
     except (FileNotFoundError, KeyError):
         return 0
 
@@ -67,12 +116,14 @@ def main():
 
     # displaymanager writes [initial_session] iff autologin was ticked, but
     # aims it at the bare compositor; re-aim it at the live session command.
-    session = session_command(greeter)
+    session = session_command(live, greeter)
     if "initial_session" in config and session:
         config["initial_session"]["command"] = session
 
     with open(target, "w") as f:
         toml.dump(config, f)
+
+    preserve_greeter_configs(greeter, root)
 
     return 0
 
