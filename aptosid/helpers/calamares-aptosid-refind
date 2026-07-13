@@ -10,6 +10,10 @@
 
 CHROOT=$(mount | grep proc | grep calamares | awk '{print $3}' | sed -e "s#/proc##g")
 
+# Refuse to proceed against the host when the calamares target chroot
+# can't be identified unambiguously.
+[ -n "${CHROOT}" ] && [ -d "${CHROOT}/proc" ] || exit 1
+
 . /etc/default/distro
 
 # Activate the refind package postinst in the installed system so that future
