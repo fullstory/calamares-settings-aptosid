@@ -14,7 +14,9 @@ CHROOT=$(mount | grep proc | grep calamares | awk '{print $3}' | sed -e "s#/proc
 # can't be identified unambiguously.
 [ -n "${CHROOT}" ] && [ -d "${CHROOT}/proc" ] || exit 1
 
-. /etc/default/distro
+# FLL_WALLPAPER is only used for the optional banner below; everything else
+# in this script is independent of it, so a missing file must not abort here.
+[ -r /etc/default/distro ] && . /etc/default/distro
 
 # Activate the refind package postinst in the installed system so that future
 # package upgrades reinstall the loader to the ESP.

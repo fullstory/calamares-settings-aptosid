@@ -19,7 +19,9 @@
 
 CHROOT="$1"
 
-. /etc/default/distro
+# Nothing to theme without a target root or the live session's boot theme.
+[ -n "${CHROOT}" ] || exit 0
+[ -r /etc/default/distro ] && . /etc/default/distro || exit 0
 
 [ -n "${FLL_GFXBOOT_THEME}" ] || exit 0
 

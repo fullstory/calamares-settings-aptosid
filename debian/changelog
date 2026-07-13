@@ -9,6 +9,10 @@ calamares-settings-aptosid (20260713.1) UNRELEASED; urgency=medium
     target.
   * clean up desktop diversion on failed installs too
   * depend on rsync, needed to copy live skel files onto the target
+  * guard sourcing /etc/default/distro in the grub-theme and refind
+    helpers, a missing file must not abort the whole script
+  * mark the cross-repo sed anchors in calamares configs so they don't
+    get reformatted
 
  -- Kel Modderman <kelvmod@gmail.com>  Mon, 13 Jul 2026 08:26:30 +1000
 
