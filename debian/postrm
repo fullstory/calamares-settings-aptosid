@@ -2,7 +2,7 @@
 set -e
 
 case "$1" in
-    remove)
+    remove|abort-install|disappear)
         dpkg-divert --quiet --package calamares-settings-aptosid \
             --rename --remove /usr/share/applications/calamares.desktop
     ;;
