@@ -1,8 +1,17 @@
-calamares-settings-aptosid (20260714.2) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20260715.1) UNRELEASED; urgency=medium
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 15 Jul 2026 00:06:39 +0200
+  [ Kel Modderman ]
+  * debian/copyright: extend Kel Modderman's years to 2026; credit the
+    branding/aptosid fred artwork to its aptosid-art-legacy nemesis-
+    theme authors (Bernard Gray, Stefan Lippers-Hollmann, Niall Walsh,
+    David Creedy, Rick Battle - the SVGs are byte-identical to
+    nemesis/splash-kde); align the show.qml copyright years with the
+    file's own header.
+
+ -- Kel Modderman <kelvmod@gmail.com>  Wed, 15 Jul 2026 08:22:32 +1000
 
 calamares-settings-aptosid (20260714.1) unstable; urgency=medium
 
