@@ -15,6 +15,9 @@ calamares-settings-aptosid (20260715.1) UNRELEASED; urgency=medium
     only when set, so an unset session variable is no longer passed as
     empty (an empty WAYLAND_DISPLAY could push a toolkit to attempt
     Wayland and fail on X11).
+  * debian/control: fix the package description - correct 'scripts that
+    supports' to 'support' and drop the inaccurate 'serves as an example
+    for derivatives' boilerplate copied from calamares-settings-debian.
 
  -- Kel Modderman <kelvmod@gmail.com>  Wed, 15 Jul 2026 08:22:32 +1000
 
