@@ -1,9 +1,5 @@
-calamares-settings-aptosid (20260714.1) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20260714.1) unstable; urgency=medium
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Kel Modderman ]
   * aptosid-greetd: preserve gtkgreet greeter configs (sway-config and
     future host variants) and the -c session command on the installed
     target.
