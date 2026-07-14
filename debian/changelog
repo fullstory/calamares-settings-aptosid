@@ -1,4 +1,4 @@
-calamares-settings-aptosid (20260713.1) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20260714.1) UNRELEASED; urgency=medium
 
   [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
@@ -22,7 +22,7 @@ calamares-settings-aptosid (20260713.1) UNRELEASED; urgency=medium
     (keep slim, still used by fll_desktop and the minimal-x profile)
   * calamares-install-aptosid.desktop: drop trailing space in Name[ar]
 
- -- Kel Modderman <kelvmod@gmail.com>  Mon, 13 Jul 2026 08:26:30 +1000
+ -- Kel Modderman <kelvmod@gmail.com>  Tue, 14 Jul 2026 22:35:28 +1000
 
 calamares-settings-aptosid (20260710.2) unstable; urgency=medium
 
