@@ -16,6 +16,10 @@ calamares-settings-aptosid (20260713.1) UNRELEASED; urgency=medium
   * fstab: default crypttabOptions to plain luks (correct for dracut);
     fll.initramfs now appends keyscript=/bin/cat only on initramfs-tools
     media, where it's actually needed
+  * drop orphaned luksopenswaphookcfg.conf: not in the module sequence,
+    openswap is Arch-specific
+  * displaymanager: drop mdm, unreferenced anywhere in the fll build
+    (keep slim, still used by fll_desktop and the minimal-x profile)
 
  -- Kel Modderman <kelvmod@gmail.com>  Mon, 13 Jul 2026 08:26:30 +1000
 
