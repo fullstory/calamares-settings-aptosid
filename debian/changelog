@@ -13,6 +13,9 @@ calamares-settings-aptosid (20260713.1) UNRELEASED; urgency=medium
     helpers, a missing file must not abort the whole script
   * mark the cross-repo sed anchors in calamares configs so they don't
     get reformatted
+  * fstab: default crypttabOptions to plain luks (correct for dracut);
+    fll.initramfs now appends keyscript=/bin/cat only on initramfs-tools
+    media, where it's actually needed
 
  -- Kel Modderman <kelvmod@gmail.com>  Mon, 13 Jul 2026 08:26:30 +1000
 
