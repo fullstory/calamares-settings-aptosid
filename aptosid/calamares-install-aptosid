@@ -47,14 +47,20 @@ if [ -n "${DISPLAY:-}" ] && [ -z "${XAUTHORITY:-}" ] && command -v xhost >/dev/n
     xhost +si:localuser:root >/dev/null 2>&1 && xhost_granted=1
 fi
 
+# These differ in behaviour when set-but-empty vs unset - e.g. an empty
+# WAYLAND_DISPLAY can push a toolkit to attempt Wayland and fail on X11 - so
+# forward them only when actually set. The remaining variables below are
+# harmless when empty and are forwarded unconditionally.
+set --
+[ -n "${WAYLAND_DISPLAY:-}" ] && set -- "$@" "WAYLAND_DISPLAY=${WAYLAND_DISPLAY}"
+[ -n "${XDG_RUNTIME_DIR:-}" ] && set -- "$@" "XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR}"
+[ -n "${DISPLAY:-}" ]         && set -- "$@" "DISPLAY=${DISPLAY}"
+[ -n "${XAUTHORITY:-}" ]      && set -- "$@" "XAUTHORITY=${XAUTHORITY}"
+[ -n "${QT_QPA_PLATFORM:-}" ] && set -- "$@" "QT_QPA_PLATFORM=${QT_QPA_PLATFORM}"
+
 pkexec "$SELF" \
     "HOME=${HOME}" \
-    "WAYLAND_DISPLAY=${WAYLAND_DISPLAY:-}" \
-    "XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR:-}" \
-    "DISPLAY=${DISPLAY:-}" \
-    "XAUTHORITY=${XAUTHORITY:-}" \
     "XDG_CURRENT_DESKTOP=${XDG_CURRENT_DESKTOP:-}" \
-    "QT_QPA_PLATFORM=${QT_QPA_PLATFORM:-}" \
     "QT_QPA_PLATFORMTHEME=${QT_QPA_PLATFORMTHEME:-}" \
     "QT_STYLE_OVERRIDE=${QT_STYLE_OVERRIDE:-}" \
     "QT_SCALE_FACTOR=${QT_SCALE_FACTOR:-}" \
@@ -62,4 +68,5 @@ pkexec "$SELF" \
     "XDG_DATA_DIRS=${XDG_DATA_DIRS:-}" \
     "XCURSOR_THEME=${XCURSOR_THEME:-}" \
     "XCURSOR_SIZE=${XCURSOR_SIZE:-}" \
-    "GTK_THEME=${GTK_THEME:-}"
+    "GTK_THEME=${GTK_THEME:-}" \
+    "$@"
