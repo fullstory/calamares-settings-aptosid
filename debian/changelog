@@ -20,6 +20,7 @@ calamares-settings-aptosid (20260713.1) UNRELEASED; urgency=medium
     openswap is Arch-specific
   * displaymanager: drop mdm, unreferenced anywhere in the fll build
     (keep slim, still used by fll_desktop and the minimal-x profile)
+  * calamares-install-aptosid.desktop: drop trailing space in Name[ar]
 
  -- Kel Modderman <kelvmod@gmail.com>  Mon, 13 Jul 2026 08:26:30 +1000
 
