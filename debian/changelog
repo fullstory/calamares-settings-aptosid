@@ -1,9 +1,5 @@
-calamares-settings-aptosid (20260718.1) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20260718.1) unstable; urgency=medium
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Kel Modderman ]
   * shellprocess_desktop: stop copying root's dotfiles from skel on
     install; bash completion is enabled system-wide at build, so root
     needs no per-user dotfiles.
