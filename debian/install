@@ -1,4 +1,5 @@
 calamares etc
+aptosid/aptosid-bootstrap usr/lib/calamares/modules
 aptosid/aptosid-refind usr/lib/calamares/modules
 aptosid/helpers usr/share/calamares
 aptosid/calamares-install-aptosid usr/libexec

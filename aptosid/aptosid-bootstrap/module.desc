@@ -1,0 +1,5 @@
+---
+type:       "job"
+name:       "aptosid-bootstrap"
+interface:  "python"
+script:     "main.py"

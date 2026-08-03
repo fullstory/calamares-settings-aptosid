@@ -12,6 +12,7 @@ Vcs-Browser: https://github.com/fullstory/calamares-settings-aptosid
 Package: calamares-settings-aptosid
 Architecture: all
 Depends: calamares,
+	cdebootstrap | debootstrap,
 	cracklib-runtime,
 	pkexec,
 	python3,
@@ -30,3 +31,7 @@ Description: aptosid theme and settings for the Calamares Installer
  By default, it contains a set of boilerplate wording and images. This
  package provides the latest aptosid artwork as well as scripts that
  support EFI installations.
+ .
+ Next to installing the live system itself, it can bootstrap a minimal
+ Debian onto the target instead: base system, kernel and boot loader,
+ using this medium's own package sources.
