@@ -42,6 +42,11 @@ calamares-settings-aptosid (20260803.1) UNRELEASED; urgency=medium
   * install mode: illustrate the choices with the slideshow's own
     mascots - a world full of freds for the full system, a single fred
     for the minimal one.
+  * install mode: give the minimal choice its own artwork, lone-fred,
+    built from the fred world map's background with a single white fred
+    on it. Both choices now share a canvas, so the pane no longer jumps
+    in size between them, and the pair reads as one idea - a world of
+    freds, or one fred.
 
  -- Kel Modderman <kelvmod@gmail.com>  Mon, 03 Aug 2026 19:19:59 +1000
 
