@@ -8,6 +8,33 @@ calamares-settings-aptosid (20260803.1) UNRELEASED; urgency=medium
     target bootstrapped by the new aptosid-bootstrap module never had
     them installed, and a whole 'remove' operation fails when apt cannot
     find one of its packages.
+  * New 'Install mode' page: as well as installing the live system,
+    calamares can now bootstrap a minimal Debian onto the target instead
+    - base system, kernel, boot loader and NetworkManager, no desktop.
+    It takes this medium's own package sources, keyrings and kernel, so
+    the result matches the medium it came from, and it needs an internet
+    connection.
+  * aptosid-bootstrap: the new job module doing that work, with
+    cdebootstrap or debootstrap. It primes apt in the target from the
+    live session's own sources, adds tools for the filesystems the
+    target is installed onto (and cryptsetup for an encrypted one), and
+    sets the flag unpackfsc now reads as its condition, so a target is
+    either unpacked from the live image or bootstrapped, never both.
+  * aptosid-bootstrap: name every package a minimal target needs instead
+    of leaning on package priorities. A bootstrap lays down essential
+    plus apt and stops, so login, tzdata, an awk, an editor and the rest
+    are listed explicitly; without login the console asked for a user
+    name and never for a password.
+  * aptosid-bootstrap: keep the medium's SSH public key (pyfll's
+    ssh_authorized_keys) in the target's /etc/skel, so the user the
+    installer creates can log in over ssh just as on the live system.
+  * welcome: check for an internet connection, via http://aptosid.com
+    over plain http so a live session's clock cannot break the check. It
+    is checked but not required - only a minimal install needs it.
+  * shellprocess_desktop: only copy the live /etc/skel onto a target
+    unpacked from the live image; a bootstrapped one has no desktop to
+    configure.
+  * depend on cdebootstrap | debootstrap.
 
  -- Kel Modderman <kelvmod@gmail.com>  Mon, 03 Aug 2026 19:19:59 +1000
 

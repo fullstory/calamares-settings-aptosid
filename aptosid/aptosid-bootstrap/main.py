@@ -42,12 +42,33 @@ APT_OPTIONS = [
     "-o", "APT::Color=0",
 ]
 
+# The SSH public key pyfll bakes into the live medium, when one is configured.
+SSH_AUTHORIZED_KEYS = "/var/lib/fll/ssh_authorized_keys"
+
 # Where the bootloader module's own configuration is found, in search order:
 # /etc takes precedence over the shipped defaults, as it does in calamares.
 BOOTLOADER_CONF = (
     "/etc/calamares/modules/bootloader.conf",
     "/usr/share/calamares/modules/bootloader.conf",
 )
+
+# The smallest base each tool can lay down. These are not equivalent:
+# cdebootstrap's "minimal" is Essential plus apt, while minbase is Essential
+# plus Priority: required. The configured package list is padded for the
+# smaller of the two, which is what makes the tools converge - measured against
+# the sid indices, the only required-priority package a minbase has and this
+# list does not pull in is an awk, so gawk is named there. (The archive also
+# marks bsdutils required, but util-linux ships logger(1) these days and the
+# live system does not install it either.)
+#
+# The consequence, and the reason the list is as long as it is: nothing arrives
+# by priority. Anything an installed system needs - login(1), an init, zoneinfo,
+# an editor - is named in the configuration or it is simply absent.
+BASE_ARGS = {
+    "debootstrap": ["--variant=minbase"],
+    "cdebootstrap": ["--flavour=minimal"],
+    "mmdebstrap": ["--variant=minbase"],
+}
 
 # grub's EFI package per architecture; the BIOS case is always grub-pc.
 GRUB_EFI = {
@@ -249,8 +270,11 @@ def bootstrapper(conf):
     """The bootstrap tool to use: the first of the preferred tools installed on
     the live system, unless the configuration names one explicitly."""
     named = conf.get("bootstrapper", "")
-    if named:
+    if named in BASE_ARGS:
         return named
+    if named:
+        libcalamares.utils.warning(
+            "unknown bootstrapper {!s} configured; ignoring it".format(named))
     for tool in ("cdebootstrap", "debootstrap"):
         if shutil.which(tool):
             return tool
@@ -261,21 +285,19 @@ def bootstrapper(conf):
 def bootstrap_command(tool, conf, arch, suite, mirror, root):
     """The bootstrapper command line, following pyfll's debbootstrap()."""
     include = ",".join(conf.get("bootstrapInclude", []))
-    variant = conf.get("variant", "minbase")
 
     if tool == "mmdebstrap":
         command = ["mmdebstrap",
                    "--architectures=" + arch,
-                   "--variant=" + variant,
                    "--mode=root",
                    "--format=directory",
                    "--hook-dir=/usr/share/mmdebstrap/hooks/merged-usr"]
     elif tool == "cdebootstrap":
-        command = ["cdebootstrap", "--arch=" + arch, "--flavour=minimal"]
+        command = ["cdebootstrap", "--arch=" + arch]
     else:
-        command = ["debootstrap", "--arch=" + arch,
-                   "--variant=" + variant, "--merged-usr"]
+        command = ["debootstrap", "--arch=" + arch, "--merged-usr"]
 
+    command += BASE_ARGS[tool]
     if include:
         command.append("--include=" + include)
     command += [suite, root, mirror]
@@ -326,6 +348,32 @@ def write_resolv_conf(root):
     libcalamares.utils.warning("no resolv.conf to copy into the target")
 
 
+def preserve_ssh_authorized_keys(root):
+    """Carry the live medium's baked in SSH public key into the target.
+
+    pyfll bakes a key into /var/lib/fll/ssh_authorized_keys when one is
+    configured, and fll-live-initscripts' fll_sshd installs it for the live
+    user. That initscript is no part of an installed system, so the key goes
+    into the target's /etc/skel instead: the users module creates the account
+    with `useradd -m`, which copies skel and chowns the home directory
+    afterwards, so the new user gets the key whatever they called themselves.
+
+    Root stays out of scope, exactly as on the live medium - sshd's
+    prohibit-password plus sudo cover privileged access."""
+    if not os.path.isfile(SSH_AUTHORIZED_KEYS) or not os.path.getsize(
+            SSH_AUTHORIZED_KEYS):
+        return
+
+    ssh_dir = os.path.join(root, "etc/skel/.ssh")
+    os.makedirs(ssh_dir, exist_ok=True)
+    os.chmod(ssh_dir, 0o700)
+    authorized_keys = os.path.join(ssh_dir, "authorized_keys")
+    shutil.copy(SSH_AUTHORIZED_KEYS, authorized_keys)
+    os.chmod(authorized_keys, 0o600)
+    libcalamares.utils.debug(
+        "preserved the live medium's authorized_keys in the target's /etc/skel")
+
+
 def policy_rc_d(root, deny):
     """Deny (or allow again) service startup in the target while packages are
     installed there, as pyfll does for its build chroots: maintainer scripts
@@ -342,10 +390,10 @@ def policy_rc_d(root, deny):
     os.chmod(path, 0o755)
 
 
-def target_packages(conf, arch, efi):
-    """The full package list for a minimal target: the configured essentials
-    plus the kernel, initramfs tool and boot loader taken from the live
-    system."""
+def target_packages(conf, arch, efi, partitions):
+    """The full package list for a minimal target: the configured essentials,
+    tools for the filesystems it is being installed onto, and the kernel,
+    initramfs tool and boot loader taken from the live system."""
     packages = conf.get("packages", {})
     wanted = list(packages.get("essential", []))
     if efi:
@@ -353,13 +401,29 @@ def target_packages(conf, arch, efi):
     wanted += packages.get("firmware", [])
     wanted += packages.get("extra", [])
 
-    wanted.append(kernel_metapackage(arch))
     initramfs = initramfs_package()
+
+    # Filesystem tools, by the names the partition module puts in globalstorage
+    # (KPMcore's, so fat32 rather than vfat). Without them the installed system
+    # cannot fsck what it was installed onto, and an encrypted one cannot
+    # unlock its root at all. A filesystem with no entry needs no tools.
+    tools = packages.get("filesystems", {})
+    for partition in partitions or []:
+        wanted += tools.get((partition.get("fs") or "").lower(), [])
+    if any(partition.get("luksMapperName") for partition in partitions or []):
+        wanted += packages.get("luks", [])
+        if initramfs == "initramfs-tools":
+            # dracut reads crypttab natively; initramfs-tools needs the hooks
+            wanted.append("cryptsetup-initramfs")
+
+    wanted.append(kernel_metapackage(arch))
     if initramfs:
         wanted.append(initramfs)
     wanted += bootloader_packages(arch, efi)
 
-    return wanted
+    # apt would not mind the duplicates a two-ext4 layout produces, but the
+    # log reads better without them
+    return list(dict.fromkeys(wanted))
 
 
 def run():
@@ -425,7 +489,7 @@ def run():
             target_apt("update")
 
             wanted = keyring_packages(apt_keyrings(stanzas))
-            wanted += target_packages(conf, arch, efi)
+            wanted += target_packages(conf, arch, efi, gs.value("partitions"))
             if "refind" in wanted:
                 # rEFInd's maintainer script must not install itself to the
                 # ESP here; the bootloader module and the aptosid-refind job
@@ -439,6 +503,8 @@ def run():
             target_apt("install", wanted, OutputProgress(0.6, 0.99))
         finally:
             policy_rc_d(root, False)
+
+        preserve_ssh_authorized_keys(root)
     except subprocess.CalledProcessError as error:
         return (_("Bootstrap failed"),
                 _("The command <code>{!s}</code> returned error code {!s}.")
