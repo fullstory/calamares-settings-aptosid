@@ -13,12 +13,14 @@ boot loader.
 
 Everything that shapes the result is read from the running live system - apt
 sources and their keyrings, the kernel metapackage, the initramfs tool, the
-boot loader - so the installed system matches the medium it was installed
-from and no build time state has to be baked into this module.
+boot loader, the firmware this machine's hardware asks for - so the installed
+system matches the medium it was installed from, and no build time state has to
+be baked into this module.
 
 Mirrors what pyfll does when it builds the live media itself (pyfll/apt.py).
 """
 
+import glob
 import os
 import re
 import shutil
@@ -44,6 +46,25 @@ APT_OPTIONS = [
 
 # The SSH public key pyfll bakes into the live medium, when one is configured.
 SSH_AUTHORIZED_KEYS = "/var/lib/fll/ssh_authorized_keys"
+
+# Firmware detection. The kernel keeps no record of what it loaded - the
+# "direct-loading" line is a dev_dbg and CONFIG_FW_LOADER_DEBUG is not set on
+# these kernels - so the question is answered from the other end: the modules
+# that are loaded, and the firmware they declare.
+PROC_MODULES = "/proc/modules"
+PROC_CPUINFO = "/proc/cpuinfo"
+# the same tree twice on a merged-usr system; the first hit wins
+FIRMWARE_DIRS = ("/usr/lib/firmware", "/lib/firmware")
+# Debian compresses firmware, so a request for iwlwifi-x.ucode is served by
+# iwlwifi-x.ucode.xz
+FIRMWARE_SUFFIXES = ("", ".xz", ".zst")
+# modinfo lives in /usr/sbin, which is not always on PATH
+MODINFO = ("/usr/sbin/modinfo", "/sbin/modinfo", "modinfo")
+# CPU microcode is declared by no module, and a loaded module may well declare
+# another vendor's blobs (an Intel machine can end up asking for amd_sev
+# firmware), so microcode is decided by the CPU vendor alone and excluded from
+# whatever the module scan turns up.
+MICROCODE = {"GenuineIntel": "intel-microcode", "AuthenticAMD": "amd64-microcode"}
 
 # Where the bootloader module's own configuration is found, in search order:
 # /etc takes precedence over the shipped defaults, as it does in calamares.
@@ -246,6 +267,118 @@ def initramfs_package():
     return None
 
 
+def modinfo_command():
+    """modinfo, wherever it lives on this medium."""
+    for candidate in MODINFO:
+        found = shutil.which(candidate)
+        if found:
+            return found
+    return None
+
+
+def declared_firmware(modinfo):
+    """Firmware file names the currently loaded modules ask for."""
+    with open(PROC_MODULES) as modules:
+        loaded = sorted(line.split()[0] for line in modules if line.strip())
+
+    names = set()
+    for module in loaded:
+        try:
+            names.update(host_output([modinfo, "-F", "firmware", module]))
+        except subprocess.CalledProcessError:
+            # a module modinfo cannot read tells us nothing about firmware
+            continue
+    return names
+
+
+def firmware_paths(names):
+    """Of the declared firmware, the files this medium actually ships.
+
+    A name the medium has no file for is a package we cannot want. Some modules
+    declare wildcards (intel/ish/ish_*.bin), hence the globbing."""
+    paths = []
+    for name in sorted(names):
+        for directory in FIRMWARE_DIRS:
+            found = []
+            for suffix in FIRMWARE_SUFFIXES:
+                candidate = os.path.join(directory, name + suffix)
+                if "*" in candidate:
+                    found += sorted(glob.glob(candidate))
+                elif os.path.exists(candidate):
+                    found.append(candidate)
+            if found:
+                paths += found
+                break
+    return paths
+
+
+def dpkg_owners(paths):
+    """The packages owning *paths*, from a single dpkg -S call.
+
+    dpkg exits non-zero when any one path is unowned - firmware can also arrive
+    in /lib/firmware/updates, owned by nobody - but it still reports the rest,
+    so its output is parsed either way."""
+    try:
+        output = host_output(["dpkg", "-S"] + paths)
+    except subprocess.CalledProcessError as error:
+        output = (getattr(error, "output", "") or "").splitlines()
+
+    packages = []
+    for line in output:
+        owners, colon, path = line.partition(": ")
+        if not colon or not path.startswith("/"):
+            continue
+        for owner in owners.split(", "):
+            package = owner.split(":")[0]  # drop any :arch qualifier
+            if package and package not in packages:
+                packages.append(package)
+    return packages
+
+
+def microcode_packages():
+    """The microcode package for this machine's CPU, if the medium has it."""
+    try:
+        with open(PROC_CPUINFO) as cpuinfo:
+            text = cpuinfo.read()
+    except OSError:
+        return []
+    for vendor, package in MICROCODE.items():
+        if vendor in text and host_installed(package):
+            return [package]
+    return []
+
+
+def firmware_packages():
+    """The firmware packages this machine needs, rather than all of them.
+
+    The live medium carries firmware for everything; an installed minimal system
+    only needs what its own hardware asks for. Loaded modules name the firmware
+    they may request, the medium either ships that file or does not, and dpkg
+    says which package owns it - and package granularity is all that matters,
+    since any iwlwifi blob means firmware-iwlwifi either way.
+
+    It over-installs where one module covers several vendors: btusb declares
+    Bluetooth firmware for Intel, Realtek, MediaTek and Broadcom, so a machine
+    with any Bluetooth asks for all of those packages. Narrowing that would mean
+    teaching this module which blob belongs to which USB device, which belongs
+    in the drivers, not here."""
+    modinfo = modinfo_command()
+    if not modinfo:
+        libcalamares.utils.warning(
+            "no modinfo on this medium; not detecting firmware")
+        return []
+
+    names = declared_firmware(modinfo)
+    paths = firmware_paths(names)
+    packages = [p for p in dpkg_owners(paths) if p not in MICROCODE.values()]
+    packages += microcode_packages()
+
+    libcalamares.utils.debug(
+        "firmware: {!s} names declared, {!s} files present, packages: {!s}".format(
+            len(names), len(paths), " ".join(packages) or "none"))
+    return packages
+
+
 def efi_boot_loader():
     """The loader the bootloader module is configured to install. pyfll bakes
     the live medium's own loader into that module's configuration at build
@@ -409,6 +542,8 @@ def target_packages(conf, arch, efi, partitions):
     wanted = list(packages.get("essential", []))
     if efi:
         wanted += packages.get("efi", [])
+    if conf.get("detectFirmware", True):
+        wanted += firmware_packages()
     wanted += packages.get("firmware", [])
     wanted += packages.get("extra", [])
 

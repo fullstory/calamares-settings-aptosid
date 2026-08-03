@@ -62,6 +62,13 @@ calamares-settings-aptosid (20260803.1) UNRELEASED; urgency=medium
     makes calamares discard the whole list. Until now only the ESP
     restriction applied and root could be given any filesystem in manual
     partitioning.
+  * aptosid-bootstrap: install the firmware this machine actually asks
+    for. The loaded modules name the firmware they may request,
+    whichever of those files the medium ships decides the packages, and
+    the processor's vendor decides the microcode. On a laptop here that
+    is 7 packages instead of the 27 the medium carries, 349 MiB instead
+    of 680 MiB. Firmware for hardware the live session never touched
+    still has to be named in packages.firmware.
 
  -- Kel Modderman <kelvmod@gmail.com>  Mon, 03 Aug 2026 19:19:59 +1000
 
