@@ -35,6 +35,13 @@ calamares-settings-aptosid (20260803.1) UNRELEASED; urgency=medium
     unpacked from the live image; a bootstrapped one has no desktop to
     configure.
   * depend on cdebootstrap | debootstrap.
+  * install mode: name the two choices 'Full' and 'Minimal', and stop
+    calling the minimal one Debian - it is bootstrapped from this
+    medium's own package sources and gets this medium's kernel, so what
+    you end up with is a minimal aptosid.
+  * install mode: illustrate the choices with the slideshow's own
+    mascots - a world full of freds for the full system, a single fred
+    for the minimal one.
 
  -- Kel Modderman <kelvmod@gmail.com>  Mon, 03 Aug 2026 19:19:59 +1000
 

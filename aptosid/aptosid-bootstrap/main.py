@@ -4,7 +4,7 @@
 # SPDX-FileCopyrightText: 2026 Kel Modderman <kelvmod@gmail.com>
 # SPDX-License-Identifier: GPL-3.0-or-later
 #
-"""Bootstrap a minimal Debian into the target.
+"""Bootstrap a minimal aptosid into the target.
 
 The alternative to unpacking the live media's readonly filesystem: debootstrap
 a bare system into the target, hand it the live session's own apt
@@ -81,7 +81,7 @@ status = ""
 
 
 def pretty_name():
-    return _("Bootstrap a minimal Debian system")
+    return _("Bootstrap a minimal system")
 
 
 def pretty_status_message():
@@ -469,7 +469,8 @@ def run():
         suite = stanzas[0]["suites"].split()[0]
 
         tool = bootstrapper(conf)
-        report(_("Bootstrapping Debian {!s} {!s}...").format(suite, arch), 0.02)
+        report(_("Bootstrapping a minimal system ({!s} {!s})...")
+               .format(suite, arch), 0.02)
         libcalamares.utils.host_env_process_output(
             bootstrap_command(tool, conf, arch, suite, mirror, root),
             OutputProgress(0.02, 0.55))
@@ -512,5 +513,5 @@ def run():
     except (OSError, IndexError, KeyError) as error:
         return (_("Bootstrap failed"), str(error))
 
-    report(_("Bootstrapped a minimal Debian system"), 1.0)
+    report(_("Bootstrapped a minimal system"), 1.0)
     return None
