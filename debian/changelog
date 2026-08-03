@@ -50,6 +50,18 @@ calamares-settings-aptosid (20260803.1) UNRELEASED; urgency=medium
   * install mode: trim the minimal choice's description to the same
     length as the full one, so the artwork above it stays put when
     switching between the two.
+  * aptosid-bootstrap: read dpkg's status field properly when looking
+    for the medium's kernel and initramfs tool. The live image holds its
+    kernel packages, so their status reads 'hold ok installed' rather
+    than 'install ok installed'; that made a minimal install fall back
+    to Debian's linux-image-amd64 instead of installing this medium's
+    kernel.
+  * partition: fix the directory filesystem restrictions - each entry
+    needs a 'directory' key, so the EFI entry copied from calamares' own
+    sample (which uses 'mountpoint') was rejected, and one bad entry
+    makes calamares discard the whole list. Until now only the ESP
+    restriction applied and root could be given any filesystem in manual
+    partitioning.
 
  -- Kel Modderman <kelvmod@gmail.com>  Mon, 03 Aug 2026 19:19:59 +1000
 

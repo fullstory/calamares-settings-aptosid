@@ -124,13 +124,24 @@ def host_output(args):
     return lines
 
 
+def dpkg_installed(status):
+    """True when a dpkg ${Status} field says the package is installed.
+
+    Only the last two words are ours to judge: the selection in front of them
+    is not always "install". The live medium holds its kernel packages (pyfll
+    freezes them, calamares releases the hold on the installed system), and a
+    held package reads "hold ok installed"."""
+    fields = status.split()
+    return len(fields) == 3 and fields[1:] == ["ok", "installed"]
+
+
 def host_installed(package):
     """True when *package* is installed on the live system."""
     try:
         lines = host_output(["dpkg-query", "-W", "-f", "${Status}", package])
     except subprocess.CalledProcessError:
         return False
-    return "install ok installed" in " ".join(lines)
+    return dpkg_installed(" ".join(lines))
 
 
 def target_apt(command, packages=None, progress=None):
@@ -208,7 +219,7 @@ def kernel_metapackage(arch):
                              "${Package}|${Status}|${Depends}\n", "linux-image-*"]):
         package, _bar, rest = line.partition("|")
         state, _bar, depends = rest.partition("|")
-        if "install ok installed" not in state or package == running:
+        if not dpkg_installed(state) or package == running:
             continue
         if running in depends:
             return package
