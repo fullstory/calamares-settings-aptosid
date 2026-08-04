@@ -1,9 +1,5 @@
-calamares-settings-aptosid (20260803.1) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20260803.1) unstable; urgency=medium
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Kel Modderman ]
   * packages: tolerate failure when removing the live image packages; a
     target bootstrapped by the new aptosid-bootstrap module never had
     them installed, and a whole 'remove' operation fails when apt cannot
