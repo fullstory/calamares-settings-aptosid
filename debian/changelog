@@ -1,3 +1,9 @@
+calamares-settings-aptosid (20260803.2) UNRELEASED; urgency=medium
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 04 Aug 2026 08:11:44 +0200
+
 calamares-settings-aptosid (20260803.1) unstable; urgency=medium
 
   * packages: tolerate failure when removing the live image packages; a
