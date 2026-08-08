@@ -138,11 +138,21 @@ class OutputProgress:
         libcalamares.job.setprogress(self.value)
 
 
-def host_output(args):
-    """Run a command on the live system, returning its output lines."""
+def host_output(args, check=True):
+    """Run a command on the live system, returning its output lines.
+
+    Calamares hands each line over with its newline still attached, so that is
+    stripped here. With *check* false a non-zero exit is not an error and the
+    output produced before it is still returned: calamares leaves the
+    exception's own output empty whenever it collects output line by line, so
+    there is no other way to have both."""
     lines = []
-    libcalamares.utils.host_env_process_output(args, lines)
-    return lines
+    try:
+        libcalamares.utils.host_env_process_output(args, lines)
+    except subprocess.CalledProcessError:
+        if check:
+            raise
+    return [line.rstrip("\n") for line in lines]
 
 
 def dpkg_installed(status):
@@ -284,10 +294,13 @@ def declared_firmware(modinfo):
     names = set()
     for module in loaded:
         try:
-            names.update(host_output([modinfo, "-F", "firmware", module]))
+            output = host_output([modinfo, "-F", "firmware", module])
         except subprocess.CalledProcessError:
             # a module modinfo cannot read tells us nothing about firmware
             continue
+        # an empty name would match the firmware directory itself, and every
+        # package with a file in it
+        names.update(name for name in output if name)
     return names
 
 
@@ -315,16 +328,15 @@ def firmware_paths(names):
 def dpkg_owners(paths):
     """The packages owning *paths*, from a single dpkg -S call.
 
-    dpkg exits non-zero when any one path is unowned - firmware can also arrive
-    in /lib/firmware/updates, owned by nobody - but it still reports the rest,
-    so its output is parsed either way."""
-    try:
-        output = host_output(["dpkg", "-S"] + paths)
-    except subprocess.CalledProcessError as error:
-        output = (getattr(error, "output", "") or "").splitlines()
+    dpkg exits non-zero when any one path is unowned - regulatory.db is an
+    alternatives symlink belonging to nobody, and firmware can also arrive in
+    /lib/firmware/updates - but it still reports the rest, so the exit code is
+    ignored and whatever it did report is parsed."""
+    if not paths:
+        return []
 
     packages = []
-    for line in output:
+    for line in host_output(["dpkg", "-S"] + paths, check=False):
         owners, colon, path = line.partition(": ")
         if not colon or not path.startswith("/"):
             continue
