@@ -1,9 +1,5 @@
-calamares-settings-aptosid (20260808.1) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20260808.1) unstable; urgency=medium
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Kel Modderman ]
   * aptosid-bootstrap: fix firmware detection finding nothing. Strip the
     newline calamares leaves on each line of command output, and keep
     the output of a command that exits non-zero, such as dpkg -S on an
