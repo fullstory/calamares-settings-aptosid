@@ -1,9 +1,5 @@
-calamares-settings-aptosid (20260817.1) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20260817.1) unstable; urgency=medium
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Kel Modderman ]
   * Provide a fallback internet check url: deb.debian.org
 
  -- Kel Modderman <kelvmod@gmail.com>  Mon, 17 Aug 2026 16:33:08 +1000
