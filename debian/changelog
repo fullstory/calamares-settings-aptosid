@@ -1,3 +1,9 @@
+calamares-settings-aptosid (20260817.2) UNRELEASED; urgency=medium
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 17 Aug 2026 21:00:57 +0200
+
 calamares-settings-aptosid (20260817.1) unstable; urgency=medium
 
   * Provide a fallback internet check url: deb.debian.org
