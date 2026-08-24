@@ -1,10 +1,15 @@
-calamares-settings-aptosid (20260823.1) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20260824.1) UNRELEASED; urgency=medium
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
   * welcome.conf: disable the internet check until aptosid.com lives
     again.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 23 Aug 2026 20:40:47 +1000
+  [ Kel Modderman ]
+  * aptosid-bootstrap.conf: install systemd-cryptsetup on encrypted
+    targets, a minimal system cannot unlock its root at boot without it.
+
+ -- Kel Modderman <kelvmod@gmail.com>  Mon, 24 Aug 2026 20:48:47 +1000
 
 calamares-settings-aptosid (20260817.1) unstable; urgency=medium
 
