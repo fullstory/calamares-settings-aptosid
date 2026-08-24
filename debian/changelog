@@ -8,8 +8,9 @@ calamares-settings-aptosid (20260824.1) UNRELEASED; urgency=medium
   [ Kel Modderman ]
   * aptosid-bootstrap.conf: install systemd-cryptsetup on encrypted
     targets, a minimal system cannot unlock its root at boot without it.
+  * aptosid-bootstrap.conf: trim comments down to the essentials.
 
- -- Kel Modderman <kelvmod@gmail.com>  Mon, 24 Aug 2026 20:48:47 +1000
+ -- Kel Modderman <kelvmod@gmail.com>  Mon, 24 Aug 2026 21:19:37 +1000
 
 calamares-settings-aptosid (20260817.1) unstable; urgency=medium
 
