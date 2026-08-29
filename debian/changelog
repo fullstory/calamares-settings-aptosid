@@ -1,9 +1,5 @@
-calamares-settings-aptosid (20260829.1) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20260829.1) unstable; urgency=medium
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Kel Modderman ]
   * Enable systemd-networkd only when NetworkManager is not installed;
     disable its service and socket otherwise so the two do not fight
     over network interfaces. Handled by new shellprocess@network module.
