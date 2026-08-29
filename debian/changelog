@@ -1,3 +1,9 @@
+calamares-settings-aptosid (20260829.2) UNRELEASED; urgency=medium
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 30 Aug 2026 01:51:27 +0200
+
 calamares-settings-aptosid (20260829.1) unstable; urgency=medium
 
   * Enable systemd-networkd only when NetworkManager is not installed;
