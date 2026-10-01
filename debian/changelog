@@ -8,8 +8,9 @@ calamares-settings-aptosid (20261002.1) UNRELEASED; urgency=medium
     hwclock job, so a local-time RTC is no longer read as UTC.
   * Clear the lightdm account's expiry on the installed system, so the
     greeter's user session starts.
+  * Name Debian bug #1149648 beside the lightdm expiry workaround.
 
- -- Kel Modderman <kelvmod@gmail.com>  Fri, 02 Oct 2026 06:42:46 +1000
+ -- Kel Modderman <kelvmod@gmail.com>  Fri, 02 Oct 2026 07:16:10 +1000
 
 calamares-settings-aptosid (20260829.1) unstable; urgency=medium
 
