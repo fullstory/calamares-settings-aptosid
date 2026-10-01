@@ -1,4 +1,4 @@
-calamares-settings-aptosid (20261001.1) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20261002.1) UNRELEASED; urgency=medium
 
   [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
@@ -6,8 +6,10 @@ calamares-settings-aptosid (20261001.1) UNRELEASED; urgency=medium
   [ Kel Modderman ]
   * Carry the live system's /etc/adjtime into the install and drop the
     hwclock job, so a local-time RTC is no longer read as UTC.
+  * Clear the lightdm account's expiry on the installed system, so the
+    greeter's user session starts.
 
- -- Kel Modderman <kelvmod@gmail.com>  Thu, 01 Oct 2026 19:08:27 +1000
+ -- Kel Modderman <kelvmod@gmail.com>  Fri, 02 Oct 2026 06:42:46 +1000
 
 calamares-settings-aptosid (20260829.1) unstable; urgency=medium
 
