@@ -5,8 +5,10 @@ calamares-settings-aptosid (20261006.1) UNRELEASED; urgency=medium
 
   [ Kel Modderman ]
   * Drop initramfs-tools support; dracut is the only initramfs tool now.
+  * Credit pyfll, not fll.initramfs, for the config lines it rewrites at
+    build time.
 
- -- Kel Modderman <kelvmod@gmail.com>  Tue, 06 Oct 2026 14:04:25 +1000
+ -- Kel Modderman <kelvmod@gmail.com>  Tue, 06 Oct 2026 14:08:36 +1000
 
 calamares-settings-aptosid (20261005.1) unstable; urgency=medium
 
