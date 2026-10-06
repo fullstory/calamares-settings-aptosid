@@ -1,9 +1,5 @@
-calamares-settings-aptosid (20261005.1) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20261005.1) unstable; urgency=medium
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Kel Modderman ]
   * Carry the live system's /etc/adjtime into the install and drop the
     hwclock job, so a local-time RTC is no longer read as UTC.
   * Clear the lightdm account's expiry on the installed system, so the
