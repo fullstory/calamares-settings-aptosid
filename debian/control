@@ -22,8 +22,7 @@ Depends: calamares,
 	wamerican,
 	xdg-user-dirs,
 	${misc:Depends},
-Recommends: cryptsetup-initramfs,
-	cryptsetup,
+Recommends: cryptsetup,
 	keyutils
 Provides: calamares-settings
 Description: aptosid theme and settings for the Calamares Installer

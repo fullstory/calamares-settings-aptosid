@@ -12,10 +12,10 @@ configuration, and install nothing beyond essential utilities, a kernel and a
 boot loader.
 
 Everything that shapes the result is read from the running live system - apt
-sources and their keyrings, the kernel metapackage, the initramfs tool, the
-boot loader, the firmware this machine's hardware asks for - so the installed
-system matches the medium it was installed from, and no build time state has to
-be baked into this module.
+sources and their keyrings, the kernel metapackage, the boot loader, the
+firmware this machine's hardware asks for - so the installed system matches the
+medium it was installed from, and no build time state has to be baked into this
+module.
 
 Mirrors what pyfll does when it builds the live media itself (pyfll/apt.py).
 """
@@ -265,16 +265,6 @@ def kernel_metapackage(arch):
         "no linux-image metapackage found on the live system; "
         "falling back to Debian's linux-image-{}".format(arch))
     return "linux-image-" + arch
-
-
-def initramfs_package():
-    """The initramfs tool the live system uses, so the target's initrd is
-    built by the same tool the dracut/initramfs module will drive later."""
-    for package in ("dracut", "initramfs-tools"):
-        if host_installed(package):
-            return package
-    libcalamares.utils.warning("no initramfs tool found on the live system")
-    return None
 
 
 def modinfo_command():
@@ -548,8 +538,8 @@ def policy_rc_d(root, deny):
 
 def target_packages(conf, arch, efi, partitions):
     """The full package list for a minimal target: the configured essentials,
-    tools for the filesystems it is being installed onto, and the kernel,
-    initramfs tool and boot loader taken from the live system."""
+    tools for the filesystems it is being installed onto, and the kernel and
+    boot loader taken from the live system."""
     packages = conf.get("packages", {})
     wanted = list(packages.get("essential", []))
     if efi:
@@ -558,8 +548,6 @@ def target_packages(conf, arch, efi, partitions):
         wanted += firmware_packages()
     wanted += packages.get("firmware", [])
     wanted += packages.get("extra", [])
-
-    initramfs = initramfs_package()
 
     # Filesystem tools, by the names the partition module puts in globalstorage
     # (KPMcore's, so fat32 rather than vfat). Without them the installed system
@@ -570,13 +558,8 @@ def target_packages(conf, arch, efi, partitions):
         wanted += tools.get((partition.get("fs") or "").lower(), [])
     if any(partition.get("luksMapperName") for partition in partitions or []):
         wanted += packages.get("luks", [])
-        if initramfs == "initramfs-tools":
-            # dracut reads crypttab natively; initramfs-tools needs the hooks
-            wanted.append("cryptsetup-initramfs")
 
     wanted.append(kernel_metapackage(arch))
-    if initramfs:
-        wanted.append(initramfs)
     wanted += bootloader_packages(arch, efi)
 
     # apt would not mind the duplicates a two-ext4 layout produces, but the
