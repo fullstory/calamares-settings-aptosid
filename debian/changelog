@@ -1,9 +1,5 @@
-calamares-settings-aptosid (20261008.1) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20261008.1) unstable; urgency=medium
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Kel Modderman ]
   * Keep the installer log on the installed system as
     /var/log/calamares.log.
 
