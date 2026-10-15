@@ -1,9 +1,5 @@
-calamares-settings-aptosid (20261012.1) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20261012.1) unstable; urgency=medium
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Kel Modderman ]
   * Point /etc/resolv.conf back at systemd-resolved after the install.
     The installer copied the live system's file over it, which could
     leave a plain file that NetworkManager cannot update.
