@@ -69,4 +69,17 @@ EOF
     fi
 fi
 
+# A themed copy at the removable path, as installEFIFallback gives grub, so
+# the disk still boots without its firmware entry.
+case "$(uname -m)" in
+    aarch64) EFI_ARCH="aa64" ;;
+    *)       EFI_ARCH="x64" ;;
+esac
+if [ -f "${REFIND_DIR}/refind_${EFI_ARCH}.efi" ]; then
+    BOOT_DIR="${CHROOT}/boot/efi/EFI/BOOT"
+    mkdir -p "${BOOT_DIR}"
+    cp -R "${REFIND_DIR}/." "${BOOT_DIR}/"
+    mv "${BOOT_DIR}/refind_${EFI_ARCH}.efi" "${BOOT_DIR}/boot${EFI_ARCH}.efi"
+fi
+
 exit 0
