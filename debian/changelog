@@ -1,9 +1,5 @@
-calamares-settings-aptosid (20261018.1) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20261018.1) unstable; urgency=medium
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Kel Modderman ]
   * Also install rEFInd at the EFI fallback path, so the installed
     system still boots when the firmware loses its boot entry or the
     disk moves to another machine.
