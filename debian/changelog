@@ -1,3 +1,9 @@
+calamares-settings-aptosid (20261018.2) UNRELEASED; urgency=medium
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 22 Oct 2026 05:52:22 +0200
+
 calamares-settings-aptosid (20261018.1) unstable; urgency=medium
 
   * Also install rEFInd at the EFI fallback path, so the installed
