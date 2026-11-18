@@ -1,9 +1,5 @@
-calamares-settings-aptosid (20261117.1) UNRELEASED; urgency=medium
+calamares-settings-aptosid (20261117.1) unstable; urgency=medium
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Kel Modderman ]
   * Turn smartd back on in the installed system. The live media ships
     smartmontools with smartd off, so it does not touch disks on its
     own, but an installed system should watch its disks like plain
